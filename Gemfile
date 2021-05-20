@@ -51,6 +51,9 @@ gem 'font-awesome-rails'
 # Adding user authentification
 gem 'devise'
 
+# This fixes problem with execjs 2.8
+gem 'execjs', '2.7'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
