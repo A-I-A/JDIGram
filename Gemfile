@@ -36,8 +36,14 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-# adding bootstrap 5 support
+# Adding bootstrap 5 support
 gem 'bootstrap', '~> 5.0.1'
+
+# Adding HAML support
+gem 'haml'
+
+# Automaticaly generates HAML files
+gem 'haml-rails', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
