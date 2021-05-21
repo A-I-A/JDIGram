@@ -1,17 +1,17 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
+%div{class: "border m-auto pt-3 pb-3 mb-3", style: "width: 350px"}
+
+  %h1{class: "w-50 m-auto mb-4"} JDIgram
+
+  = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "w-75 m-auto"}) do |f|
     .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "w-100 mb-2", placeholder: "email"
+    .field
+      = f.password_field :password, autocomplete: "current-password", class: "w-100 mb-3", placeholder: "password"
+    .actions
+      = f.submit "Log in", class: "btn-primary w-100"
+
+%div{class: "border m-auto p-3", style: "width: 350px"}
+
+  %p{class: "m-auto", style: "width: 280px"} 
+    Don't have an account yet? 
+    = render "devise/shared/links"
