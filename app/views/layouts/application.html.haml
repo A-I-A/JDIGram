@@ -8,8 +8,13 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
-  %body
+  %body{class: "mt-3"}
 
-    %p{:class => "notice"}= notice
-    %p{:class => "alert"}= alert
+    - if user_signed_in?
+      %span  
+        = link_to 'Выйти', destroy_user_session_path, :method => :delete
+    - else 
+      %span
+        = link_to 'Войти', new_user_session_path
+        = link_to 'Зарегистрироваться', new_user_registration_path
     = yield
