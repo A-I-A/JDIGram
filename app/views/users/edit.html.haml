@@ -1,3 +1,48 @@
-%div{class: "w-75 m-auto d-flex flex-row bg-white"}
-  %div
-  %div
+%div{class: "container row m-auto p-5 bg-white border"}
+  %div{class: "edit-sidebar col-4 ms-auto me-3 border-end"}
+  %div{class: "col"}
+    %div{class: "row align-items-center mb-4"}
+      %div{class: "col"}
+        %div{class: "col ms-auto bg-light rounded-circle border border-2", style: "height: 50px; width: 50px;"}
+      %p{class: "col-7 text-start"}
+        = @user.login 
+    = form_with model: @user, class: "col-10" do |form|
+      %div{class: "row mb-1"}
+        =form.label       :login,    class: "col-md-12 col-lg-2 ms-auto"
+        = form.text_field :login,    class: "col-md-12 col-lg-6", placeholder: "Name"
+      %p{class: "col-lg-6 col-md-12 ms-auto mb-4 fs-6 fw-light"}
+        To make it easier for people to find your account, use the name by which they know you: your first and last name, nickname or company name
+
+      %div{class: "row mb-4"}
+        = form.label      :name,     class: "col-md-12 col-lg-2 ms-auto"
+        = form.text_field :name,     class: "col-md-12 col-lg-6"
+      
+      %div{class: "row mb-4"}
+        = form.label      :web_page, class: "col-md-12 col-lg-2 ms-auto"
+        = form.url_field  :web_page, class: "col-md-12 col-lg-6", placeholder: "Web page"
+      %div{class: "row mb-1"}
+        = form.label     :about_me,  class: "col-md-12 col-lg-2 ms-auto"
+        = form.text_area :about_me,  class: "col-md-12 col-lg-6", style: "resize: vertical"
+      %p{class: "col-lg-6 col-md-12 ms-auto mb-4 fs-6 fw-light"} 
+        Personal information Provide personal information even if the account will be used for a company, pet or other purpose. This information will not appear on your public profile.
+
+      %div{class: "row mb-4"}
+        = form.label       :email,   class: "ccol-md-12 col-lg-2 ms-auto"
+        = form.email_field :email,   class: "ol-md-12 col-lg-6"
+
+      %div{class: "row mb-4"}
+        = form.label            :phone,  class: "col-md-12 col-lg-2 ms-auto"
+        = form.telephone_field  :phone,  class: "ol-md-12 col-lg-6", placeholder: "Phone number"
+      %p{class: "col offset-md-6 mb-4 fs-6 fw-light"}
+      %div{class: "col-md-8 col-lg-6 ms-auto mb-5"}
+        %div{class: "row align-items-baseline"}
+          = form.label :gender_male, "Male",     class: "col-3"
+          = form.radio_button :gender, "male",   class: "col-1"
+          = form.label :gender_male, "Female",   class: "col-4"
+          = form.radio_button :gender, "female", class: "col-1"
+        
+
+
+
+      %div{class: "row"}
+        = form.submit "Send", class: "col-4 offset-md-5 offset-lg-6 btn-sm btn-primary"

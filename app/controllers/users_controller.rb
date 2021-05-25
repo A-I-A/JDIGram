@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!, only: [:index, :edit, :update, :destroy]
-  before_action :find_user, only: [:show, :edit]
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
   before_action :permit_only_current_user, only: [:edit, :destroy]
 
   def index
@@ -14,7 +14,15 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def udate
+  def update
+   #render plain: params.inspect
+   @user.update(user_params)
+    if @user.errors.empty?
+      redirect_to user_path
+      flash[:success] = "your profile settings have been updated"
+    else
+      redirect_to edit_user_path
+    end
   end
 
   def destroy
@@ -31,4 +39,7 @@ class UsersController < ApplicationController
     render_403 unless @user.id == current_user.id
   end
 
+  def user_params
+    params.require(:user).permit(:name, :login, :email, :web_page, :about_me, :phone, :gender)
+  end
 end

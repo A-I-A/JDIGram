@@ -1,0 +1,9 @@
+.edit-sidebar {
+  display: none; 
+}
+    
+@include media-breakpoint-up(md) {
+  .edit-sidebar {
+    display: block;
+  }
+}
