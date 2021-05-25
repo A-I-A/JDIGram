@@ -9,5 +9,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body{class: "bg-light"} 
+    = render partial: "partial/navbar" 
+    %div{class: "text-center"}
+      = flash[:success]
+      
     = yield
-    

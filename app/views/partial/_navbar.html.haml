@@ -1,0 +1,12 @@
+%div{class: "row bg-white border-bottom", style: "height: 50px;"}
+  %div{class: "col text-center fs-3 fw-bold"}
+    JDIgram
+  %div{class: "col"}
+  %div{class: "col d-flex align-items-center"}
+    - if user_signed_in?
+      %div  
+        = link_to 'Sign out', destroy_user_session_path, :method => :delete, class: "btn btn-primary"
+    - else 
+      %div
+        = link_to 'Sign in', new_user_session_path, class: "btn btn-primary"
+        = link_to 'Sign up', new_user_registration_path
