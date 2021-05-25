@@ -1,28 +1,28 @@
-%div{class: "w-75 m-auto"}
-  %div{class: "d-flex p-3 border-bottom"}
-    %div{style: "height: 150px; width: 150px;"}
-      %div{class: "w-75 h-75 my-3 m-auto bg-white rounded-circle"}
-    %div{class: "w-50 m-auto"}
-      %div{class: "d-flex flex-row justify-content-between align-items-baseline mb-3"}
-        %div{class: "m-0 fs-5 fw-light"}
+%div{class: "container m-auto"}
+  %div{class: "row p-3 mb-3 border-bottom"}
+    %div{class: "col"}
+      %div{class: "m-auto bg-white rounded-circle",style: "height: 150px; width: 150px;"}
+    %div{class: "col"}
+      %div{class: "row justify-content-between align-items-baseline mb-3"}
+        %div{class: "col m-0 fs-5 fw-light"}
           = @user.login
-        - if @user.id == current_user.id
-          =link_to "Edit profile", edit_user_path, class: "btn btn-light btn-sm border" 
-      %div{class: "d-flex justify-content-between mb-3"}
-        %p{class: "m-0"}
+        - if user_signed_in? && @user.id == current_user.id
+          =link_to "Edit profile", edit_user_path, class: "col btn btn-light btn-sm border" 
+      %div{class: "row justify-content-between mb-3"}
+        %p{class: "col text-nowrap m-0"}
           0 publlications
-        %p{class: "m-0"}
+        %p{class: "col text-nowrap m-0"}
           0 subscribers
-        %p{class: "m-0"}
+        %p{class: "col text-nowrap m-0"}
           0 following
       %p{class: "m-0 fs-5 fs-bold"}
         = @user.name
-  %div{class: "d-flex flex-row justify-content-center align-items-baseline mt-2 "}
-    %p{class: "mx-4"}
+  %div{class: "row justify-content-center align-items-baseline"}
+    %p{class: "col text-center"}
       Publications
-    %p{class: "mx-4"}
+    %p{class: "col text-center"}
       Saved
-    %p{class: "mx-4"}
+    %p{class: "col text-center"}
       Marks
 
 
