@@ -1,0 +1,43 @@
+.navbar-button{
+  display: block; 
+  width: 30px; 
+  height: 30px;
+}
+
+.user-menu{
+  position: relative;
+
+
+  &-popup{
+    display: none;
+    top: 15px;
+    right: 160px;
+    position: relative;
+    width: 200px;
+    background: #fff;
+    box-shadow: 0 0 2px 2px #ECF0F1;
+    
+  }
+
+  &-popup-item{
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    text-decoration: none;
+  }
+
+  &-popup-image{
+    width:  25px; 
+    height: 25px;
+    margin-right: 10px;
+  }
+
+  &-popup-description{
+    color: black;
+    
+
+  }
+}
+
+

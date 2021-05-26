@@ -8,6 +8,10 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
-  %body{class: "bg-light"} 
+  %body{class: "bg-light"}
+    - if user_signed_in? || user_profile_path?
+      = render partial: "partial/navbar" 
+      %div{class: "text-center"}
+        = flash[:success]
     = yield
     

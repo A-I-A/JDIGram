@@ -4,9 +4,8 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
   before_action :permit_only_current_user, only: [:edit, :destroy]
 
-  layout "users"
-
   def index
+    puts "\n\n ACTION: #{params[:action]} #{params[:controller]}"
     @users = User.all
   end
 

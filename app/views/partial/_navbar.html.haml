@@ -4,9 +4,35 @@
   %div{class: "col"}
   %div{class: "col d-flex align-items-center"}
     - if user_signed_in?
-      %div  
-        = link_to 'Sign out', destroy_user_session_path, :method => :delete, class: "btn btn-primary"
+      %div{class: "d-flex justify-content-start align-items-center"}
+        = link_to users_path, class: "navbar-button me-1" do
+          = svg 'home_icon'
+        %div{class: "navbar-button me-1"}
+          = svg "message_icon"
+        %div{class: "navbar-button me-1"}
+          = svg "heart_icon"
+        %div{class: "user-menu navbar-button me-1"}
+          = svg "user_icon_glyph"
+          %div{class: "user-menu-popup"}
+            = link_to user_path(current_user.id), class: "user-menu-popup-item" do
+              %div{class: "user-menu-popup-image"}
+                = svg "user_icon" 
+              %div{class: "user-menu-popup-description"}
+                Profile
+            = link_to edit_user_path(current_user.id), class: "user-menu-popup-item border-bottom" do
+              %div{class: "user-menu-popup-image"}
+                = svg "user_settings_icon"
+              %div{class: "user-menu-popup-description"} 
+                Prefences
+            = link_to destroy_user_session_path, :method => :delete, class: "user-menu-popup-item" do
+              %div{class: "user-menu-popup-description"} 
+                Sign out
     - else 
       %div
         = link_to 'Sign in', new_user_session_path, class: "btn btn-primary"
         = link_to 'Sign up', new_user_registration_path
+
+
+
+        
+
