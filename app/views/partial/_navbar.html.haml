@@ -11,7 +11,7 @@
           = svg "message_icon"
         %div{class: "navbar-button me-1"}
           = svg "heart_icon"
-        %div{class: "user-menu navbar-button me-1"}
+        %button{class: "user-menu navbar-button me-1"}
           = svg "user_icon_glyph"
           %div{class: "user-menu-popup"}
             = link_to user_path(current_user.id), class: "user-menu-popup-item" do

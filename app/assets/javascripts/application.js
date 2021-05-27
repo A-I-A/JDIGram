@@ -19,11 +19,14 @@
 
 $(document).on("turbolinks:load", function(){
   $(".user-menu").click(function(){
+    if ($(".user-menu-popup").css('display') == 'none')
       $(".user-menu-popup").css('display', 'block');
+    else
+      $(".user-menu-popup").css('display', 'none');
   })
 
   $(".user-menu").on('blur', function(){
-    $(".user-menu-popup").css('display', 'none');
+    setTimeout(()=>{$(".user-menu-popup").css('display', 'none')},100); 
   })
 })
 
