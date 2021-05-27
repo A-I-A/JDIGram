@@ -1,0 +1,43 @@
+.devise-block{
+  @extend .border;
+  @extend .bg-white;
+  @extend .mx-auto;
+  width: 300px;
+}
+
+.devise-container{
+  @extend .devise-block;
+  @extend .py-3;
+  @extend .mt-3;
+  @extend .mb-2;
+}
+
+.devise-title{
+  @extend .w-50;
+  @extend .m-auto;
+  @extend .mb-4;
+}
+
+.devise-form{
+  @extend .w-75;
+  @extend .m-auto;
+}
+
+.devise-input-field{
+  @extend .bg-light;
+  @extend .w-100;
+  @extend .border;
+}
+
+.devise-button-wide{
+  @extend .w-100;
+  @extend .btn-primary;
+}
+
+@include media-breakpoint-up(md) {
+  .devise-block {
+    width: 350px;
+  }
+}
+
+

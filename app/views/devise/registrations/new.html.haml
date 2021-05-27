@@ -1,26 +1,26 @@
-%div{class: "border m-auto pt-3 pb-3 mb-3", style: "width: 350px"}
-
-  %h1{class: "w-50 m-auto mb-3"} JDIgram
-
+.devise-container
+  %h1{class: "devise-title"} 
+    JDIgram
+    
   %p{class: "w-75 m-auto text-center fw-light mb-3"} 
-
     Register to watch photos and videos of your friends.
-  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "w-75 m-auto"}) do |f|
+
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "devise-form"}) do |f|
     = render "devise/shared/error_messages", resource: resource
     .field
-      = f.email_field :email, autofocus: true, autocomplete: "email", class: "w-100 mb-2", placeholder: "Your email"
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "devise-input-field mb-2", placeholder: "Your email"
     .field
-      = f.text_field :login, autofocus: true, autocomplete: "login", class: "w-100 mb-2", placeholder: "Login"
+      = f.text_field :login, autofocus: true, autocomplete: "login", class: "devise-input-field mb-2", placeholder: "Login"
     .field
-      = f.text_field :name, autofocus: true,class: "w-100 mb-2", placeholder: "Name"
+      = f.text_field :name, autofocus: true,class: "devise-input-field mb-2", placeholder: "Name"
     .field
-      = f.password_field :password, autocomplete: "new-password", class: "w-100 mb-2", placeholder: "Password"
+      = f.password_field :password, autocomplete: "new-password", class: "devise-input-field mb-2", placeholder: "Password"
     .field
-      = f.password_field :password_confirmation, autocomplete: "new-password", class: "w-100 mb-3", placeholder: "Confirm password"
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "devise-input-field mb-3", placeholder: "Confirm password"
     .actions
-      = f.submit "Sign up", class: "btn-primary w-100"
+      = f.submit "Sign up", class: "devise-button-wide"
 
-%div{class: "border m-auto p-3", style: "width: 350px"}
-  %p{class: "w-75 m-auto"} 
+.devise-block
+  %p{class: "text-center my-3"} 
     Have an account?
     = render "devise/shared/links"

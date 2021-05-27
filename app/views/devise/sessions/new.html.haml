@@ -1,17 +1,14 @@
-%div{class: "border m-auto pt-3 pb-3 mb-3", style: "width: 350px"}
-
-  %h1{class: "w-50 m-auto mb-4"} JDIgram
-
-  = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "w-75 m-auto"}) do |f|
+.devise-container
+  %h1{class: "devise-title"} JDIgram
+  = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "devise-form"}) do |f|
     .field
-      = f.email_field :email, autofocus: true, autocomplete: "email", class: "w-100 mb-2", placeholder: "email"
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "devise-input-field mb-2", placeholder: "Email"
     .field
-      = f.password_field :password, autocomplete: "current-password", class: "w-100 mb-3", placeholder: "password"
+      = f.password_field :password, autocomplete: "current-password", class: "devise-input-field mb-3", placeholder: "Password"
     .actions
-      = f.submit "Log in", class: "btn-primary w-100"
+      = f.submit "Log in", class: "devise-button-wide"
 
-%div{class: "border m-auto p-3", style: "width: 350px"}
-
-  %p{class: "m-auto", style: "width: 280px"} 
+.devise-block
+  %p{class: "text-center mt-3 mb-0"}
     Don't have an account yet? 
     = render "devise/shared/links"
