@@ -24,15 +24,10 @@
                 = svg "user_settings_icon"
               %div{class: "user-menu-popup-description"} 
                 Prefences
-            = link_to destroy_user_session_path, :method => :delete, class: "user-menu-popup-item" do
+            = link_to destroy_user_session_url, method: :delete, class: "user-menu-popup-item" do
               %div{class: "user-menu-popup-description"} 
                 Sign out
     - else 
       %div
         = link_to 'Sign in', new_user_session_path, class: "btn btn-primary"
         = link_to 'Sign up', new_user_registration_path
-
-
-
-        
-

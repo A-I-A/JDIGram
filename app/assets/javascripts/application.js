@@ -10,42 +10,21 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require jquery
 //= require activestorage
 //= require turbolinks
+//= require jquery
+//= require rails-ujs
 //= require_tree .
 
-// document.ready  = addListener()
-// 
-// 
-// function addListener() { 
-// alert(123) 
-//   var userMenuPopup = document.querySelector(".user-menu-popup");
-//   var userMenu = document.querySelector(".user-menu");
-// 
-//   userMenu.addEventListener('click', 
-//     function(){
-//     console.log("it works")
-//     userMenuPopup.style.display = "block";
-//     console.log("it works")
-//   })
-// }
-//document.onload = alert(123)
+
 $(document).on("turbolinks:load", function(){
-  console.log('123');
-  $(".user-menu").click(function(e){
-    e.stopPropagation();
-    if ($(".user-menu-popup").css('display') === 'none')
+  $(".user-menu").click(function(){
       $(".user-menu-popup").css('display', 'block');
-    else 
-      $(".user-menu-popup").css('display', 'none');
   })
 
-  $(document).click(function(){
+  $(".user-menu").on('blur', function(){
     $(".user-menu-popup").css('display', 'none');
   })
-
 })
 
 
