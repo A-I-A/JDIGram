@@ -5,13 +5,13 @@
       .edit-title-row
         .edit-profile-picture
           = svg "user_icon"
-        %p{class: "text-start"}
+        %p.text-start
           = @user.login 
       = form_with model: @user do |form|
         .row.mb-1
           = form.label      :login,    class: "edit-label"
           = form.text_field :login,    class: "edit-input", placeholder: "Name"
-        %p{class: "edit-input-description"}
+        %p.edit-input-description
           To make it easier for people to find your account, use the name by which they know you: your first and last name, nickname or company name
 
         .row.mb-4
@@ -25,7 +25,7 @@
         .row.mb-1
           = form.label      :about_me,  class: "edit-label"
           = form.text_area  :about_me,  class: "edit-input", style: "resize: vertical"
-        %p{class: "edit-input-description"} 
+        %p.edit-input-description
           Personal information Provide personal information even if the account will be used for a company, pet or other purpose. This information will not appear on your public profile.
 
         .row.mb-4

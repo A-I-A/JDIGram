@@ -18,6 +18,14 @@
   @extend .mb-4;
 }
 
+.devise-registration-greeting{
+  @extend .w-75;
+  @extend .m-auto;
+  @extend .text-center;
+  @extend .fw-light;
+  @extend .mb-3; 
+}
+
 .devise-form{
   @extend .w-75;
   @extend .m-auto;
