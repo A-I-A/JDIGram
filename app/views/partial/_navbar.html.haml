@@ -1,33 +1,34 @@
-%div{class: "row bg-white border-bottom", style: "height: 50px;"}
-  %div{class: "col text-center fs-3 fw-bold"}
+.navbar-container
+  .navbar-logo
     JDIgram
-  %div{class: "col"}
-  %div{class: "col d-flex align-items-center"}
+  .col
+  .navbar-buttons-row
     - if user_signed_in?
-      %div{class: "d-flex justify-content-start align-items-center"}
+      .navbar-navigation-buttons
         = link_to users_path, class: "navbar-button me-1" do
           = svg 'home_icon'
-        %div{class: "navbar-button me-1"}
+        .navbar-button.me-1
           = svg "message_icon"
-        %div{class: "navbar-button me-1"}
+        .navbar-button.me-1
           = svg "heart_icon"
-        %button{class: "user-menu navbar-button me-1"}
+        %button{class: "navbar-menu navbar-button me-1"}
           = svg "user_icon_glyph"
-          %div{class: "user-menu-popup"}
-            = link_to user_path(current_user.id), class: "user-menu-popup-item" do
-              %div{class: "user-menu-popup-image"}
+          .navbar-popup
+            = link_to user_path(current_user.id), class: "navbar-popup-item" do
+              .navbar-popup-image
                 = svg "user_icon" 
-              %div{class: "user-menu-popup-description"}
+              .navbar-popup-description
                 Profile
-            = link_to edit_user_path(current_user.id), class: "user-menu-popup-item border-bottom" do
-              %div{class: "user-menu-popup-image"}
+            = link_to edit_user_path(current_user.id), class: "navbar-popup-item border-bottom" do
+              .navbar-popup-image
                 = svg "user_settings_icon"
-              %div{class: "user-menu-popup-description"} 
+              .navbar-popup-description
                 Prefences
-            = link_to destroy_user_session_url, method: :delete, class: "user-menu-popup-item" do
-              %div{class: "user-menu-popup-description"} 
+            = link_to destroy_user_session_url, method: :delete, class: "navbar-popup-item" do
+              .navbar-popup-description
                 Sign out
     - else 
-      %div
-        = link_to 'Sign in', new_user_session_path, class: "btn btn-primary"
-        = link_to 'Sign up', new_user_registration_path
+      = link_to new_user_session_path, class: "btn btn-primary" do 
+        Sign in 
+      = link_to new_user_registration_path do
+        Sign up

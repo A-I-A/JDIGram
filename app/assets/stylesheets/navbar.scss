@@ -1,28 +1,52 @@
+.navbar-container{
+  @extend .row;
+  @extend .bg-white;
+  @extend .border-bottom;
+  height: 50px;
+}
+
+.navbar-logo{
+  @extend .col;
+  @extend .text-center;
+  @extend .fs-3;
+  @extend .fw-bold;
+}
+
+.navbar-buttons-row{
+  @extend .col;
+  @extend .d-flex;
+  @extend .align-items-center;
+}
+
+.navbar-navigation-buttons{
+  @extend .d-flex;
+  @extend .justify-content-start;
+  @extend .align-items-center;
+}
+
 .navbar-button{
   display: block; 
   width: 30px; 
   height: 30px;
-}
-
-.user-menu{
-  position: relative;
   background: #fff;
   padding: 0;
   border: none;
+}
 
+.navbar-menu{
+  position: relative;
+}
 
-  &-popup{
-    display: none;
-    top: 15px;
-    right: 160px;
-    position: relative;
-    width: 200px;
-    background: #fff;
-    box-shadow: 0 0 2px 2px #ECF0F1;
-    
-  }
+.navbar-popup{
+  display: none;
+  top: 15px;
+  right: 160px;
+  position: relative;
+  width: 200px;
+  background: #fff;
+  box-shadow: 0 0 2px 2px #ECF0F1;
 
-  &-popup-item{
+  &-item{
     padding-left: 10px;
     display: flex;
     align-items: center;
@@ -30,13 +54,13 @@
     text-decoration: none;
   }
 
-  &-popup-image{
+  &-image{
     width:  25px; 
     height: 25px;
     margin-right: 10px;
   }
 
-  &-popup-description{
+  &-description{
     color: black;   
   }
 }

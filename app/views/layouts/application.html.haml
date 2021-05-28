@@ -11,7 +11,7 @@
   %body{class: "bg-light"}
     - if user_signed_in? || user_profile_path?
       = render partial: "partial/navbar" 
-      %div{class: "text-center"}
-        = flash[:success]
+    .text-center
+      = flash[:success]
     = yield
     

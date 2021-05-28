@@ -18,15 +18,15 @@
 
 
 $(document).on("turbolinks:load", function(){
-  $(".user-menu").click(function(){
-    if ($(".user-menu-popup").css('display') == 'none')
-      $(".user-menu-popup").css('display', 'block');
+  $(".navbar-menu").click(function(){
+    if ($(".navbar-popup").css('display') == 'none')
+      $(".navbar-popup").css('display', 'block');
     else
-      $(".user-menu-popup").css('display', 'none');
+      $(".navbar-popup").css('display', 'none');
   })
 
-  $(".user-menu").on('blur', function(){
-    setTimeout(()=>{$(".user-menu-popup").css('display', 'none')},100); 
+  $(".navbar-menu").on('blur', function(){
+    setTimeout(()=>{$(".navbar-popup").css('display', 'none')},100); 
   })
 })
 
