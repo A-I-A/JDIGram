@@ -1,9 +1,96 @@
-.edit-sidebar {
-  display: none; 
+.edit-container{
+  @extend .container;
+  @extend .row;
+  @extend .p-5;
+  @extend .bg-white;
+  @extend .border;
 }
-    
+
+.edit-sidebar{
+  display: none; 
+  @extend .col-4;
+  @extend .ms-auto;
+  @extend .me-3;
+  @extend .border-end;
+}
+
+.edit-credentials{
+  @extend .col-lg-10;
+  @extend .col-md-12;
+  @extend .offset-lg-2;
+}
+
+.edit-title-row{
+  @extend .d-flex;
+  @extend .mb-3;
+}
+
+.edit-profile-picture{ 
+  @extend .me-3;
+  @extend .offset-lg-2;
+  @extend .offset-lg-3;
+  @extend .bg-white; 
+  @extend .rounded-circle; 
+  @extend .border;
+  @extend .border-2;
+  height: 50px;
+  width: 50px;
+}
+
+.edit-label{
+  @extend .col-md-10;
+  @extend .col-lg-4;
+}
+
+.edit-input{
+  @extend .col-md-10;
+  @extend .col-lg-6;
+}
+
+.edit-input-description {
+  @extend .col-lg-6;
+  @extend .col-md-10;
+  @extend .offset-lg-4;
+  @extend .me-auto;
+  @extend .mb-4;
+  @extend .fs-6;
+  @extend .fw-light;
+}
+
+.edit-gender-row{
+  @extend .col-lg-6;
+  @extend .col-md-10;
+  @extend .offset-lg-4;
+  @extend .me-auto;
+  @extend .d-flex;
+  @extend .align-items-baseline;
+  @extend .mb-4;
+}
+
+.edit-submit-button{
+  width: 100px;
+  //@extend .col-4;
+  //@extend .offset-md-5;
+  @extend .offset-lg-4;
+  @extend .btn-sm;
+  @extend .btn-primary;
+}
+
+@include media-breakpoint-up(lg) {
+  .edit-label{
+    text-align: right;
+  }
+}
+
 @include media-breakpoint-up(md) {
-  .edit-sidebar {
+  .edit-sidebar{
     display: block;
   }
 }
+
+@include media-breakpoint-down(md) {
+    .edit-label{
+    text-align: left;
+  }
+}
+

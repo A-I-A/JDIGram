@@ -1,0 +1,57 @@
+.user-credentials-container{
+  @extend .row;
+  @extend .p-3;
+  @extend .mb-3;
+  @extend .border-bottom;
+}
+
+.user-credentials-row{
+  @extend .row;
+  @extend .justify-content-between;
+  @extend .mb-3;
+}
+
+.user-profile-picture{
+  @extend .m-auto;
+  @extend .bg-white;
+  @extend .border;  
+  @extend .border-2;  
+  @extend .rounded-circle;
+  height: 150px;
+  width: 150px;
+}
+
+.user-login{
+  @extend .col;
+  @extend .m-0;
+  @extend .fs-5; 
+  @extend .fw-light;
+}
+
+.user-name{
+  @extend .m-0;
+  @extend .fs-5;
+  @extend .fw-bold;
+}
+
+.user-edit-button{
+  @extend .col;
+  @extend .btn;
+  @extend .btn-light;
+  @extend .btn-sm;
+  @extend .border; 
+  @extend .border-secondary;
+}
+
+.user-metrics-counter{
+  @extend .col-lg-4;
+  @extend .col-md-12;
+  @extend .text-nowrap;
+  @extend .m-0;
+}
+
+.user-bottom-organizer{
+  @extend .row;
+  @extend .justify-content-center;
+  @extend .align-items-baseline;
+}

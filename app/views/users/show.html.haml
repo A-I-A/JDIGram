@@ -1,28 +1,28 @@
-%div{class: "container m-auto border"}
-  %div{class: "row p-3 mb-3 border-bottom"}
-    %div{class: "col"}
-      %div{class: "m-auto bg-white border border-2 rounded-circle",style: "height: 150px; width: 150px;"}
-    %div{class: "col"}
-      %div{class: "row justify-content-between align-items-baseline mb-3"}
-        %div{class: "col m-0 fs-5 fw-light"}
+.container
+  .user-credentials-container
+    .col
+      .user-profile-picture
+        = svg "user_icon"
+    .col
+      .user-credentials-row
+        .user-login
           = @user.login
         - if user_signed_in? && @user.id == current_user.id
-          =link_to "Edit profile", edit_user_path, class: "col btn btn-light btn-sm border border-secondary" 
-      %div{class: "row justify-content-between mb-3"}
-        %p{class: "col text-nowrap m-0"}
+          =link_to  edit_user_path, class: "user-edit-button" do
+            Edit profile
+      .user-credentials-row
+        %p{class: "user-metrics-counter"}
           0 publlications
-        %p{class: "col text-nowrap m-0"}
+        %p{class: "user-metrics-counter"}
           0 subscribers
-        %p{class: "col text-nowrap m-0"}
+        %p{class: "user-metrics-counter"}
           0 following
-      %p{class: "m-0 fs-5 fs-bold"}
+      %p{class: "user-name"}
         = @user.name
-  %div{class: "row justify-content-center align-items-baseline"}
+  .user-bottom-organizer
     %p{class: "col text-center"}
       Publications
     %p{class: "col text-center"}
       Saved
     %p{class: "col text-center"}
       Marks
-
-
