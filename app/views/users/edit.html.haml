@@ -2,12 +2,16 @@
   .edit-sidebar
   .col
     .edit-credentials
-      .edit-title-row
-        .edit-profile-picture
-          = svg "user_icon"
-        %p.text-start
-          = @user.login 
       = form_with model: @user do |form|
+        .edit-title-row
+          %label{for: :user_avatar, class: "edit-avatar-container"}
+            - if @user.avatar.attached?
+              .edit-avatar{style: "background: url('#{url_for(@user.avatar)}') center; background-size: cover;"}
+            - else
+              = svg "user_icon"
+          = form.file_field :avatar, class: "edit-avatar-field" 
+          %p.text-start
+            = @user.login
         .row.mb-1
           = form.label      :login,    class: "edit-label"
           = form.text_field :login,    class: "edit-input", placeholder: "Name"

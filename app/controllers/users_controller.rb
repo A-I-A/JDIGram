@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def update
    #render plain: params.inspect
+   @user.avatar.attach(user_params[:avatar])
    @user.update(user_params)
     if @user.errors.empty?
       redirect_to user_path
@@ -41,6 +42,13 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :login, :email, :web_page, :about_me, :phone, :gender)
+    params.require(:user).permit(:name, 
+                                 :login, 
+                                 :email, 
+                                 :web_page, 
+                                 :about_me, 
+                                 :phone, 
+                                 :gender,
+                                 :avatar)
   end
 end
