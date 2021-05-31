@@ -28,6 +28,21 @@ $(document).on("turbolinks:load", function(){
   $(".navbar-menu").on('blur', function(){
     setTimeout(()=>{$(".navbar-popup").css('display', 'none')},100); 
   })
+
+  $(".avatar-file-field").on('change', function(event){
+    let formData = new FormData();
+    formData.append('avatar', event.target.files[0])
+     $.ajax({
+      url: "/users/set_avatar/" + event.target.getAttribute("user_id"),
+      type: 'POST',
+      processData: false,
+      contentType: false,
+      data: formData,
+      success: function(data){
+        $(".edit-avatar").attr('src', data.avatar_url);
+      }
+    })
+  })
 })
 
 

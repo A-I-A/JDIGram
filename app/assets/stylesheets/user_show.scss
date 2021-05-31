@@ -11,14 +11,24 @@
   @extend .mb-3;
 }
 
-.user-profile-picture{
+.user-avatar-container{
+  display: block;
   @extend .m-auto;
   @extend .bg-white;
   @extend .border;  
   @extend .border-2;  
   @extend .rounded-circle;
-  height: 150px;
-  width: 150px;
+  width:  $avatar-middle-size; 
+  height: $avatar-middle-size;
+}
+
+.edit-avatar{
+  padding: 0;
+  margin: 0;
+  margin: auto;
+  width:  $avatar-middle-size; 
+  height: $avatar-middle-size; 
+  @extend .rounded-circle
 }
 
 .user-login{

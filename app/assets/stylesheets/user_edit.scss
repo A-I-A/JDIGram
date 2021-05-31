@@ -9,13 +9,11 @@
 .edit-sidebar{
   display: none; 
   @extend .col-4;
-  @extend .ms-auto;
-  @extend .me-3;
   @extend .border-end;
 }
 
 .edit-credentials{
-  @extend .col-lg-10;
+  @extend .col-lg-6;
   @extend .col-md-12;
   @extend .offset-lg-2;
 }
@@ -42,12 +40,12 @@
   padding: 0;
   margin: 0;
   margin: auto;
-  width:  $avatar-small-size ; 
+  width:  $avatar-small-size; 
   height: $avatar-small-size; 
   @extend .rounded-circle
 }
 
-.edit-avatar-field{
+.avatar-file-field{
   display: none;
 }
 

@@ -1,8 +1,12 @@
 .container
   .user-credentials-container
     .col
-      .user-profile-picture
-        = svg "user_icon"
+      %label.user-avatar-container{for: :user_avatar}
+        - if @user.avatar.attached?
+          %img.edit-avatar{src: url_for(@user.avatar)}
+        - else
+          = svg "user_icon"
+      %input.avatar-file-field{type: "file", id: "user_avatar", user_id: @user.id}
     .col
       .user-credentials-row
         .user-login
@@ -26,3 +30,8 @@
       Saved
     %p.col.text-center
       Marks
+
+
+
+
+        
