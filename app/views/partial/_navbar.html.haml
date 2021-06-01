@@ -12,8 +12,9 @@
         .navbar-button.me-1
           = svg "heart_icon"
         %button.navbar-menu.navbar-button.me-1
-          - if @user.avatar.attached?
-            %img.navbar-avatar{src: url_for(@user.avatar)}
+          - user = @users.find(current_user.id)
+          - if user.avatar.attached?
+            %img.navbar-avatar{src: url_for(user.avatar)}
             .navbar-avatar-spinner
               = svg "spinner"
           - else
