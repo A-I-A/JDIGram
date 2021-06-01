@@ -24,6 +24,7 @@
 }
 
 .edit-avatar-container{ 
+  cursor: pointer;
   display: block;
   @extend .me-3;
   @extend .offset-lg-2;
@@ -32,17 +33,27 @@
   @extend .rounded-circle; 
   @extend .border;
   @extend .border-2;
-  height: $avatar-small-size;
-  width:  $avatar-small-size;
+  height: $avatar-container-small;
+  width:  $avatar-container-small;
 }
 
 .edit-avatar{
-  padding: 0;
-  margin: 0;
+  position: relative;
+  top: 1px;
+  left: 1px;
   margin: auto;
-  width:  $avatar-small-size; 
-  height: $avatar-small-size; 
-  @extend .rounded-circle
+  width:  $avatar-small; 
+  height: $avatar-small; 
+  @extend .rounded-circle;
+}
+
+.edit-avatar-spinner{
+  position: relative;
+  top: -44px;
+  margin: auto;
+  width:  $avatar-small; 
+  height: $avatar-small; 
+  @extend .rounded-circle;
 }
 
 .avatar-file-field{

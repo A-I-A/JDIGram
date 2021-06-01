@@ -11,15 +11,19 @@
  * It is generally better to create a new file per style scope.
  *
  */
+ $avatar-container-big: 150px;
+ $avatar-big: 144px;
 
-$avatar-small-size: 50px;
-$avatar-middle-size: 150px;
+ $avatar-container-small: 50px;
+ $avatar-small: 44px;
 
+  
  @import "bootstrap";
  @import "font-awesome";
  @import "user_edit";
  @import "user_show";
  @import "navbar";
  @import "devise";
+ @import "flash-info"
 
 

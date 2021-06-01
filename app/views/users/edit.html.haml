@@ -5,6 +5,8 @@
       %label.edit-avatar-container{for: :user_avatar}
         - if @user.avatar.attached?
           %img.edit-avatar{src: url_for(@user.avatar)}
+          .edit-avatar-spinner
+            = svg "spinner" 
         - else
           = svg "user_icon"
         %input.avatar-file-field{type: "file", id: "user_avatar", user_id: @user.id}
@@ -48,3 +50,4 @@
 
       .row
         = form.submit "Send", class: "edit-submit-button"
+

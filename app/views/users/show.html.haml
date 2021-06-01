@@ -3,7 +3,9 @@
     .col
       %label.user-avatar-container{for: :user_avatar}
         - if @user.avatar.attached?
-          %img.edit-avatar{src: url_for(@user.avatar)}
+          %img.show-avatar{src: url_for(@user.avatar)}
+          .show-avatar-spinner
+            = svg "spinner"
         - else
           = svg "user_icon"
       %input.avatar-file-field{type: "file", id: "user_avatar", user_id: @user.id}
