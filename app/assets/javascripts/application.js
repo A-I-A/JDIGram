@@ -37,6 +37,8 @@ $(document).on("turbolinks:load", function(){
     $(".edit-avatar-spinner").css('display','block');
     $(".show-avatar").css('opacity','0.1');
     $(".show-avatar-spinner").css('display','block');
+    $(".navbar-avatar").css('opacity','0.1');
+    $(".navbar-avatar-spinner").css('display','block');
      $.ajax({
       url: "/users/set_avatar/" + event.target.getAttribute("user_id"),
       type: 'POST',
@@ -46,6 +48,7 @@ $(document).on("turbolinks:load", function(){
       success: function(data){
         $(".edit-avatar").attr('src', data.avatar_url);
         $(".show-avatar").attr('src', data.avatar_url);
+        $(".navbar-avatar").attr('src', data.avatar_url);
         flashOnAvatarChange("your avatar have been updated");
       }
     })
@@ -59,6 +62,11 @@ $(document).on("turbolinks:load", function(){
   $(".show-avatar").on('load', function(){
     $(".show-avatar").css('opacity','1');
     $(".show-avatar-spinner").css('display','none'); 
+  })
+
+  $(".navbar-avatar").on('load', function(){
+    $(".navbar-avatar").css('opacity','1');
+    $(".navbar-avatar-spinner").css('display','none'); 
   })
 
   function flashOnAvatarChange(str){

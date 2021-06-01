@@ -12,7 +12,12 @@
         .navbar-button.me-1
           = svg "heart_icon"
         %button.navbar-menu.navbar-button.me-1
-          = svg "user_icon_glyph"
+          - if @user.avatar.attached?
+            %img.navbar-avatar{src: url_for(@user.avatar)}
+            .navbar-avatar-spinner
+              = svg "spinner"
+          - else
+            = svg "user_icon_glyph"
           .navbar-popup
             = link_to user_path(current_user.id), class: "navbar-popup-item" do
               .navbar-popup-image
@@ -32,3 +37,5 @@
         Sign in 
       = link_to new_user_registration_path do
         Sign up
+
+            
