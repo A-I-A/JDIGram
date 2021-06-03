@@ -1,0 +1,19 @@
+.container
+  .modal.fade{id: "cropModal"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5.modal-title
+            Select miniature for your avatar
+          %button.btn-close{data: {bs: {dismiss: "modal"}}}
+        .modal-body
+          .container
+            .row.m-auto
+              .col.crop-image-container
+                %img{id: "crop-img"}
+              .col.crop-preview-container
+                .crop-preview   
+            .row.justify-content-center
+              %button{id: "crop-button", user_id: @user.id}
+                Save
+        .modal-footer

@@ -1,0 +1,22 @@
+ .crop-image-container{
+  width: 200px;
+  height: 200px;
+ }
+
+ #crop-img{
+   display: block;
+   //max-width: 100%;
+ }
+
+.crop-preview-container{
+  width: 200px;
+  height: 200px;
+}
+
+.crop-preview{
+  overflow: hidden;
+  margin: auto;
+  width:  $avatar-big; 
+  height: $avatar-big; 
+  @extend .rounded-circle
+ }

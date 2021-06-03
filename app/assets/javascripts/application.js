@@ -13,12 +13,14 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery
+//= require bootstrap
 //= require rails-ujs
+//= require cropper
 //= require_tree .
 
 
 $(document).on("turbolinks:load", function(){
-  
+
   $(".navbar-menu").click(function(){
     if ($(".navbar-popup").css('display') == 'none')
       $(".navbar-popup").css('display', 'block');
@@ -29,53 +31,4 @@ $(document).on("turbolinks:load", function(){
   $(".navbar-menu").on('blur', function(){
     setTimeout(()=>{$(".navbar-popup").css('display', 'none')},100); 
   })
-
-  $(".avatar-file-field").on('change', function(event){ 
-    let formData = new FormData();
-    formData.append('avatar', event.target.files[0])
-    $(".edit-avatar").css('opacity','0.1');
-    $(".edit-avatar-spinner").css('display','block');
-    $(".show-avatar").css('opacity','0.1');
-    $(".show-avatar-spinner").css('display','block');
-    $(".navbar-avatar").css('opacity','0.1');
-    $(".navbar-avatar-spinner").css('display','block');
-     $.ajax({
-      url: "/users/set_avatar/" + event.target.getAttribute("user_id"),
-      type: 'POST',
-      processData: false,
-      contentType: false,
-      data: formData,
-      success: function(data){
-        $(".edit-avatar").attr('src', data.avatar_url);
-        $(".show-avatar").attr('src', data.avatar_url);
-        $(".navbar-avatar").attr('src', data.avatar_url);
-        flashOnAvatarChange("your avatar have been updated");
-      }
-    })
-  })
-
-  $(".edit-avatar").on('load', function(){
-    $(".edit-avatar").css('opacity','1');
-    $(".edit-avatar-spinner").css('display','none');
-  })
-
-  $(".show-avatar").on('load', function(){
-    $(".show-avatar").css('opacity','1');
-    $(".show-avatar-spinner").css('display','none'); 
-  })
-
-  $(".navbar-avatar").on('load', function(){
-    $(".navbar-avatar").css('opacity','1');
-    $(".navbar-avatar-spinner").css('display','none'); 
-  })
-
-  function flashOnAvatarChange(str){
-    $(".flash-info").html(str).fadeOut(3000);
-  }
 })
-
-
-
-  
-
-

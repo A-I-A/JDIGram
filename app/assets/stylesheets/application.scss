@@ -11,6 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  */
+
+ /*
+ *= require cropper
+ */
+
  $avatar-container-big: 150px;
  $avatar-big: 144px;
 
@@ -18,7 +23,6 @@
  $avatar-small: 44px;
 
  $avatar-micro: 26px;
-
   
  @import "bootstrap";
  @import "font-awesome";
@@ -26,6 +30,6 @@
  @import "user_show";
  @import "navbar";
  @import "devise";
- @import "flash-info"
-
+ @import "flash-info";
+ @import "crop";
 

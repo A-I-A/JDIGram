@@ -2,6 +2,9 @@
   "name": "JDIgram",
   "private": true,
   "dependencies": {
-    "jquery": "^3.6.0"
+    "cropper": "^4.1.0",
+    "cropperjs": "^1.5.11",
+    "jquery": "^3.6.0",
+    "jquery-cropper": "^1.0.1"
   }
 }
