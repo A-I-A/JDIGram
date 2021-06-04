@@ -1,6 +1,8 @@
 $(document).on("turbolinks:load", function(){
-
-  let cropModal = new bootstrap.Modal($('#cropModal'));
+  
+  if ($('#cropModal').length){
+    var cropModal = new bootstrap.Modal($('#cropModal'));
+  }
 
   $('#cropModal').on('hide.bs.modal', function(){ 
     $('#crop-img').cropper('destroy');
@@ -15,7 +17,7 @@ $(document).on("turbolinks:load", function(){
     reader.readAsDataURL($(".avatar-file-field")[0].files[0]);
   })
 
-  $(".avatar-file-field").on('change', function(event){ 
+  $(".avatar-file-field").on('input', function(event){ 
     cropModal.toggle();
   })
 
