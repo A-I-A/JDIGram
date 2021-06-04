@@ -4,6 +4,7 @@ $(document).on("turbolinks:load", function(){
 
   $('#cropModal').on('hide.bs.modal', function(){ 
     $('#crop-img').cropper('destroy');
+    $(".avatar-file-field").val(null);
   })
     
   $('#cropModal').on('shown.bs.modal', function(){  
