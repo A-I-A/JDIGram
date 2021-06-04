@@ -8,7 +8,7 @@
             = svg "spinner"
         - else
           = svg "user_icon"
-      = if user_signed_in? && @user.id == current_user.id
+      - if user_signed_in? && (@user.id == current_user.id)
         %input.avatar-file-field{type: "file", id: "user_avatar"}
     .col
       .user-credentials-row
