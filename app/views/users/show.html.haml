@@ -7,7 +7,7 @@
           .show-avatar-spinner
             = svg "spinner"
         - else
-          = svg "user_icon"
+          = svg "user_icon_glyph"
       - if user_signed_in? && (@user.id == current_user.id)
         %input.avatar-file-field{type: "file", id: "user_avatar"}
     .col

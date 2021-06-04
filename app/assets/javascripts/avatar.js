@@ -1,7 +1,13 @@
 $(document).on("turbolinks:load", function(){
+
+  let cropModal = new bootstrap.Modal($('#cropModal'));
+
+  $('#cropModal').on('hide.bs.modal', function(){ 
+    $('#crop-img').cropper('destroy');
+  })
     
-  $('#cropModal').on('shown.bs.modal', function(){    
-    let reader = new FileReader();
+  $('#cropModal').on('shown.bs.modal', function(){  
+    let reader = new FileReader();  
     reader.onload = function(event){
       $("#crop-img").attr('src', event.target.result);
     }
@@ -9,22 +15,18 @@ $(document).on("turbolinks:load", function(){
   })
 
   $(".avatar-file-field").on('change', function(event){ 
-    $(".edit-avatar").css('opacity','0.1');
-    $(".edit-avatar-spinner").css('display','block');
-    $(".show-avatar").css('opacity','0.1');
-    $(".show-avatar-spinner").css('display','block');
-    $(".navbar-avatar").css('opacity','0.1');
-    $(".navbar-avatar-spinner").css('display','block');
-    let cropModal = new bootstrap.Modal($('#cropModal'));
     cropModal.toggle();
   })
 
   $("#crop-img").on('load', function(){
     $('#crop-img').cropper({
+      viewMode: 1,
+      movable: false,
+      rotatable: false,
+      zoomable: false,
       preview: ".crop-preview",
       dragMode: 'none',
-      guides: true,
-      isRotated: true,
+      guides: false,
       aspectRatio: 1 / 1,
       crop: function(event) {
       }
@@ -32,6 +34,12 @@ $(document).on("turbolinks:load", function(){
   })
     
   $("#crop-button").click(function(event){
+    $(".edit-avatar").css('opacity','0.1');
+    $(".edit-avatar-spinner").css('display','block');
+    $(".show-avatar").css('opacity','0.1');
+    $(".show-avatar-spinner").css('display','block');
+    $(".navbar-avatar").css('opacity','0.1');
+    $(".navbar-avatar-spinner").css('display','block');
     $('#crop-img').cropper('getCroppedCanvas', undefined).toBlob(function(blob){
       let formData = new FormData();
       formData.append('avatar', blob);
@@ -45,6 +53,7 @@ $(document).on("turbolinks:load", function(){
           $(".edit-avatar").attr('src', data.avatar_url);
           $(".show-avatar").attr('src', data.avatar_url);
           $(".navbar-avatar").attr('src', data.avatar_url);
+          cropModal.toggle();
           flashOnAvatarChange("your avatar have been updated");
         }
       })
@@ -52,17 +61,17 @@ $(document).on("turbolinks:load", function(){
   })
 
   $(".edit-avatar").on('load', function(){
-    $(".edit-avatar").css('opacity','1');
+    $(this).css('opacity','1');
     $(".edit-avatar-spinner").css('display','none');
   })
 
   $(".show-avatar").on('load', function(){
-    $(".show-avatar").css('opacity','1');
+    $(this).css('opacity','1');
     $(".show-avatar-spinner").css('display','none'); 
   })
 
   $(".navbar-avatar").on('load', function(){
-    $(".navbar-avatar").css('opacity','1');
+    $(this).css('opacity','1');
     $(".navbar-avatar-spinner").css('display','none'); 
   })
 
@@ -70,3 +79,4 @@ $(document).on("turbolinks:load", function(){
     $(".flash-info").html(str).fadeOut(3000);
   }
 })
+

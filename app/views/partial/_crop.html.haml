@@ -8,12 +8,12 @@
           %button.btn-close{data: {bs: {dismiss: "modal"}}}
         .modal-body
           .container
-            .row.m-auto
-              .col.crop-image-container
+            .row.m-auto.mb-3
+              .crop-image-container
                 %img{id: "crop-img"}
-              .col.crop-preview-container
+              .crop-preview-container
                 .crop-preview   
             .row.justify-content-center
-              %button{id: "crop-button", user_id: @user.id}
+              %button.btn.btn-primary{id: "crop-button", user_id: @user.id}
                 Save
         .modal-footer
