@@ -2,9 +2,9 @@ class UsersController < ApplicationController
 
   include Rails.application.routes.url_helpers
 
-  before_action :authenticate_user!, only: [:index, :edit, :update, :destroy, :set_avatar]
-  before_action :find_user, only: [:show, :edit, :update, :destroy, :set_avatar]
-  before_action :permit_only_current_user, only: [:edit, :destroy, :set_avatar]
+  before_action :authenticate_user!, only: [:index, :edit, :update, :destroy, :set_avatar, :remove_avatar]
+  before_action :find_user, only: [:show, :edit, :update, :destroy, :set_avatar, :remove_avatar]
+  before_action :permit_only_current_user, only: [:edit, :destroy, :set_avatar, :remove_avatar]
 
   def index
     puts "\n\n ACTION: #{params[:action]} #{params[:controller]}"
@@ -34,6 +34,10 @@ class UsersController < ApplicationController
   def set_avatar
     @user.avatar.attach(params[:avatar])
     render json: { avatar_url: rails_blob_path(@user.avatar, disposition: "attachment", only_path: true) }
+  end
+
+  def remove_avatar
+    @user.avatar.purge
   end
 
   private

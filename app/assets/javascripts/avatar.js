@@ -57,6 +57,7 @@ $(document).on("turbolinks:load", function(){
           $(".show-avatar").attr('src', data.avatar_url);
           $(".navbar-avatar").attr('src', data.avatar_url);
           cropModal.toggle();
+          Turbolinks.visit(window.location.toString(), { action: 'replace' });
           flashOnAvatarChange("your avatar have been updated");
         }
       })
@@ -81,5 +82,17 @@ $(document).on("turbolinks:load", function(){
   function flashOnAvatarChange(str){
     $(".flash-info").html(str).fadeOut(3000);
   }
+
+  $(".remove_avatar-button").click(function(event){
+    $.ajax({
+      url: "/users/remove_avatar/" + event.target.getAttribute("user_id"),
+      type: 'DELETE',
+      processData: false,
+      contentType: false,
+      success: function(){
+        Turbolinks.visit(window.location.toString(), { action: 'replace' });
+      }
+    })
+  })
 })
 

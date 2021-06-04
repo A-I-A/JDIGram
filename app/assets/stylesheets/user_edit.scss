@@ -60,6 +60,12 @@
   display: none;
 }
 
+.remove_avatar-button{
+  @extend .btn;
+  @extend .btn-link;
+  @extend .p-0;
+}
+
 .edit-label{
   @extend .col-md-10;
   @extend .col-lg-4;

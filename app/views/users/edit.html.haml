@@ -10,9 +10,12 @@
         - else
           = svg "user_icon_glyph"
         %input.avatar-file-field{type: "file", id: "user_avatar"}
-      %p.text-start
-        = @user.login
-
+      .col
+        .text-start.mb-1
+          = @user.login
+        - if @user.avatar.attached?
+          %button.remove_avatar-button{user_id: @user.id}
+            remove avatar
     = form_with model: @user do |form|
       .row.mb-1
         = form.label      :login,    class: "edit-label"
