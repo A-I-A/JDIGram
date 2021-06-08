@@ -39,8 +39,7 @@
       .user-publication-preview{style: "background: url('#{url_for(pub.photos[0])}') center no-repeat; background-size: cover;"}
 
 
-- if user_signed_in? && @user.id == current_user.id
-  = render partial: "partial/crop"
+- if user_signed_in?
   = render partial: "partial/add_publication"
 
 

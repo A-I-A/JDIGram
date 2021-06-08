@@ -1,3 +1,9 @@
+.pub-avatar-description-row{
+  @extend .d-flex;
+  @extend .justify-content-start;
+  @extend .align-items-center;
+}
+
 .pub-avatar-container{ 
   @extend .me-2;
   @extend .bg-white; 
@@ -28,13 +34,14 @@
 }
 
 .pub-description{
-  width:  300px;
+  @extend .border;
+  @extend .w-75;
   display: block;
-  border: none;
   overflow: auto;
   resize: none;
   box-shadow: none;
   outline: none;
+  height: 120px;
 }
 
 .pub-add-photo{
@@ -48,10 +55,14 @@
   display: none;
 }
 
-.photo-container{
+.pub-photo-list{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.pub-photo-container{
+  position: relative;
 }
 
 .pub-photo-preview{
@@ -61,3 +72,21 @@
   height: 250px;
 }
 
+.pub-footer{
+  @extend .modal-footer;
+  @extend .d-flex;
+  @extend .justify-content-between;
+}
+
+.remove-photo-button{
+  z-index: 10;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: asset-url("cross.svg");
+}
+
+
+                                           

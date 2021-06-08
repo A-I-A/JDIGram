@@ -43,10 +43,12 @@ class UsersController < ApplicationController
   def add_publication
     @publication = Publication.new
     @publication.description = params[:description]
-    params[:photo].each do |photo|
-      @publication.photos.attach(photo) 
-      @user.publications << @publication
+    if params[:photo]
+      params[:photo].each do |photo|
+        @publication.photos.attach(photo) 
+      end
     end
+    @user.publications << @publication
     @publication.save
   end
 
