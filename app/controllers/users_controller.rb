@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   include Rails.application.routes.url_helpers
 
   before_action :authenticate_user!, only: [:index, :edit, :update, :destroy, :set_avatar, :remove_avatar]
-  before_action :find_user, only: [:show, :edit, :update, :destroy, :set_avatar, :remove_avatar]
+  before_action :find_user, only: [:show, :edit, :update, :destroy, :set_avatar, :remove_avatar, :add_publication]
   before_action :permit_only_current_user, only: [:edit, :destroy, :set_avatar, :remove_avatar]
 
   def index
@@ -38,6 +38,20 @@ class UsersController < ApplicationController
 
   def remove_avatar
     @user.avatar.purge
+  end
+
+  def add_publication
+    @publication = Publication.new
+    @publication.description = params[:description]
+    params[:photo].each do |photo|
+      @publication.photos.attach(photo) 
+      @user.publications << @publication
+    end
+    @publication.save
+  end
+
+  def remove_publication
+
   end
 
   private

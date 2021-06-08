@@ -77,3 +77,23 @@
   @extend .justify-content-center;
   @extend .align-items-baseline;
 }
+
+.user-publications-container{
+  @extend .border;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-publications-tab{
+  @extend .col;
+  @extend .text-center;
+}
+
+.user-publication-preview{
+  @extend .border;
+  @extend .border-2;
+  @extend .me-2;
+  width: 300px;
+  height: 300px;
+}
+

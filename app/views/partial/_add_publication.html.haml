@@ -1,0 +1,28 @@
+.container
+  .modal.fade{ id: "publicationModal", tabindex: -1, aria: { hidden: true } }
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5.modal-title
+            Share your impressions
+          %button.btn-close{data: {bs: {dismiss: "modal"}}}
+        .modal-body
+          .container
+            .d-flex.justify-content-start
+              .pub-avatar-container
+                - if @user.avatar.attached?
+                  %img.pub-avatar{src: url_for(@user.avatar)}
+                  .pub-avatar-spinner
+                    = svg "spinner" 
+                - else
+                  = svg "user_icon_glyph"
+              %textarea.pub-description
+            .photo-container
+        .modal-footer.d-flex.justify-content-between
+          %label.pub-add-photo{for: "photo_input"}
+            %input.pub-photo-input{type: "file", id: "photo_input", multiple: true}
+            = svg "add_photo"
+          %button.btn.btn-primary{id: "publicationButton", user_id: @user.id}
+            Save
+          
+          
