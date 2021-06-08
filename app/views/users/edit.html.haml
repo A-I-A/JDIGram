@@ -9,7 +9,7 @@
             = svg "spinner" 
         - else
           = svg "user_icon_glyph"
-        %input.avatar-file-field{type: "file", id: "user_avatar"}
+        %input.avatar-file-field{type: "file", accept: "image/*", id: "user_avatar"}
       .col
         .text-start.mb-1
           = @user.login

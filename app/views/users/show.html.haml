@@ -9,7 +9,7 @@
         - else
           = svg "user_icon_glyph"
       - if user_signed_in? && (@user.id == current_user.id)
-        %input.avatar-file-field{type: "file", id: "user_avatar"}
+        %input.avatar-file-field{type: "file", accept: "image/*", id: "user_avatar"}
     .col
       .user-credentials-row
         .user-login
