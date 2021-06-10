@@ -1,0 +1,17 @@
+.modal.fade{ id: "showPublicationModal", tabindex: -1, aria: { hidden: true } }
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        %button.btn-close{ data: { bs: { dismiss: "modal" } } }
+      .modal-body.pub-show-body
+        .d-flex
+          .pub-show-photo-column
+            .pub-show-photo
+              .pub-show-slide-left
+                .pub-show-left-arrow
+              .pub-show-slide-right
+                .pub-show-right-arrow
+          .col
+            %p.pub-show-description
+  }
+         

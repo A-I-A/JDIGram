@@ -52,6 +52,15 @@ class UsersController < ApplicationController
     @publication.save
   end
 
+  def get_publication
+    @publication = Publication.find(params[:id])
+    photos = []
+    @publication.photos.each do |photo|
+      photos.append({ photo_url: rails_blob_path(photo, disposition: "attachment", only_path: true) })
+    end 
+    render json: { photos: photos, description: @publication.description }
+  end
+
   def remove_publication
 
   end

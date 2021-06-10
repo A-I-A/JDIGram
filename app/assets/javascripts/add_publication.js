@@ -58,7 +58,7 @@ $(document).on("turbolinks:load", function(){
       return container;
     }
 
-    $("#publicationButton").click(function(event){
+    $("#addPublicationButton").click(function(event){
       let data = new FormData();
       for (photo of photosList){
         data.append('photo[]', photo);
