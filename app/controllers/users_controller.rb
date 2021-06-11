@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @publications = @user.publications
   end
 
   def edit
@@ -52,13 +53,32 @@ class UsersController < ApplicationController
     @publication.save
   end
 
-  def get_publication
-    @publication = Publication.find(params[:id])
+  def get_publication_content
+    @publication = Publication.find(params[:pub_id])
     photos = []
     @publication.photos.each do |photo|
       photos.append({ photo_url: rails_blob_path(photo, disposition: "attachment", only_path: true) })
     end 
     render json: { photos: photos, description: @publication.description }
+  end
+
+  def get_publication
+    @user = User.find(params[:user_id])
+    @publication = @user.publications.find(params[:pub_id])
+    first = false
+    last = false
+    if @publication.id == @user.publications.last.id
+      last = true
+    end
+
+    if @publication.id == @user.publications.first.id
+      first = true
+    end
+    photos = []
+    @publication.photos.each do |photo|
+      photos.append({ photo_url: rails_blob_path(photo, disposition: "attachment", only_path: true) })
+    end
+    render json: { photos: photos, description: @publication.description, first: first, last: last }
   end
 
   def remove_publication

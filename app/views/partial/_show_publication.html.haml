@@ -4,14 +4,17 @@
       .modal-header
         %button.btn-close{ data: { bs: { dismiss: "modal" } } }
       .modal-body.pub-show-body
-        .d-flex
-          .pub-show-photo-column
-            .pub-show-photo
-              .pub-show-slide-left
-                .pub-show-left-arrow
-              .pub-show-slide-right
-                .pub-show-right-arrow
-          .col
-            %p.pub-show-description
-  }
+        .pub-show-publication-previous
+          .pub-show-left-arrow
+        .pub-show-photo-column
+          .pub-show-photo
+            .pub-show-photo-previous
+              .pub-show-previous-photo-arrow
+            .pub-show-photo-next
+              .pub-show-next-photo-arrow
+        .pub-show-publication-next
+          .pub-show-right-arrow
+        .col
+          %p.pub-show-description
+
          

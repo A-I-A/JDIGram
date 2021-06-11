@@ -35,8 +35,8 @@
     .col.text-center
       Marks
   .user-publications-container
-    - @user.publications.each do |pub|
-      .user-publication-preview{pub_id: pub.id, style: "background: url('#{url_for(pub.photos[0])}') center no-repeat; background-size: cover;"}
+    - @publications.each do |pub|
+      .user-publication-preview{user_id: @user.id, pub_id: pub.id, style: "background: url('#{url_for(pub.photos[0])}') center no-repeat; background-size: cover;"}
 
 
 - if user_signed_in?

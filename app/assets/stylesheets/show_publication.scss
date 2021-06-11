@@ -1,5 +1,7 @@
 .pub-show-body{
+  @extend .d-flex;
   padding: 0;
+  position: relative;
 }
 
 .pub-show-photo-column{
@@ -15,7 +17,7 @@
   position: relative;
 }
 
-.pub-show-slide-right{
+.pub-show-photo-next{
   width: 40%;
   height: 100%;
   position: absolute;
@@ -25,7 +27,7 @@
   align-items: center;
 }
 
-.pub-show-slide-left{
+.pub-show-photo-previous{
   display: none;
   width: 40%;
   height: 100%;
@@ -36,7 +38,7 @@
   align-items: center;
 }
 
-.pub-show-left-arrow{
+.pub-show-previous-photo-arrow{
   visibility: hidden;
   @extend .rounded-circle;
   background: asset-url("left_arrow_circle.svg");
@@ -44,11 +46,48 @@
   height: 30px;
 }
 
-.pub-show-right-arrow{
+.pub-show-next-photo-arrow{
   visibility: hidden;
   @extend .rounded-circle;
   background: asset-url("right_arrow_circle.svg");
   width: 30px;
   height: 30px;
-  
+}
+
+.pub-show-publication-next{
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  right: -50px;
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pub-show-publication-previous{
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  left: -50px;
+  border: 2px solid red; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pub-show-left-arrow{
+  //visibility: hidden;
+  @extend .rounded-circle;
+  background: asset-url("left_arrow_light.svg");
+  width: 50px;
+  height: 50px;
+}
+
+.pub-show-right-arrow{
+  //visibility: hidden;
+  @extend .rounded-circle;
+  background: asset-url("right_arrow_light.svg");
+  width: 50px;
+  height: 50px;
 }
