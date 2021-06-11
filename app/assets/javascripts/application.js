@@ -29,6 +29,6 @@ $(document).on("turbolinks:load", function(){
   })
 
   $(".navbar-menu").on('blur', function(){
-    setTimeout(()=>{$(".navbar-popup").css('display', 'none')},100); 
+    setTimeout(()=>{$(".navbar-popup").css('display', 'none')}, 300); 
   })
 })
