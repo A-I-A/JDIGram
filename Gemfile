@@ -68,6 +68,8 @@ group :development, :test do
   gem 'rspec-rails'
   # This adds support for FactoryBot
   gem 'factory_bot_rails'
+  # This is needed to manipulate render_template
+  gem 'rails-controller-testing'
 end
 
 group :development do
