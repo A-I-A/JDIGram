@@ -1,8 +1,16 @@
 $(document).on("turbolinks:load", function(){
 
+  // this sets right dimensions of publication preview on user's page
+  let publicationPreview = $(".user-publication-preview");
+  publicationPreview.height(publicationPreview.width());
+
+  $(window).on("resize", function(){
+   publicationPreview.height(publicationPreview.width());
+  })
+
   if ($("#showPublicationModal").length){
     let showPublicationModal = new bootstrap.Modal($("#showPublicationModal"));
-    
+
     let photoContainer = $(".pub-show-photo");
     let pubDescription = $(".pub-show-description");
     let nextPublicationButton = $(".pub-show-publication-next");
@@ -22,9 +30,7 @@ $(document).on("turbolinks:load", function(){
         url: `/users/${user_id}/get_publication/${pub_id}`,
         type: "GET",
         success: function(data){
-          //console.log(data);
           pubSlider.init(user_id, pub_id, data.next, data.previous);
-          console.log(pubSlider);
           pubDescription.html(data.description);
           if (data.photos.length){
             pubPhotoSlider.init(data.photos); 
@@ -190,7 +196,7 @@ $(document).on("turbolinks:load", function(){
       previousPhotoArrow.css("visibility", "hidden");
     })
 
-    $(".user-publication-preview").click(function(event){
+    publicationPreview.click(function(event){
       let user_id = event.target.getAttribute("user_id");
       let pub_id = event.target.getAttribute("pub_id");
       getPublication(user_id, pub_id);

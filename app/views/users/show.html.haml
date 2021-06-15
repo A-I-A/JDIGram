@@ -1,15 +1,15 @@
 .container
   .user-credentials-container
     .col
-      %label.user-avatar-container{for: :user_avatar}
+      %label.user-avatar-container{ for: :user_avatar }
         - if @user.avatar.attached?
-          %img.show-avatar{src: url_for(@user.avatar)}
+          %img.show-avatar{ src: url_for(@user.avatar) }
           .show-avatar-spinner
             = svg "spinner"
         - else
           = svg "user_icon_glyph"
       - if user_signed_in? && (@user.id == current_user.id)
-        %input.avatar-file-field{type: "file", accept: "image/*", id: "user_avatar"}
+        %input.avatar-file-field{ type: "file", accept: "image/*", id: "user_avatar" }
     .col
       .user-credentials-row
         .user-login
@@ -36,7 +36,8 @@
       Marks
   .user-publications-container
     - @publications.each do |pub|
-      .user-publication-preview{user_id: @user.id, pub_id: pub.id, style: "background: url('#{url_for(pub.photos[0])}') center no-repeat; background-size: cover;"}
+      .user-publication-preview{ user_id: @user.id, pub_id: pub.id, style: "background: url('#{url_for(pub.photos[0]) }') center no-repeat; background-size: cover;"}
+
 
 
 - if user_signed_in?

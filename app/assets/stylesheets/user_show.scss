@@ -76,12 +76,7 @@
   @extend .row;
   @extend .justify-content-center;
   @extend .align-items-baseline;
-}
-
-.user-publications-container{
-  @extend .border;
-  display: flex;
-  flex-wrap: wrap;
+  @extend .mb-3;
 }
 
 .user-publications-tab{
@@ -89,11 +84,20 @@
   @extend .text-center;
 }
 
+.user-publications-container{
+  @extend .w-75;
+  @extend .m-auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr  1fr;
+}
+
+
 .user-publication-preview{
   @extend .border;
   @extend .border-2;
   @extend .me-2;
-  width: 300px;
-  height: 300px;
+  grid-gap: 5px;
+  min-width: 100px;
+  min-height: 100px;
 }
 
