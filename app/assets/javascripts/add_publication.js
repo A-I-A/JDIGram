@@ -13,7 +13,7 @@ $(document).on("turbolinks:load", function(){
       $(".pub-photo-list").html('');
     })
 
-    $(".add_publication").click(function(){
+    $("#add_publication").click(function(){
       publicationModal.toggle();
     })
 
