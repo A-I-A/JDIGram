@@ -65,20 +65,13 @@ class UsersController < ApplicationController
   def get_publication
     @user = User.find(params[:user_id])
     @publication = @user.publications.find(params[:pub_id])
-    first = false
-    last = false
-    if @publication.id == @user.publications.last.id
-      last = true
-    end
-
-    if @publication.id == @user.publications.first.id
-      first = true
-    end
+    next_pub = next_publication(@user, @publication)
+    previous_pub = previous_publication(@user, @publication)
     photos = []
     @publication.photos.each do |photo|
       photos.append({ photo_url: rails_blob_path(photo, disposition: "attachment", only_path: true) })
     end
-    render json: { photos: photos, description: @publication.description, first: first, last: last }
+    render json: { photos: photos, description: @publication.description, next: next_pub, previous: previous_pub }
   end
 
   def remove_publication
@@ -86,6 +79,24 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def next_publication(user, publication)
+    next_pub = user.publications.where("id > ?", publication.id).first
+    if next_pub
+      return next_pub.id
+    else 
+      return false
+    end
+  end
+
+  def previous_publication(user, publication)
+    previous_pub = user.publications.where("id < ?", publication.id).last
+    if previous_pub
+      return previous_pub.id
+    else 
+      return false
+    end
+  end
 
   def find_user
     @user = User.find_by(id: params[:id])
