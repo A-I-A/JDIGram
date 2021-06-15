@@ -64,7 +64,7 @@ RSpec.configure do |config|
 
   #This includes Devise::Test::ControllerHelpers module in all :controller specs.
   config.include Devise::Test::ControllerHelpers, type: :controller
-
+  config.include Devise::Test::ControllerHelpers, type: :view
   config.include Devise::Test::IntegrationHelpers, type: :request
 
   #this is adding shortened syntax to FactoryBot
