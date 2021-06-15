@@ -19,6 +19,8 @@ $(document).on("turbolinks:load", function(){
     let previousPhotoButton = $(".pub-show-photo-previous");
     let nextPhotoArrow = $(".pub-show-next-photo-arrow");
     let previousPhotoArrow = $(".pub-show-previous-photo-arrow");
+    let photoIndexContainer = $(".pub-photo-index-container");
+
 
     $("#showPublicationModal").on('hide.bs.modal', function(){ 
       pubPhotoSlider.clear();
@@ -31,6 +33,7 @@ $(document).on("turbolinks:load", function(){
         type: "GET",
         success: function(data){
           pubSlider.init(user_id, pub_id, data.next, data.previous);
+          pubPhotoSlider.clear();
           pubDescription.html(data.description);
           if (data.photos.length){
             pubPhotoSlider.init(data.photos); 
@@ -113,7 +116,8 @@ $(document).on("turbolinks:load", function(){
         this.photos = photos;
         this.currentIndex = 0;
         setPhoto(this.photos[this.currentIndex].photo_url);
-        if (this.photos.length > 2){
+        setPhotoIndexIndicator(this.currentIndex, this.photos.length);
+        if (this.photos.length > 1){
           showNextPhotoButton();
         }
       },
@@ -128,6 +132,7 @@ $(document).on("turbolinks:load", function(){
         if (this.currentIndex < this.photos.length - 1){
           this.currentIndex++;
           setPhoto(this.photos[this.currentIndex].photo_url);
+          setPhotoIndexIndicator(this.currentIndex, this.photos.length);
           showPreviousPhotoButton();
         }
         if (this.currentIndex == this.photos.length - 1){
@@ -139,6 +144,7 @@ $(document).on("turbolinks:load", function(){
         if (this.currentIndex > 0){
           this.currentIndex--;
           setPhoto(this.photos[this.currentIndex].photo_url);
+          setPhotoIndexIndicator(this.currentIndex, this.photos.length);
           showNextPhotoButton();
         }
         if (this.currentIndex == 0){
@@ -161,6 +167,18 @@ $(document).on("turbolinks:load", function(){
 
     function showPreviousPhotoButton(){
       previousPhotoButton.css("display", "flex");
+    }
+
+    function setPhotoIndexIndicator(currentIndex, numberOfPhotos){
+      photoIndexContainer.html('');
+      if (numberOfPhotos > 1){
+                for (let i = 0; i < numberOfPhotos; i++){
+          let indexIndicator = $('<div/>', {class: "pub-photo-index-indicator"});
+          if (i == currentIndex)
+            indexIndicator.addClass("bg-light")
+          indexIndicator.appendTo(photoIndexContainer);
+        }
+      }
     }
 
     function setPhoto(photo_url){

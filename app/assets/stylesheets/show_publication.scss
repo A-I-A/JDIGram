@@ -12,9 +12,28 @@
 
 .pub-show-photo{
   @extend .border;
-  //width: 400px;
+  width: 400px;
   height: 400px;
   position: relative;
+}
+
+.pub-photo-index-container{
+  position: absolute;
+  bottom: 10px;
+  height: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  aligh-items: center;
+}
+
+.pub-photo-index-indicator{
+  @extend .rounded-circle;
+  @extend .bg-secondary;
+  @extend .me-2;
+  width: 10px;
+  height: 10px;
+  //background-color: red;
 }
 
 .pub-show-photo-next{
