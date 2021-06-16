@@ -4,8 +4,8 @@
     .edit-title-row
       %label.edit-avatar-container{for: :user_avatar}
         - if @user.avatar.attached?
-          %img.edit-avatar{src: url_for(@user.avatar)}
-          .edit-avatar-spinner
+          %img.edit-avatar.avatar{src: url_for(@user.avatar)}
+          .edit-avatar-spinner.spinner
             = svg "spinner" 
         - else
           = svg "user_icon_glyph"

@@ -17,8 +17,8 @@
           - else 
             - user = @user
           - if user.avatar.attached?
-            %img.navbar-avatar{src: url_for(user.avatar)}
-            .navbar-avatar-spinner
+            %img.navbar-avatar.avatar{src: url_for(user.avatar)}
+            .navbar-avatar-spinner.spinner
               = svg "spinner"
           - else
             = svg "user_icon_glyph"

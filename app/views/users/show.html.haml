@@ -3,8 +3,8 @@
     .col
       %label.user-avatar-container{ for: :user_avatar }
         - if @user.avatar.attached?
-          %img.show-avatar{ src: url_for(@user.avatar) }
-          .show-avatar-spinner
+          %img.show-avatar.avatar{ src: url_for(@user.avatar) }
+          .show-avatar-spinner.spinner
             = svg "spinner"
         - else
           = svg "user_icon_glyph"
@@ -43,7 +43,9 @@
 - if user_signed_in?
   = render partial: "partial/add_publication"
   = render partial: "partial/show_publication"
-
+  
+  - if @user.id == current_user.id 
+    = render partial: "partial/crop"
 
 
 

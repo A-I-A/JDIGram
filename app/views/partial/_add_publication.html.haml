@@ -15,8 +15,8 @@
                 - else 
                   - user = @user
                 - if user.avatar.attached?
-                  %img.pub-avatar{src: url_for(user.avatar)}
-                  .pub-avatar-spinner
+                  %img.pub-avatar.avatar{src: url_for(user.avatar)}
+                  .pub-avatar-spinner.spinner
                     = svg "spinner" 
                 - else
                   = svg "user_icon_glyph"

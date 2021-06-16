@@ -5,6 +5,7 @@
 }
 
 .pub-avatar-container{ 
+  position: relative;
   @extend .me-2;
   @extend .bg-white; 
   @extend .rounded-circle; 
@@ -26,7 +27,6 @@
 
 .pub-avatar-spinner{
   position: relative;
-  top: -44px;
   margin: auto;
   width:  $avatar-small; 
   height: $avatar-small; 
