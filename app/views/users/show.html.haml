@@ -27,13 +27,6 @@
           0 following
       %p.user-name
         = @user.name
-  .user-bottom-organizer
-    .user-publications-tab
-      Publications
-    .col.text-center
-      Saved
-    .col.text-center
-      Marks
   .user-publications-container
     - @publications.each do |pub|
       .user-publication-preview{ user_id: @user.id, pub_id: pub.id, style: "background: url('#{url_for(pub.photos[0]) }') center no-repeat; background-size: cover;"}

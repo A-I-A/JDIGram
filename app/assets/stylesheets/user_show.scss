@@ -72,17 +72,6 @@
   @extend .m-0;
 }
 
-.user-bottom-organizer{
-  @extend .row;
-  @extend .justify-content-center;
-  @extend .align-items-baseline;
-  @extend .mb-3;
-}
-
-.user-publications-tab{
-  @extend .col;
-  @extend .text-center;
-}
 
 .user-publications-container{
   @extend .w-75;
@@ -93,6 +82,7 @@
 
 
 .user-publication-preview{
+  cursor: pointer;
   @extend .border;
   @extend .border-2;
   @extend .me-2;

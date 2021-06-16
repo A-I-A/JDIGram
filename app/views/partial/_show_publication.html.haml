@@ -1,21 +1,43 @@
 .modal.fade{ id: "showPublicationModal", tabindex: -1, aria: { hidden: true } }
+  .pub-show-close-container
+    %button.button.pub-show-close{ data: { bs: { dismiss: "modal" } } }
+
   .modal-dialog.modal-lg
     .modal-content
-      .modal-header
-        %button.btn-close{ data: { bs: { dismiss: "modal" } } }
       .modal-body.pub-show-body
         .pub-show-publication-previous
           .pub-show-left-arrow
-        .pub-show-photo-column
-          .pub-show-photo
-            .pub-photo-index-container
-            .pub-show-photo-previous
-              .pub-show-previous-photo-arrow
-            .pub-show-photo-next
-              .pub-show-next-photo-arrow
-        .pub-show-publication-next
-          .pub-show-right-arrow
-        .col
-          %p.pub-show-description
+        .pub-show-content
+          .pub-show-photo-column
+            .pub-show-photo
+              .pub-photo-index-container
+              .pub-show-photo-previous
+                .pub-show-previous-photo-arrow
+              .pub-show-photo-next
+                .pub-show-next-photo-arrow
+          .pub-show-info-column
+            .pub-author-credentials
+              .pub-show-avatar-container
+                - if @user.avatar.attached?
+                  %img.pub-show-avatar.avatar{ src: url_for(@user.avatar) }
+                  .pub-show-avatar-spinner.spinner
+                    = svg "spinner"
+                - else
+                  = svg "user_icon_glyph"
+            
+              = @user.login    
+            .pub-show-description-container
+              .pub-show-avatar-container
+                - if @user.avatar.attached?
+                  %img.pub-show-avatar.avatar{ src: url_for(@user.avatar) }
+                  .pub-show-avatar-spinner.spinner
+                    = svg "spinner"
+                - else
+                  = svg "user_icon_glyph"
+              .pub-show-description-block
+                %div 
+                  = @user.login
+                .pub-show-description
 
-         
+        .pub-show-publication-next
+          .pub-show-right-arrow 

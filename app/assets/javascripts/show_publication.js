@@ -20,11 +20,20 @@ $(document).on("turbolinks:load", function(){
     let nextPhotoArrow = $(".pub-show-next-photo-arrow");
     let previousPhotoArrow = $(".pub-show-previous-photo-arrow");
     let photoIndexContainer = $(".pub-photo-index-container");
+    let pubPhoto = $(".pub-show-photo");
 
 
     $("#showPublicationModal").on('hide.bs.modal', function(){ 
       pubPhotoSlider.clear();
       pubSlider.clear();
+    })
+
+    $("#showPublicationModal").on('shown.bs.modal', function(){ 
+      pubPhoto.height(pubPhoto.width());
+    })
+
+    $(window).on("resize", function(){
+      pubPhoto.height(pubPhoto.width());
     })
 
     function getPublication(user_id, pub_id){
@@ -100,7 +109,7 @@ $(document).on("turbolinks:load", function(){
       prevPublicationButton.hide();
     }
 
-    nextPublicationButton.click(function(){
+    nextPublicationButton.click(function(e){
       pubSlider.getNextPub();
     })
 
