@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-6
+      - @publications.each do |pub|
+        .publication-content-container
+          .publication-author-credentials
+            - user = User.find(pub.user.id)
+            = user.id
+          - if !pub.photos.empty?
+            .publication-preview{  style: "background: url('#{url_for(pub.photos[0]) }') center no-repeat; background-size: cover;"}
+          %div{style: "height: 100px;"}
+            = pub.description 
+    .col-6

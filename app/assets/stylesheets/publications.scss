@@ -1,0 +1,14 @@
+.publication-content-container{
+  @extend .mb-3;
+  @extend .border;
+  @extend .bg-white;
+}
+
+.publication-author-credentials{
+
+}
+
+.publication-preview{
+  min-width: 100px;
+  min-height: 100px;
+}

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources  :users, except: [:new]
+  resources  :users, except: [:new, :index]
+  resources  :publications
   post '/users/set_avatar/:id', to: 'users#set_avatar'
   delete '/users/remove_avatar/:id', to: 'users#remove_avatar'
   post '/users/add_publication/:id', to: 'users#add_publication'
