@@ -20,8 +20,13 @@ $(document).on("turbolinks:load", function(){
     let nextPhotoArrow = $(".pub-show-next-photo-arrow");
     let previousPhotoArrow = $(".pub-show-previous-photo-arrow");
     let photoIndexContainer = $(".pub-photo-index-container");
-    let pubPhoto = $(".pub-show-photo");
 
+    let pubPhotoSlider = new PhotoSlider(
+      photoContainer, 
+      nextPhotoButton, 
+      previousPhotoButton, 
+      photoIndexContainer
+    );
 
     $("#showPublicationModal").on('hide.bs.modal', function(){ 
       pubPhotoSlider.clear();
@@ -29,11 +34,11 @@ $(document).on("turbolinks:load", function(){
     })
 
     $("#showPublicationModal").on('shown.bs.modal', function(){ 
-      pubPhoto.height(pubPhoto.width());
+      photoContainer.height(photoContainer.width());
     })
 
     $(window).on("resize", function(){
-      pubPhoto.height(pubPhoto.width());
+      photoContainer.height(photoContainer.width());
     })
 
     function getPublication(user_id, pub_id){
@@ -45,7 +50,7 @@ $(document).on("turbolinks:load", function(){
           pubPhotoSlider.clear();
           pubDescription.html(data.description);
           if (data.photos.length){
-            pubPhotoSlider.init(data.photos); 
+            pubPhotoSlider.load(data.photos); 
           } 
         }
       })      
@@ -116,88 +121,6 @@ $(document).on("turbolinks:load", function(){
     prevPublicationButton.click(function(){
       pubSlider.getPrevPub();
     })
-
-    let pubPhotoSlider = {
-      photos: [],
-      currentIndex: 0,
-
-      init: function(photos){
-        this.photos = photos;
-        this.currentIndex = 0;
-        setPhoto(this.photos[this.currentIndex].photo_url);
-        setPhotoIndexIndicator(this.currentIndex, this.photos.length);
-        if (this.photos.length > 1){
-          showNextPhotoButton();
-        }
-      },
-
-      clear: function(){
-        removePhoto();
-        hideNextPhotoButton();
-        hidePreviousPhotoButton();
-      },
-
-      slideRight: function(){
-        if (this.currentIndex < this.photos.length - 1){
-          this.currentIndex++;
-          setPhoto(this.photos[this.currentIndex].photo_url);
-          setPhotoIndexIndicator(this.currentIndex, this.photos.length);
-          showPreviousPhotoButton();
-        }
-        if (this.currentIndex == this.photos.length - 1){
-          hideNextPhotoButton();
-        }
-      },
-
-      slideLeft: function(){
-        if (this.currentIndex > 0){
-          this.currentIndex--;
-          setPhoto(this.photos[this.currentIndex].photo_url);
-          setPhotoIndexIndicator(this.currentIndex, this.photos.length);
-          showNextPhotoButton();
-        }
-        if (this.currentIndex == 0){
-          hidePreviousPhotoButton();
-        }
-      }
-    };
-    
-    function hideNextPhotoButton(){
-      nextPhotoButton.hide();
-    }
-
-    function hidePreviousPhotoButton(){
-      previousPhotoButton.hide();
-    }
-
-    function showNextPhotoButton(){
-      nextPhotoButton.css("display", "flex");
-    }
-
-    function showPreviousPhotoButton(){
-      previousPhotoButton.css("display", "flex");
-    }
-
-    function setPhotoIndexIndicator(currentIndex, numberOfPhotos){
-      photoIndexContainer.html('');
-      if (numberOfPhotos > 1){
-                for (let i = 0; i < numberOfPhotos; i++){
-          let indexIndicator = $('<div/>', {class: "pub-photo-index-indicator"});
-          if (i == currentIndex)
-            indexIndicator.addClass("bg-light")
-          indexIndicator.appendTo(photoIndexContainer);
-        }
-      }
-    }
-
-    function setPhoto(photo_url){
-      photoContainer.css("background", `url("${photo_url}") center no-repeat`);
-      photoContainer.css("background-size", 'contain');
-    }
-
-    function removePhoto(){
-      $(".pub-show-photo").css("background", "none");
-    }
 
     nextPhotoButton.click(function(){
       pubPhotoSlider.slideRight();
