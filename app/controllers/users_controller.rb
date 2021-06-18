@@ -34,7 +34,13 @@ class UsersController < ApplicationController
 
   def set_avatar
     @user.avatar.attach(params[:avatar])
-    render json: { avatar_url: rails_blob_path(@user.avatar, disposition: "attachment", only_path: true) }
+    render json: { 
+      avatar_url: rails_blob_path(
+        @user.avatar, 
+        disposition: "attachment",
+        only_path: true
+      ) 
+    }
   end
 
   def remove_avatar
@@ -53,25 +59,48 @@ class UsersController < ApplicationController
     @publication.save
   end
 
-  def get_publication_content
-    @publication = Publication.find(params[:pub_id])
-    photos = []
-    @publication.photos.each do |photo|
-      photos.append({ photo_url: rails_blob_path(photo, disposition: "attachment", only_path: true) })
-    end 
-    render json: { photos: photos, description: @publication.description }
-  end
-
   def get_publication
     @user = User.find(params[:user_id])
     @publication = @user.publications.find(params[:pub_id])
     next_pub = next_publication(@user, @publication)
     previous_pub = previous_publication(@user, @publication)
+
+    author_credentials = {}
+    if @user.avatar.attached?
+      author_credentials[:avatar] = rails_blob_path(
+        @user.avatar, 
+        disposition: "attachment", 
+        only_path: true
+      )  
+    else 
+      author_credentials[:avatar] = false 
+    end
+
+    if !@user.login.nil? && !@user.login.empty?
+      author_credentials[:login] =  @user.login
+    else
+      author_credentials[:login] =  false
+    end
+
     photos = []
     @publication.photos.each do |photo|
-      photos.append({ photo_url: rails_blob_path(photo, disposition: "attachment", only_path: true) })
+      photos.append({ 
+        photo_url: rails_blob_path(
+          photo, 
+          disposition: "attachment", 
+          only_path: true
+        ) 
+      })
     end
-    render json: { photos: photos, description: @publication.description, next: next_pub, previous: previous_pub }
+
+    render json: { 
+      photos: photos, 
+      description: @publication.description, 
+      next: next_pub, 
+      previous: previous_pub,
+      author_credentials: author_credentials 
+    }
+
   end
 
   def remove_publication

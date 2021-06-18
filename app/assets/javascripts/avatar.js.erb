@@ -1,5 +1,5 @@
 $(document).on("turbolinks:load", function(){
-  
+
   if ($('#cropModal').length){
     let cropModal = new bootstrap.Modal($('#cropModal'));
 
@@ -88,4 +88,15 @@ $(document).on("turbolinks:load", function(){
     })
   })
 })
+
+function setAvatar(avatarContainer, avatar){
+  if (avatar){
+    avatarContainer.css("background", `url("${avatar}") center no-repeat`);
+    avatarContainer.css("background-size", 'contain');
+  }
+}
+
+function removeAvatar(avatarContainer){
+  avatarContainer.css("background", 'url("<%= asset_path('user_icon_glyph.svg') %>") center no-repeat');
+}
 

@@ -12,7 +12,6 @@ $(document).on("turbolinks:load", function(){
     let showPublicationModal = new bootstrap.Modal($("#showPublicationModal"));
 
     let photoContainer = $(".pub-show-photo");
-    let pubDescription = $(".pub-show-description");
     let nextPublicationButton = $(".pub-show-publication-next");
     let prevPublicationButton = $(".pub-show-publication-previous");
     let nextPhotoButton = $(".pub-show-photo-next");
@@ -20,6 +19,9 @@ $(document).on("turbolinks:load", function(){
     let nextPhotoArrow = $(".pub-show-next-photo-arrow");
     let previousPhotoArrow = $(".pub-show-previous-photo-arrow");
     let photoIndexContainer = $(".pub-photo-index-container");
+    let authorAvatar = $(".pub-show-avatar");
+    let authorLogin = $(".pub-show-author-login");
+    let publilcationDescription = $(".pub-show-description");
 
     let pubPhotoSlider = new PhotoSlider(
       photoContainer, 
@@ -48,7 +50,9 @@ $(document).on("turbolinks:load", function(){
         success: function(data){
           pubSlider.init(user_id, pub_id, data.next, data.previous);
           pubPhotoSlider.clear();
-          pubDescription.html(data.description);
+          setAvatar(authorAvatar, data.author_credentials.avatar);
+          authorLogin.html(data.author_credentials.login);
+          publilcationDescription.html(data.description);
           if (data.photos.length){
             pubPhotoSlider.load(data.photos); 
           } 

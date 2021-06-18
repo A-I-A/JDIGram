@@ -1,13 +1,33 @@
-.container
+.container.mt-4
   .row
-    .col-6
+    .publication-main-column
       - @publications.each do |pub|
+      - @user = pub.user
         .publication-content-container
           .publication-author-credentials
-            - user = User.find(pub.user.id)
-            = user.id
+            = link_to user_path(@user.id), class: "publication-avatar-container" do
+              - if @user.avatar.attached?
+                %img.publication-avatar.avatar{ src: url_for(@user.avatar) }
+                .edit-publication-spinner.spinner
+                  = svg "spinner" 
+              - else
+                = svg "user_icon_glyph"
+            .publication-info
+              %div 
+                = @user.login
+              %div 
+                = pub.created_at
           - if !pub.photos.empty?
-            .publication-preview{  style: "background: url('#{url_for(pub.photos[0]) }') center no-repeat; background-size: cover;"}
-          %div{style: "height: 100px;"}
-            = pub.description 
-    .col-6
+            .publication-preview{ pub_id: pub.id, style: "background: url('#{ url_for(pub.photos[0]) }') center no-repeat; background-size: cover;"}
+          .publication-footer{ pub_id: pub.id }
+            .publication-actions-bar
+              .publication-action-button
+                = svg "heart_icon"
+            - if !pub.description.nil? && !pub.description.empty?
+              .publication-description
+                %b 
+                  = @user.login + ": "
+                = pub.description 
+
+= render partial: "partial/show_publication"
+= render partial: "partial/add_publication"

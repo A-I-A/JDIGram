@@ -94,6 +94,8 @@
   width:  $avatar-small; 
   height: $avatar-small; 
   @extend .rounded-circle;
+  background: asset-url("user_icon_glyph.svg") no-repeat;
+
 }
 
 .pub-show-avatar-spinner{
