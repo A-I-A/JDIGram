@@ -11,36 +11,15 @@ $(document).on("turbolinks:load", function(){
   if ($("#showPublicationModal").length){
     let showPublicationModal = new bootstrap.Modal($("#showPublicationModal"));
 
-    let photoContainer = $(".pub-show-photo");
     let nextPublicationButton = $(".pub-show-publication-next");
     let prevPublicationButton = $(".pub-show-publication-previous");
-    let nextPhotoButton = $(".pub-show-photo-next");
-    let previousPhotoButton = $(".pub-show-photo-previous");
-    let nextPhotoArrow = $(".pub-show-next-photo-arrow");
-    let previousPhotoArrow = $(".pub-show-previous-photo-arrow");
-    let photoIndexContainer = $(".pub-photo-index-container");
     let authorAvatar = $(".pub-show-avatar");
     let authorLogin = $(".pub-show-author-login");
     let publilcationDescription = $(".pub-show-description");
 
-    let pubPhotoSlider = new PhotoSlider(
-      photoContainer, 
-      nextPhotoButton, 
-      previousPhotoButton, 
-      photoIndexContainer
-    );
 
     $("#showPublicationModal").on('hide.bs.modal', function(){ 
-      pubPhotoSlider.clear();
       pubSlider.clear();
-    })
-
-    $("#showPublicationModal").on('shown.bs.modal', function(){ 
-      photoContainer.height(photoContainer.width());
-    })
-
-    $(window).on("resize", function(){
-      photoContainer.height(photoContainer.width());
     })
 
     function getPublication(user_id, pub_id){
@@ -49,12 +28,11 @@ $(document).on("turbolinks:load", function(){
         type: "GET",
         success: function(data){
           pubSlider.init(user_id, pub_id, data.next, data.previous);
-          pubPhotoSlider.clear();
           setAvatar(authorAvatar, data.author_credentials.avatar);
           authorLogin.html(data.author_credentials.login);
           publilcationDescription.html(data.description);
           if (data.photos.length){
-            pubPhotoSlider.load(data.photos); 
+            photoSlider.load(data.photos); 
           } 
         }
       })      
@@ -121,33 +99,9 @@ $(document).on("turbolinks:load", function(){
     nextPublicationButton.click(function(e){
       pubSlider.getNextPub();
     })
-
+    
     prevPublicationButton.click(function(){
       pubSlider.getPrevPub();
-    })
-
-    nextPhotoButton.click(function(){
-      pubPhotoSlider.slideRight();
-     })
-
-    previousPhotoButton.click(function(){
-      pubPhotoSlider.slideLeft();
-    })
-
-    nextPhotoButton.mouseenter(function(){
-      nextPhotoArrow.css("visibility", "visible");
-    })
-
-    nextPhotoButton.mouseleave(function(){
-      nextPhotoArrow.css("visibility", "hidden");
-    })
-
-    previousPhotoButton.mouseenter(function(){
-      previousPhotoArrow.css("visibility", "visible");
-    })
-
-    previousPhotoButton.mouseleave(function(){
-      previousPhotoArrow.css("visibility", "hidden");
     })
 
     publicationPreview.click(function(event){
