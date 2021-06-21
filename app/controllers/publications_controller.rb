@@ -1,11 +1,12 @@
 class PublicationsController < ApplicationController
 
+before_action :find_publication, only: [:show]
+
   def index
     @publications = Publication.all
   end
 
   def show
-    @publication = Publication.find(params[:id])
     author = @publication.user
 
     author_credentials = {}
@@ -42,3 +43,10 @@ class PublicationsController < ApplicationController
       author_credentials: author_credentials }
   end
 end
+
+def find_publication
+  @publication = Publication.find_by(id: params[:id])
+  render_404 unless @publication
+end 
+
+
