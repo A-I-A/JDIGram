@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @publications = @user.publications
+    @publications = @user.publications.order(created_at: :desc)
   end
 
   def edit

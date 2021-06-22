@@ -4,7 +4,7 @@ class PublicationsController < ApplicationController
   before_action :find_publication, only: [:show]
 
   def index
-    @publications = Publication.all
+    @publications = Publication.all.order(created_at: :desc)
   end
 
   def show
