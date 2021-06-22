@@ -24,7 +24,7 @@ $(document).on("turbolinks:load", function(){
 
     function getPublication(user_id, pub_id){
       $.ajax({
-        url: `/users/${user_id}/get_publication/${pub_id}`,
+        url: `/publications/${user_id}/get_user_publication/${pub_id}`,
         type: "GET",
         success: function(data){
           pubSlider.init(user_id, pub_id, data.next, data.previous);

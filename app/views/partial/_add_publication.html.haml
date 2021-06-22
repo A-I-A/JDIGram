@@ -10,12 +10,8 @@
           .container
             .pub-avatar-description-row
               .pub-avatar-container
-                - if @users
-                  - user = @users.find(current_user.id)
-                - else 
-                  - user = @user
-                - if user.avatar.attached?
-                  %img.pub-avatar.avatar{src: url_for(user.avatar)}
+                - if current_user.avatar.attached?
+                  %img.pub-avatar.avatar{src: url_for(current_user.avatar)}
                   .pub-avatar-spinner.spinner
                     = svg "spinner" 
                 - else
@@ -26,7 +22,7 @@
           %label.pub-add-photo{for: "photo_input"}
             %input.pub-photo-input{type: "file", id: "photo_input", accept: "image/*", multiple: true}
             = svg "add_photo"
-          %button.btn.btn-primary{id: "addPublicationButton", user_id: user.id}
+          %button.btn.btn-primary{id: "addPublicationButton", user_id: current_user.id}
             Save
           
           

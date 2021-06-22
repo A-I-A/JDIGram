@@ -30,4 +30,5 @@
                 = pub.description 
 
 = render partial: "partial/show_publication"
-= render partial: "partial/add_publication"
+- if user_signed_in?
+  = render partial: "partial/add_publication"

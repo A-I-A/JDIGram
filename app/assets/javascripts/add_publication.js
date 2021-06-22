@@ -65,7 +65,7 @@ $(document).on("turbolinks:load", function(){
       }
       data.append("description", $(".pub-description").val())
       $.ajax({
-        url: "/users/add_publication/" + event.target.getAttribute('user_id'),
+        url: "/publications/add_publication/" + event.target.getAttribute('user_id'),
         type: "POST",
         data: data,
         processData: false,
