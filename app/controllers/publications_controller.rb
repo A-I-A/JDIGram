@@ -1,7 +1,7 @@
 class PublicationsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :find_publication, only: [:show]
+  before_action :find_publication, only: [:show, :like]
 
   def index
     @publications = Publication.all.order(created_at: :desc)
@@ -38,14 +38,23 @@ class PublicationsController < ApplicationController
       })
     end 
 
-    render json: { 
-      photos: photos, 
-      description: @publication.description, 
-      author_credentials: author_credentials }
+    respond_to do |format|
+      format.json { 
+        render json: { 
+          photos: photos, 
+          description: @publication.description, 
+          author_credentials: author_credentials 
+        } 
+      } 
+      format.js
+      format.html { render_404 }
+    end
+
+    
   end
 
   def add_publication
-    @user= User.find(params[:user_id] )
+    @user = User.find_by(id: params[:user_id] )
     @publication = Publication.new
     @publication.description = params[:description]
     if params[:photo]
@@ -100,6 +109,19 @@ class PublicationsController < ApplicationController
       author_credentials: author_credentials 
     }
 
+  end
+
+  def like
+    @like = Like.find_by(
+      user_id: current_user.id,
+      likeable_id: @publication.id,
+      likeable_type: 'Publication'
+      )
+    if @like
+      @like.destroy
+    else
+      @like = @publication.likes.create(user_id: current_user.id)
+    end
   end
 
   private

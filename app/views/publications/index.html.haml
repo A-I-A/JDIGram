@@ -21,8 +21,11 @@
             .publication-preview{ pub_id: pub.id, style: "background: url('#{ url_for(pub.photos[0]) }') center no-repeat; background-size: cover;"}
           .publication-footer{ pub_id: pub.id }
             .publication-actions-bar
-              .publication-action-button
-                = svg "heart_icon"
+              = link_to "/publications/#{pub.id}/like", class: "publication-action-button", id: "like_button", method: :post, remote: true do
+                - if pub.likes.find { |like| like.user_id == current_user.id }
+                  = svg "heart_icon_filled"
+                - else
+                  = svg "heart_icon"
             - if !pub.description.nil? && !pub.description.empty?
               .publication-description
                 %b 
