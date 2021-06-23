@@ -30,6 +30,9 @@
 .pub-show-info-column{
   @extend .col-12;
   @extend .col-lg-5;
+  @extend .d-flex;
+  @extend .flex-column;
+
 }
 
 @include media-breakpoint-down(lg) {
@@ -39,6 +42,7 @@
   .pub-show-description-container{
     display: none;
   }
+  
   .pub-show-publication-next{
     right: -20px;
   }
@@ -52,6 +56,7 @@
   .pub-show-description-container{
     display: flex;
   }
+
   .pub-show-publication-next{
     right: -60px;
   }
@@ -117,37 +122,6 @@
   aligh-items: center;
 }
 
-.pub-photo-index-indicator{
-  @extend .rounded-circle;
-  @extend .bg-secondary;
-  @extend .me-2;
-  width: 10px;
-  height: 10px;
-}
-
-.pub-show-photo-next{
-  cursor: pointer;
-  width: 40%;
-  height: 100%;
-  position: absolute;
-  right: 0px;
-  display: none;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.pub-show-photo-previous{
-  cursor: pointer;
-  display: none;
-  width: 40%;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  display: none;
-  justify-content: flex-start;
-  align-items: center;
-}
-
 .pub-show-description-container{
   @extend .align-items-center;
   height: 70px;
@@ -171,9 +145,9 @@
 }
 
 .pub-show-publication-next{
-  cursor: pointer;
   position: relative;
-  display: none;
+  display: flex;
+  cursor: pointer;
   width: 50px;
   height: 100px;
   justify-content: flex-end;
@@ -181,9 +155,9 @@
 }
 
 .pub-show-publication-previous{
-  cursor: pointer;
   position: relative;
-  display: none;
+  display: flex;
+  cursor: pointer;
   width: 50px;
   height: 100px;
   justify-content: flex-start;
@@ -195,6 +169,7 @@
   background: asset-url("left_arrow_light.svg") no-repeat;
   width: 50px;
   height: 50px;
+  display: block;
 }
 
 .pub-show-right-arrow{
@@ -202,4 +177,10 @@
   background: asset-url("right_arrow_light.svg") no-repeat;
   width: 50px;
   height: 50px;
+}
+
+.pub-show-actions-bar{
+  @extend .border-top;
+  @extend .mt-auto;
+  @extend .p-2;
 }

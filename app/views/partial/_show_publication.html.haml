@@ -6,32 +6,62 @@
     .modal-content
       .modal-body.pub-show-body
 
-        .pub-show-publication-previous
-          .pub-show-left-arrow
+        - if @previous_pub
+          = link_to "/publications/#{@user.id}/get_user_publication/#{@previous_pub.id}", class: "pub-show-publication-previous", remote: true do
+            .pub-show-left-arrow
           
         .pub-show-content
           .pub-show-photo-column
             .pub-show-photo
-              .pub-photo-index-container
-              .pub-show-photo-previous
-                .pub-show-previous-photo-arrow
-              .pub-show-photo-next
-                .pub-show-next-photo-arrow
+              - if @publication.photos.length < 2
+                = image_tag @publication.photos.first, width: '100%'
+              - else
+                #carousel.carousel.slide{"data-bs-ride" => "carousel"}
+                  %ol.carousel-indicators
+                    %li.active{"data-bs-slide-to" => "0", "data-bs-target" => "#carousel"}
+                    - (@publication.photos.length - 1).times do |i|
+                      %li{"data-bs-slide-to" => i + 1, "data-bs-target" => "#carousel"}
+                  .carousel-inner                      
+                    .carousel-item.active
+                      = image_tag @publication.photos.first, {class: "d-block w-100"}
+                    - @publication.photos.drop(1).each do |photo|
+                      .carousel-item
+                        = image_tag photo, {class: "d-block w-100"}
+
+                    %button.carousel-control-prev{"data-bs-target" => "#carousel", "data-bs-slide" => "prev"}
+                      %span.carousel-control-prev-icon
+                    %button.carousel-control-next{"data-bs-target" => "#carousel", "data-bs-slide" => "next"}
+                      %span.carousel-control-next-icon
+
           .pub-show-info-column
             .pub-author-credentials
               .pub-show-avatar-container
-                .pub-show-avatar.avatar
-                .pub-show-avatar-spinner.spinner
-                  = svg "spinner"
-              .pub-show-author-login    
+                - if @user.avatar.attached?
+                  %img.pub-show-avatar.avatar{ src: url_for(@user.avatar) }
+                - else
+                  .pub-show-avatar-spinner.spinner
+                    = svg "spinner"
+              .pub-show-author-login
+                = @user.login    
             .pub-show-description-container
               .pub-show-avatar-container
-                .pub-show-avatar.avatar
-                .pub-show-avatar-spinner.spinner
-                  = svg "spinner"
+                - if @user.avatar.attached?
+                  %img.pub-show-avatar.avatar{ src: url_for(@user.avatar) }
+                - else
               .pub-show-description-block
-                .pub-show-author-login 
+                .pub-show-author-login
+                  = @user.login 
                 .pub-show-description
+                  = @publication.description
+            .pub-show-actions-bar
+              = link_to "/publications/#{@publication.id}/like", class: "publication-action-button", id: "like_button", method: :post, remote: true do
+                - if @publication.likes.find { |like| like.user_id == current_user.id }
+                  = svg "heart_icon_filled"
+                - else
+                  = svg "heart_icon"
+        - if @next_pub
+          = link_to "/publications/#{@user.id}/get_user_publication/#{@next_pub.id}", class: "pub-show-publication-next", remote: true do
+            .pub-show-right-arrow
 
-        .pub-show-publication-next
-          .pub-show-right-arrow 
+
+

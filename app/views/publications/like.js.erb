@@ -1,5 +1,8 @@
 <% if @like.persisted? %>
   $("#like_button").html("<%= j svg "heart_icon_filled" %> ")
+  $("#like_button-" + "<%= @publication.id %>").html("<%= j svg "heart_icon_filled" %> ")
 <% else %>
   $("#like_button").html("<%= j svg "heart_icon" %> ")
+  $("#like_button-" + "<%= @publication.id %>").html("<%= j svg "heart_icon" %> ")
 <% end %>
+

@@ -29,13 +29,12 @@
         = @user.name
   .user-publications-container
     - @publications.each do |pub|
-      .user-publication-preview{ user_id: @user.id, pub_id: pub.id, style: "background: url('#{url_for(pub.photos[0]) }') center no-repeat; background-size: cover;"}
-
-
+      = link_to "/publications/#{@user.id}/get_user_publication/#{pub.id}", remote: true do
+        .user-publication-preview{style: "background: url('#{url_for(pub.photos[0]) }') center no-repeat; background-size: cover;"}
+#place-for-modal
 
 - if user_signed_in?
   = render partial: "partial/add_publication"
-  = render partial: "partial/show_publication"
   
   - if @user.id == current_user.id 
     = render partial: "partial/crop"

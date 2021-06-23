@@ -8,49 +8,11 @@ class PublicationsController < ApplicationController
   end
 
   def show
-    author = @publication.user
-
-    author_credentials = {}
-    if author.avatar.attached?
-      author_credentials[:avatar] = rails_blob_path(
-        author.avatar, 
-        disposition: "attachment", 
-        only_path: true
-      )  
-    else 
-      author_credentials[:avatar] = false 
-    end
-
-    if !author.login.nil? && !author.login.empty?
-      author_credentials[:login] =  author.login
-    else
-      author_credentials[:login] =  false
-    end
-
-    photos = []
-    @publication.photos.each do |photo|
-      photos.append({ 
-        photo_url: rails_blob_path(
-          photo, 
-          disposition: "attachment",
-          only_path: true
-        ) 
-      })
-    end 
-
-    respond_to do |format|
-      format.json { 
-        render json: { 
-          photos: photos, 
-          description: @publication.description, 
-          author_credentials: author_credentials 
-        } 
-      } 
+    @user = @publication.user
+    respond_to do |format| 
       format.js
       format.html { render_404 }
     end
-
-    
   end
 
   def add_publication
@@ -70,44 +32,13 @@ class PublicationsController < ApplicationController
   def get_user_publication
     @user = User.find(params[:user_id])
     @publication = @user.publications.find(params[:pub_id])
-    next_pub = next_publication(@user, @publication)
-    previous_pub = previous_publication(@user, @publication)
+    @next_pub = next_publication(@user, @publication)
+    @previous_pub = previous_publication(@user, @publication)
 
-    author_credentials = {}
-    if @user.avatar.attached?
-      author_credentials[:avatar] = rails_blob_path(
-        @user.avatar, 
-        disposition: "attachment", 
-        only_path: true
-      )  
-    else 
-      author_credentials[:avatar] = false 
+    respond_to do |format|
+      format.js 
+      format.html{ render_404 }
     end
-
-    if !@user.login.nil? && !@user.login.empty?
-      author_credentials[:login] =  @user.login
-    else
-      author_credentials[:login] =  false
-    end
-
-    photos = []
-    @publication.photos.each do |photo|
-      photos.append({ 
-        photo_url: rails_blob_path(
-          photo, 
-          disposition: "attachment", 
-          only_path: true
-        ) 
-      })
-    end
-
-    render json: { 
-      photos: photos, 
-      description: @publication.description, 
-      next: next_pub, 
-      previous: previous_pub,
-      author_credentials: author_credentials 
-    }
 
   end
 
@@ -131,21 +62,17 @@ class PublicationsController < ApplicationController
     render_404 unless @publication
   end 
 
-  def next_publication(user, publication)
+  def previous_publication(user, publication)
     next_pub = user.publications.where("id > ?", publication.id).first
     if next_pub
-      return next_pub.id
-    else 
-      return false
+      return next_pub
     end
   end
 
-  def previous_publication(user, publication)
+  def next_publication(user, publication)
     previous_pub = user.publications.where("id < ?", publication.id).last
     if previous_pub
-      return previous_pub.id
-    else 
-      return false
+      return previous_pub
     end
   end
 
