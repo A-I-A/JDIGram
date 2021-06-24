@@ -33,16 +33,16 @@
                     %button.carousel-control-next{"data-bs-target" => "#carousel", "data-bs-slide" => "next"}
                       %span.carousel-control-next-icon
 
-          .pub-show-info-column
-            .pub-author-credentials
-              .pub-show-avatar-container
-                - if @user.avatar.attached?
-                  %img.pub-show-avatar.avatar{ src: url_for(@user.avatar) }
-                - else
-                  .pub-show-avatar-spinner.spinner
-                    = svg "spinner"
-              .pub-show-author-login
-                = @user.login    
+          .pub-author-credentials
+            .pub-show-avatar-container
+              - if @user.avatar.attached?
+                %img.pub-show-avatar.avatar{ src: url_for(@user.avatar) }
+              - else
+                .pub-show-avatar-spinner.spinner
+                  = svg "spinner"
+            .pub-show-author-login
+              = @user.login  
+          .pub-show-info       
             .pub-show-description-container
               .pub-show-avatar-container
                 - if @user.avatar.attached?
@@ -53,15 +53,32 @@
                   = @user.login 
                 .pub-show-description
                   = @publication.description
+
+            .pub-show-comments
+              - @publication.comments.each do |comment|
+                .pub-show-comment-row
+                  .pub-show-avatar-container
+                    - if comment.user.avatar.attached?
+                      %img.pub-show-avatar.avatar{ src: url_for(comment.user.avatar) }
+                    - else
+                      .pub-show-avatar-spinner.spinner
+                        = svg "spinner"
+                  .pub-show-description-block
+                    .pub-show-author-login
+                      = comment.user.login
+                    .pub-show-description
+                      = comment.text
+
             .pub-show-actions-bar
               = link_to "/publications/#{@publication.id}/like", class: "publication-action-button", id: "like_button", method: :post, remote: true do
                 - if @publication.likes.find { |like| like.user_id == current_user.id }
                   = svg "heart_icon_filled"
                 - else
                   = svg "heart_icon"
+
+            = form_with url: "/publications/#{@publication.id}/add_comment", class: "pub-show-add-comment-row", method: :post, remote: true do |form|
+              = form.text_area :text, placeholder: "Write something!", class: "pub-show-add-comment-text"
+              = form.submit "Send", class: "pub-show-submit"
         - if @next_pub
           = link_to "/publications/#{@user.id}/get_user_publication/#{@next_pub.id}", class: "pub-show-publication-next", remote: true do
             .pub-show-right-arrow
-
-
-

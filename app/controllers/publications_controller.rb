@@ -1,7 +1,7 @@
 class PublicationsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :find_publication, only: [:show, :like]
+  before_action :find_publication, only: [:show, :like, :add_comment]
 
   def index
     @publications = Publication.all.order(created_at: :desc)
@@ -53,6 +53,11 @@ class PublicationsController < ApplicationController
     else
       @like = @publication.likes.create(user_id: current_user.id)
     end
+  end
+
+  def add_comment
+    @user = current_user
+    @comment = @publication.comments.create(user_id: @user.id, text: params[:text])
   end
 
   private
