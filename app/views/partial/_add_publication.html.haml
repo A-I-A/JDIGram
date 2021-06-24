@@ -11,9 +11,7 @@
             .pub-avatar-description-row
               .pub-avatar-container
                 - if current_user.avatar.attached?
-                  %img.pub-avatar.avatar{src: url_for(current_user.avatar)}
-                  .pub-avatar-spinner.spinner
-                    = svg "spinner" 
+                  = image_tag current_user.avatar, class: "pub-avatar"
                 - else
                   = svg "user_icon_glyph"
               %textarea.pub-description

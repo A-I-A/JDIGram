@@ -36,18 +36,18 @@
           .pub-author-credentials
             .pub-show-avatar-container
               - if @user.avatar.attached?
-                %img.pub-show-avatar.avatar{ src: url_for(@user.avatar) }
+                = image_tag @user.avatar, class: "pub-show-avatar"
               - else
-                .pub-show-avatar-spinner.spinner
-                  = svg "spinner"
+                = svg "user_icon_glyph"
             .pub-show-author-login
               = @user.login  
           .pub-show-info       
             .pub-show-description-container
               .pub-show-avatar-container
                 - if @user.avatar.attached?
-                  %img.pub-show-avatar.avatar{ src: url_for(@user.avatar) }
+                  = image_tag @user.avatar, class: "pub-show-avatar"
                 - else
+                  = svg "user_icon_glyph"
               .pub-show-description-block
                 .pub-show-author-login
                   = @user.login 
@@ -58,11 +58,10 @@
               - @publication.comments.each do |comment|
                 .pub-show-comment-row
                   .pub-show-avatar-container
-                    - if comment.user.avatar.attached?
-                      %img.pub-show-avatar.avatar{ src: url_for(comment.user.avatar) }
+                    - if @user.avatar.attached?
+                      = image_tag comment.user.avatar, class: "pub-show-avatar"
                     - else
-                      .pub-show-avatar-spinner.spinner
-                        = svg "spinner"
+                      = svg "user_icon_glyph"
                   .pub-show-description-block
                     .pub-show-author-login
                       = comment.user.login

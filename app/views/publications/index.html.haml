@@ -7,9 +7,7 @@
           .publication-author-credentials
             = link_to user_path(@user.id), class: "publication-avatar-container" do
               - if @user.avatar.attached?
-                %img.publication-avatar.avatar{ src: url_for(@user.avatar) }
-                .edit-publication-spinner.spinner
-                  = svg "spinner" 
+                = image_tag @user.avatar, class: "publication-avatar"
               - else
                 = svg "user_icon_glyph"
             .publication-info
