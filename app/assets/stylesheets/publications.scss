@@ -61,10 +61,14 @@
 }
 
 .publication-actions-bar{
+  @extend .d-flex;
+  @extend .justify-content-start;
+  @extend .align-items-center;
   @extend .p-2;
 }
 
 .publication-action-button{
+  @extend .me-2;
   display: block; 
   width: 30px; 
   height: 30px;

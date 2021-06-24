@@ -56,8 +56,11 @@ class PublicationsController < ApplicationController
   end
 
   def add_comment
-    @user = current_user
-    @comment = @publication.comments.create(user_id: @user.id, text: params[:text])
+    @comment = @publication.comments.create(user_id: current_user.id, text: params[:text])
+    respond_to do |format|
+      format.js 
+      format.html{ render_404 }
+    end
   end
 
   private

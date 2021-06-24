@@ -1,0 +1,19 @@
+- if publication.photos.length < 2
+  = image_tag publication.photos.first, width: '100%'
+- else
+  #carousel.carousel.slide{"data-bs-ride" => "carousel"}
+    %ol.carousel-indicators
+      %li.active{"data-bs-slide-to" => "0", "data-bs-target" => "#carousel"}
+      - (publication.photos.length - 1).times do |i|
+        %li{"data-bs-slide-to" => i + 1, "data-bs-target" => "#carousel"}
+    .carousel-inner                      
+      .carousel-item.active
+        = image_tag publication.photos.first, {class: "d-block w-100"}
+      - publication.photos.drop(1).each do |photo|
+        .carousel-item
+          = image_tag photo, {class: "d-block w-100"}
+
+    %button.carousel-control-prev{"data-bs-target" => "#carousel", "data-bs-slide" => "prev"}
+      %span.carousel-control-prev-icon
+    %button.carousel-control-next{"data-bs-target" => "#carousel", "data-bs-slide" => "next"}
+      %span.carousel-control-next-icon

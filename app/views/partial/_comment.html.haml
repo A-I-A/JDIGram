@@ -1,0 +1,11 @@
+.pub-show-comment-row
+  .pub-show-avatar-container
+    - if user.avatar.attached?
+      = image_tag comment.user.avatar, class: "pub-show-avatar"
+    - else
+      = svg "user_icon_glyph"
+  .pub-show-description-block
+    .pub-show-author-login
+      = comment.user.login
+    .pub-show-description
+      = comment.text

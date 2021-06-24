@@ -16,7 +16,7 @@
               %div 
                 = pub.created_at
           - if !pub.photos.empty?
-            = link_to publication_path(pub.id), remote: true do  
+            = link_to publication_path(pub.id), remote: true do 
               .publication-preview{style: "background: url('#{ url_for(pub.photos[0]) }') center no-repeat; background-size: cover;"}
           .publication-footer{ pub_id: pub.id }
             .publication-actions-bar
@@ -25,6 +25,8 @@
                   = svg "heart_icon_filled"
                 - else
                   = svg "heart_icon"
+              = link_to publication_path(pub.id), class: "publication-action-button", method: :get, remote: true do 
+                = svg "message_icon"
             - if !pub.description.nil? && !pub.description.empty?
               .publication-description
                 %b 
