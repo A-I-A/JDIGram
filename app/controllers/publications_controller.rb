@@ -9,22 +9,19 @@ class PublicationsController < ApplicationController
 
   def show
     @user = @publication.user
-    respond_to do |format| 
+    respond_to do |format|
       format.js
       format.html { render_404 }
     end
   end
 
   def add_publication
-    @user = User.find_by(id: params[:user_id] )
-    @publication = Publication.new
-    @publication.description = params[:description]
-    if params[:photo]
-      params[:photo].each do |photo|
-        @publication.photos.attach(photo) 
-      end
-    end
-    @user.publications << @publication
+    @publication = current_user.publications.new(description: params[:description])
+
+    params[:photo].each do |photo|
+      @publication.photos.attach(photo)
+    end if params[:photo]
+
     @publication.save
   end
 
@@ -36,7 +33,7 @@ class PublicationsController < ApplicationController
     @previous_pub = previous_publication(@user, @publication)
 
     respond_to do |format|
-      format.js 
+      format.js
       format.html{ render_404 }
     end
 
@@ -58,7 +55,7 @@ class PublicationsController < ApplicationController
   def add_comment
     @comment = @publication.comments.create(user_id: current_user.id, text: params[:text])
     respond_to do |format|
-      format.js 
+      format.js
       format.html{ render_404 }
     end
   end
@@ -68,7 +65,7 @@ class PublicationsController < ApplicationController
   def find_publication
     @publication = Publication.find_by(id: params[:id])
     render_404 unless @publication
-  end 
+  end
 
   def previous_publication(user, publication)
     next_pub = user.publications.where("id > ?", publication.id).first
