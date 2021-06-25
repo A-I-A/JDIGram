@@ -34,9 +34,8 @@ class PublicationsController < ApplicationController
 
     respond_to do |format|
       format.js
-      format.html{ render_404 }
+      format.html { render_404 }
     end
-
   end
 
   def like
@@ -44,7 +43,8 @@ class PublicationsController < ApplicationController
       user_id: current_user.id,
       likeable_id: @publication.id,
       likeable_type: 'Publication'
-      )
+    )
+
     if @like
       @like.destroy
     else
@@ -68,17 +68,11 @@ class PublicationsController < ApplicationController
   end
 
   def previous_publication(user, publication)
-    next_pub = user.publications.where("id > ?", publication.id).first
-    if next_pub
-      return next_pub
-    end
+    user.publications.where("id > ?", publication.id).first
   end
 
   def next_publication(user, publication)
-    previous_pub = user.publications.where("id < ?", publication.id).last
-    if previous_pub
-      return previous_pub
-    end
+    user.publications.where("id < ?", publication.id).last
   end
 
 end
