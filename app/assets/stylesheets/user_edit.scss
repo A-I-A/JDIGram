@@ -7,7 +7,7 @@
 }
 
 .edit-sidebar{
-  display: none; 
+  display: none;
   @extend .col-4;
   @extend .border-end;
 }
@@ -23,14 +23,14 @@
   @extend .mb-3;
 }
 
-.edit-avatar-container{ 
+.edit-avatar-container{
   cursor: pointer;
   display: block;
   @extend .me-3;
   @extend .offset-lg-2;
   @extend .offset-lg-3;
-  @extend .bg-white; 
-  @extend .rounded-circle; 
+  @extend .bg-white;
+  @extend .rounded-circle;
   @extend .border;
   @extend .border-2;
   height: $avatar-container-small;
@@ -42,8 +42,8 @@
   top: 1px;
   left: 1px;
   margin: auto;
-  width:  $avatar-small; 
-  height: $avatar-small; 
+  width:  $avatar-small;
+  height: $avatar-small;
   @extend .rounded-circle;
 }
 
@@ -51,8 +51,8 @@
   position: relative;
   top: -44px;
   margin: auto;
-  width:  $avatar-small; 
-  height: $avatar-small; 
+  width:  $avatar-small;
+  height: $avatar-small;
   @extend .rounded-circle;
 }
 
@@ -98,8 +98,6 @@
 
 .edit-submit-button{
   width: 100px;
-  //@extend .col-4;
-  //@extend .offset-md-5;
   @extend .offset-lg-4;
   @extend .btn-sm;
   @extend .btn-primary;
@@ -122,4 +120,3 @@
     text-align: left;
   }
 }
-

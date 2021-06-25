@@ -1,38 +1,16 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- */
+@import "bootstrap";
+@import "cropper";
+@import "font-awesome";
+@import "variables";
+@import "user_edit";
+@import "user_show";
+@import "navbar";
+@import "devise";
+@import "crop";
+@import "add_publication";
+@import "show_publication";
+@import "publications";
 
- /*
- *= require cropper
- */
-
- $avatar-container-big: 150px;
- $avatar-big: 144px;
-
- $avatar-container-small: 50px;
- $avatar-small: 44px;
-
- $avatar-micro: 26px;
-  
- @import "bootstrap";
- @import "font-awesome";
- @import "user_edit";
- @import "user_show";
- @import "navbar";
- @import "devise";
- @import "flash-info";
- @import "crop";
- @import "add_publication";
- @import "show_publication";
- @import "publications"
-
+.flash-info {
+  text-align: center;
+}
