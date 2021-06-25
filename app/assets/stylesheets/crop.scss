@@ -1,13 +1,12 @@
- .crop-image-container{
+.crop-image-container{
   @extend .col;
   width: 200px;
   height: 200px;
- }
+}
 
- #crop-img{
-   display: block;
-   //max-width: 100%;
- }
+#crop-img{
+  display: block;
+}
 
 .crop-preview-container{
   @extend .col;
@@ -18,18 +17,16 @@
 .crop-preview{
   overflow: hidden;
   margin: auto;
-  width:  $avatar-big; 
-  height: $avatar-big; 
+  width:  $avatar-big;
+  height: $avatar-big;
   @extend .rounded-circle
- }
+}
 
 .cropper-crop-box, .cropper-view-box {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .cropper-view-box {
-    box-shadow: 0 0 0 1px #39f;
-    outline: 0;
+  box-shadow: 0 0 0 1px #39f;
+  outline: 0;
 }
-
-
