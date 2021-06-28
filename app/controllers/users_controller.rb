@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   before_action :permit_only_current_user, only: [:edit, :destroy, :set_avatar, :remove_avatar]
 
   def index
-    puts "\n\n ACTION: #{params[:action]} #{params[:controller]}"
     @users = User.all
   end
 
@@ -15,8 +14,7 @@ class UsersController < ApplicationController
     @publications = @user.publications.order(created_at: :desc)
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
    @user.update(user_params)
@@ -28,17 +26,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-  end
+  def destroy; end
 
   def set_avatar
     @user.avatar.attach(params[:avatar])
-    render json: { 
+
+    render json: {
       avatar_url: rails_blob_path(
-        @user.avatar, 
+        @user.avatar,
         disposition: "attachment",
         only_path: true
-      ) 
+      )
     }
   end
 
@@ -74,12 +72,12 @@ class UsersController < ApplicationController
 
 
   def user_params
-    params.require(:user).permit(:name, 
-                                 :login, 
-                                 :email, 
-                                 :web_page, 
-                                 :about_me, 
-                                 :phone, 
+    params.require(:user).permit(:name,
+                                 :login,
+                                 :email,
+                                 :web_page,
+                                 :about_me,
+                                 :phone,
                                  :gender)
   end
 end
