@@ -60,6 +60,9 @@ gem 'jquery-rails'
 # This adds cropper (jquery version) 
 gem 'cropper-rails'
 
+# This adds support for elasticsearch
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

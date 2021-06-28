@@ -1,0 +1,4 @@
+<% if @users.length > 0 %>
+  $(".navbar-search-results").css('display', 'block');
+  $(".navbar-search-results").html("<%= j (render partial: 'partial/user_search_result' , locals: { users: @users }) %>");
+<% end %>

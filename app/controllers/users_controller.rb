@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   end
 
   def update
-   #render plain: params.inspect
    @user.update(user_params)
     if @user.errors.empty?
       redirect_to user_path
@@ -47,6 +46,20 @@ class UsersController < ApplicationController
     @user.avatar.purge
   end
 
+  def search_by_login_or_name
+    @users = User.__elasticsearch__.search(
+      query: { 
+        multi_match: {
+         query: params[:login],
+         fields: ['name', 'login']
+       }
+     }
+    ).records.to_a
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def find_user
@@ -57,6 +70,8 @@ class UsersController < ApplicationController
   def permit_only_current_user
     render_403 unless @user.id == current_user.id
   end
+
+
 
   def user_params
     params.require(:user).permit(:name, 

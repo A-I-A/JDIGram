@@ -19,16 +19,4 @@
 //= require_tree .
 
 
-$(document).on("turbolinks:load", function(){
 
-  $(".navbar-menu").click(function(){
-    if ($(".navbar-popup").css('display') == 'none')
-      $(".navbar-popup").css('display', 'block');
-    else
-      $(".navbar-popup").css('display', 'none');
-  })
-
-  $(".navbar-menu").on('blur', function(){
-    setTimeout(()=>{$(".navbar-popup").css('display', 'none')}, 300); 
-  })
-})

@@ -1,7 +1,11 @@
 .navbar-container
   .navbar-logo
     JDIgram
-  .col
+  .col.d-flex.align-items-center
+    - if user_signed_in?
+      %input.navbar-user-search
+        .navbar-search-results
+    .navbar-search-clear-button
   .navbar-buttons-row
     - if user_signed_in?
       .navbar-navigation-buttons
@@ -18,24 +22,24 @@
               = svg "spinner"
           - else
             = svg "user_icon_glyph"
-          .navbar-popup
-            = link_to user_path(current_user.id), class: "navbar-popup-item" do
-              .navbar-popup-image
+          .navbar-menu-popup
+            = link_to user_path(current_user.id), class: "navbar-menu-popup-item" do
+              .navbar-menu-popup-image
                 = svg "user_icon" 
-              .navbar-popup-description
+              .navbar-menu-popup-description
                 Profile
-            .navbar-popup-item{id: "add_publication"}
-              .navbar-popup-image
+            .navbar-menu-popup-item{id: "add_publication"}
+              .navbar-menu-popup-image
                 = svg "add_publication"
-              .navbar-popup-description
+              .navbar-menu-popup-description
                 Add a publication
-            = link_to edit_user_path(current_user.id), class: "navbar-popup-item border-bottom" do
-              .navbar-popup-image
+            = link_to edit_user_path(current_user.id), class: "navbar-menu-popup-item border-bottom" do
+              .navbar-menu-popup-image
                 = svg "user_settings_icon"
-              .navbar-popup-description
+              .navbar-menu-popup-description
                 Prefences
-            = link_to destroy_user_session_url, method: :delete, class: "navbar-popup-item" do
-              .navbar-popup-description
+            = link_to destroy_user_session_url, method: :delete, class: "navbar-menu-popup-item" do
+              .navbar-menu-popup-description
                 Sign out
     - else 
       = link_to new_user_session_path, class: "btn btn-primary" do 

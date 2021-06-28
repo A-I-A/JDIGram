@@ -1,0 +1,12 @@
+- users.each do |user|
+  = link_to user_path(user.id), class: "navbar-search-result-item" do
+    .navbar-avatar-container
+      - if user.avatar.attached?
+        = image_tag user.avatar, class: "navbar-avatar"
+      - else
+        = svg "user_icon_glyph"
+    %div
+      %div
+        = user.login
+      %div
+        = user.name

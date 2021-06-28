@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/publications/:user_id/get_user_publication/:pub_id',  to: 'publications#get_user_publication'
   post '/publications/:id/like', to: 'publications#like'
   post '/publications/:id/add_comment', to: 'publications#add_comment'
+  get '/search_user', to: 'users#search_by_login_or_name'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 

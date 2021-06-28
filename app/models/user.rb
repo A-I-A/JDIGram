@@ -1,3 +1,5 @@
+require 'elasticsearch/model'
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -14,4 +16,10 @@ class User < ApplicationRecord
   has_many :likes
 
   has_many :comments
+
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 end
+
+User.__elasticsearch__.create_index!
+User.import
