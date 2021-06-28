@@ -4,7 +4,7 @@ class PublicationsController < ApplicationController
   before_action :find_publication, only: [:show, :like, :add_comment]
 
   def index
-    @publications = Publication.all.order(created_at: :desc)
+    @publications = Publication.all.order(created_at: :desc).with_attached_photos
   end
 
   def show
@@ -25,7 +25,6 @@ class PublicationsController < ApplicationController
     @publication.save
   end
 
-
   def get_user_publication
     @user = User.find(params[:user_id])
     @publication = @user.publications.find(params[:pub_id])
@@ -35,28 +34,6 @@ class PublicationsController < ApplicationController
     respond_to do |format|
       format.js
       format.html { render_404 }
-    end
-  end
-
-  def like
-    @like = Like.find_by(
-      user_id: current_user.id,
-      likeable_id: @publication.id,
-      likeable_type: 'Publication'
-    )
-
-    if @like
-      @like.destroy
-    else
-      @like = @publication.likes.create(user_id: current_user.id)
-    end
-  end
-
-  def add_comment
-    @comment = @publication.comments.create(user_id: current_user.id, text: params[:text])
-    respond_to do |format|
-      format.js
-      format.html{ render_404 }
     end
   end
 

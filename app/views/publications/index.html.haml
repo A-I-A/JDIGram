@@ -18,13 +18,11 @@
           - if !pub.photos.empty?
             = link_to publication_path(pub.id), remote: true do 
               .publication-preview{style: "background: url('#{ url_for(pub.photos[0]) }') center no-repeat; background-size: cover;"}
-          .publication-footer{ pub_id: pub.id }
+          .publication-footer
             .publication-actions-bar
-              = link_to "/publications/#{pub.id}/like", class: "publication-action-button", id: "like_button-#{pub.id}", method: :post, remote: true do
-                - if pub.likes.find { |like| like.user_id == current_user.id }
-                  = svg "heart_icon_filled"
-                - else
-                  = svg "heart_icon"
+              .publication-action-button{id: "like-pub-button-#{pub.id}" }
+                - like = pub.likes.find { |like| like.user_id == current_user.id }
+                = render partial: 'partial/like_button', locals: { like: like, publication: pub }
               = link_to publication_path(pub.id), class: "publication-action-button", method: :get, remote: true do 
                 = svg "message_icon"
             - if !pub.description.nil? && !pub.description.empty?
@@ -33,7 +31,6 @@
                   = @user.login + ": "
                 = pub.description 
 
-=# render partial: "partial/show_publication"
 - if user_signed_in?
   = render partial: "partial/add_publication"
 #place-for-modal

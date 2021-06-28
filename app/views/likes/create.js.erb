@@ -1,0 +1,2 @@
+$("#like-pub-button-" + "<%= @publication.id %>").html("<%= j (render partial: 'partial/like_button', locals: {like: @like, publication: @publication}) %> ")
+$("#like-pub-button").html("<%= j (render partial: 'partial/like_button', locals: {like: @like, publication: @publication}) %> ")

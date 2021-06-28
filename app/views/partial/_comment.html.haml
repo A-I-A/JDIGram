@@ -1,6 +1,6 @@
 .pub-show-comment-row
   .pub-show-avatar-container
-    - if user.avatar.attached?
+    - if comment.user.avatar.attached?
       = image_tag comment.user.avatar, class: "pub-show-avatar"
     - else
       = svg "user_icon_glyph"

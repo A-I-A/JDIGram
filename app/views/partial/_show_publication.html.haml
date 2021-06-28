@@ -43,13 +43,12 @@
                 = render partial: "partial/comment", locals: {user: comment.user, comment: comment }
 
             .pub-show-actions-bar
-              = link_to "/publications/#{@publication.id}/like", class: "publication-action-button", id: "like_button", method: :post, remote: true do
-                - if @publication.likes.find { |like| like.user_id == current_user.id }
-                  = svg "heart_icon_filled"
-                - else
-                  = svg "heart_icon"
+              .publication-action-button{id: "like-pub-button" }
+                - like = @publication.likes.find { |like| like.user_id == current_user.id }
+                = render partial: 'partial/like_button', locals: { like: like, publication: @publication }
 
-            = form_with url: "/publications/#{@publication.id}/add_comment", class: "pub-show-add-comment-row", method: :post, remote: true do |form|
+            = form_with url: comments_path, class: "pub-show-add-comment-row", method: :post, remote: true do |form|
+              = form.hidden_field :pub_id, value: @publication.id
               = form.text_area :text, placeholder: "Write something!", class: "pub-show-add-comment-text"
               = form.submit "Send", class: "pub-show-submit"
         - if @next_pub
