@@ -23,10 +23,14 @@
           publications
         %p.user-metrics-counter
           0 subscribers
-        %p.user-metrics-counter
+        %p.user-metrics-counter 
           0 following
       %p.user-name
         = @user.name
+      .user-friendship
+        - if @user.id != current_user.id
+          = render partial: 'partial/user_friendship',locals: { user: @user }
+
   .user-publications-container
     - @publications.each do |pub|
       = link_to "/publications/#{@user.id}/get_user_publication/#{pub.id}", remote: true do
