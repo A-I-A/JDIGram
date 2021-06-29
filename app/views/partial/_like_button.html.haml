@@ -2,5 +2,5 @@
   = link_to like_path(like.id), method: :delete, remote: true do 
     = svg "heart_icon_filled"
 - else
-  = link_to likes_path(request.parameters.merge({ likeable_id: publication.id, likeable_type: 'Publication' })),  method: :post, remote: true  do 
+  = link_to likes_path({ likeable_id: publication.id, likeable_type: 'Publication' }),  method: :post, remote: true  do 
     = svg "heart_icon"
