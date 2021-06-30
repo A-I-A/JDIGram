@@ -15,6 +15,13 @@
           = svg "message_icon"
         .navbar-button.me-1
           = svg "heart_icon"
+        .navbar-button.navbar-notification.me-1{id: "navbar-notice-#{current_user.id}"}
+          = svg "bell_icon"
+          .navbar-notification-popup
+            - current_user.notifications.each do |notification|
+              - if !notification.checked
+                .navbar-notification-popup-item
+                  = notification.text
         %button.navbar-menu.navbar-button.me-1
           - if current_user.avatar.attached?
             %img.navbar-avatar.avatar{src: url_for(current_user.avatar)}

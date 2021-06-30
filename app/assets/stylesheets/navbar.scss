@@ -127,4 +127,15 @@
   }
 }
 
+.navbar-notification{
+  position: relative;
+}
 
+.navbar-notification-popup{
+  position: absolute;
+  top: 45px;
+  right: 0px;
+  width: 200px;
+  height: 100px;
+  background: gray;
+}

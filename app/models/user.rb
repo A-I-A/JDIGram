@@ -25,10 +25,24 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: :friend_id
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
-  #has_many :followers, foreign_key: :follower_id, class_name: 'Friendship'
-  #has_many :followed, through: :followers
-  #has_many :followed, foreign_key: :followed_id, class_name: 'Friendship'
-  #has_many :followers, through: :followed 
+  has_many :notifications
+  
+  def follows?(id)
+    if self.friends.find_by(id: id)
+      return true
+    else 
+      return false 
+    end
+  end
+
+  def followed_by?(id)
+    if self.inverse_friends.find_by(id: id)
+      return true
+    else
+      return false
+    end
+  end
+
 end
 
 User.__elasticsearch__.create_index!

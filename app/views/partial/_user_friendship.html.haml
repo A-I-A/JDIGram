@@ -1,18 +1,18 @@
-- you_in_friends = user.friends.find_by(id: current_user.id)
-- user_your_friend = current_user.friends.find_by(id: user.id) 
-
-- if you_in_friends
-  - if user_your_friend
+- if current_user.followed_by?(user)
+  - if current_user.follows?(user)
     You are friends
-    = link_to friendship_path(current_user.friendships.find_by(friend_id: user.id)), method: :delete, remote: true do
+    = link_to friendship_path(current_user.inverse_friendships.find_by(user_id: user.id)), method: :delete, remote: true do
       exclude from friends
   - else
     the user invited you as a friend, 
-    = link_to friendships_path(request.parameters.merge({ friend_id: user.id })), method: :post, remote: true do
-      accept?
-- elsif user_your_friend
+    = link_to friendships_path({ friend_id: user.id }), method: :post, remote: true do
+      accept?,
+    = link_to friendship_path(current_user.inverse_friendships.find_by(user_id: user.id)), method: :delete, remote: true do
+      discard?
+- elsif current_user.follows?(user)
   you invited the user as a friend
 - else
   You are not friends
-  = link_to friendships_path(request.parameters.merge({ friend_id: user.id })), method: :post, remote: true do
+  = link_to friendships_path({ friend_id: user.id }), method: :post, remote: true do
     invite to friends
+
