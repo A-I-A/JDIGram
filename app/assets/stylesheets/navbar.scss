@@ -132,10 +132,17 @@
 }
 
 .navbar-notification-popup{
+  display: none;
   position: absolute;
   top: 45px;
   right: 0px;
   width: 200px;
-  height: 100px;
-  background: gray;
+  background: #fff;
+  box-shadow: 0 0 2px 2px #ECF0F1;
+}
+
+.navbar-notification-popup-item{
+  @extend .p-2;
+  @extend .border;
+  @extend .d-flex;
 }

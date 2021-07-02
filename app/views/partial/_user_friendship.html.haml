@@ -1,18 +1,18 @@
 - if current_user.followed_by?(user)
   - if current_user.follows?(user)
-    You are friends
-    = link_to friendship_path(current_user.inverse_friendships.find_by(user_id: user.id)), method: :delete, remote: true do
-      exclude from friends
+    Uou are subscribed to each other,
+    = link_to friendship_path(current_user.friendships.find_by(friend_id: user.id)), method: :delete, remote: true do
+      unsubscribe?
   - else
-    the user invited you as a friend, 
+    User is subscribed to you, 
     = link_to friendships_path({ friend_id: user.id }), method: :post, remote: true do
-      accept?,
-    = link_to friendship_path(current_user.inverse_friendships.find_by(user_id: user.id)), method: :delete, remote: true do
-      discard?
+      subscribe in response?
 - elsif current_user.follows?(user)
-  you invited the user as a friend
+  you are subscribed,
+  = link_to friendship_path(current_user.friendships.find_by(friend_id: user.id)), method: :delete, remote: true do
+    unsubscribe?
 - else
-  You are not friends
+  You are not subscribed,
   = link_to friendships_path({ friend_id: user.id }), method: :post, remote: true do
-    invite to friends
+    subscribe?
 

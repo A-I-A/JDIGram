@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources  :likes, only: [:create, :destroy]
   resources  :comments, only: [:create]
   resources  :friendships, only: [:create, :destroy]
+  resources  :notifications, only: [:destroy]
   post '/users/set_avatar/:id', to: 'users#set_avatar'
   delete '/users/remove_avatar/:id', to: 'users#remove_avatar'
   post '/publications/add_publication', to: 'publications#add_publication'

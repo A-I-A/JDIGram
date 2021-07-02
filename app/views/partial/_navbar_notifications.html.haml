@@ -1,0 +1,44 @@
+- if current_user.notifications.empty?
+  = svg "bell_icon"
+  .navbar-notification-popup
+    You have no notifications
+- else
+  = svg "bell_alarm_icon"
+  .navbar-notification-popup
+    - current_user.notifications.reverse.each do |notification|
+      - @sender = User.find_by(id: notification.sender_id)
+      .navbar-notification-popup-item
+        .navbar-notification-popup-text
+          - case notification.status
+            - when "Subscribed"
+              User 
+              = link_to user_path(@sender) do
+                = @sender.login
+              is subscribed to you
+              - if !current_user.follows?(@sender)
+                .navbar-notification-popup-actions
+                  = link_to friendships_path({ friend_id: @sender.id }), method: :post, remote: true do
+                    subscribe in response?                    
+            - when "Unsubscribed"
+              User
+              = link_to user_path(@sender) do
+                = @sender.login
+              canceled his subscription
+
+        = link_to notification_path(notification), method: :delete, remote: true do
+          .btn.btn-close
+:javascript
+  let navbarNotification = $(".navbar-notification");
+  let notificationPopup = $(".navbar-notification-popup");
+  let menuPopup = $(".navbar-menu-popup");
+
+  navbarNotification.click(function() {
+    if (notificationPopup.css('display') == 'none') {
+      notificationPopup.show();
+      if (menuPopup.css('display') == 'block') {
+        menuPopup.hide();
+      }
+    } else {
+      notificationPopup.hide();
+    }
+  });

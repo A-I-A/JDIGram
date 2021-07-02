@@ -1,1 +1,3 @@
 $(".user-friendship").html("<%= j (render partial: 'partial/user_friendship', locals: {user: @user}) %>")
+$(".navbar-notification").html("<%= j (render partial: 'partial/navbar_notifications') %>")
+$("#userMetrics").html("<%= j (render partial: 'partial/user_metrics', locals: {user: @user}) %>")

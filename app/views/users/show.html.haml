@@ -17,14 +17,8 @@
         - if user_signed_in? && @user.id == current_user.id
           =link_to  edit_user_path, class: "user-edit-button" do
             Edit profile
-      .user-credentials-row
-        %p.user-metrics-counter
-          = @user.publications.count
-          publications
-        %p.user-metrics-counter
-          0 subscribers
-        %p.user-metrics-counter 
-          0 following
+      .user-credentials-row{ id: 'userMetrics' }
+        = render partial: 'partial/user_metrics', locals: { user: @user }
       %p.user-name
         = @user.name
       .user-friendship

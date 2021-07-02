@@ -5,17 +5,24 @@ $(document).on("turbolinks:load", function() {
   
   let searchInput = $(".navbar-user-search");
   let clearSearchButton = $(".navbar-search-clear-button");
-  let searchResults = $(".navbar-search-results")
+  let searchResults = $(".navbar-search-results");
+
+  let navbarNotification = $(".navbar-notification");
+  let notificationPopup = $(".navbar-notification-popup");
 
   navbarMenu.click(function() {
-    if (menuPopup.css('display') == 'none')
+    if (menuPopup.css('display') == 'none') {
       menuPopup.show();
+      if (notificationPopup.css('display') == 'block') {
+        notificationPopup.hide();
+      }
+    }
     else
       menuPopup.hide();
   });
 
   navbarMenu.on('blur', function() {
-    setTimeout(()=>{navbarMenu.hide}, 300); 
+    setTimeout(()=>{menuPopup.hide()}, 300); 
   });
   
   searchInput.on('input', function(e) {
@@ -49,4 +56,5 @@ $(document).on("turbolinks:load", function() {
     clearButtonHide();
     searchResults.hide();
   }
+
 })
