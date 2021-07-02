@@ -28,14 +28,12 @@
         = link_to notification_path(notification), method: :delete, remote: true do
           .btn.btn-close
 :javascript
-  let navbarNotification = $(".navbar-notification");
-  let notificationPopup = $(".navbar-notification-popup");
 
-  navbarNotification.click(function() {
-    if (notificationPopup.css('display') == 'none') {
-      notificationPopup.show();
+  $(".navbar-notification").click(function() {
+    if ($(".navbar-notification-popup").css('display') == 'none') {
+      $(".navbar-notification-popup").show();
     } else {
-      notificationPopup.hide();
+      $(".navbar-notification-popup").hide();
     }
   });
 

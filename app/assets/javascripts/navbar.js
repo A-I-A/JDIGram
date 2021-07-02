@@ -7,7 +7,6 @@ $(document).on("turbolinks:load", function() {
   let clearSearchButton = $(".navbar-search-clear-button");
   let searchResults = $(".navbar-search-results");
 
-  let navbarNotification = $(".navbar-notification");
   let notificationPopup = $(".navbar-notification-popup");
 
   navbarMenu.click(function() {
