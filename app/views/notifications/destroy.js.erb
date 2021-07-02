@@ -1,2 +1,4 @@
 $(".navbar-notification").html("<%= j (render partial: 'partial/navbar_notifications') %>")
-
+<% if current_user.notifications.length > 0 %>
+  $(".navbar-notification-popup").css('display', 'block')
+<% end %>

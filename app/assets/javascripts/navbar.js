@@ -11,11 +11,11 @@ $(document).on("turbolinks:load", function() {
   let notificationPopup = $(".navbar-notification-popup");
 
   navbarMenu.click(function() {
+    if (notificationPopup.css('display') == 'block') {
+      notificationPopup.hide();
+    }
     if (menuPopup.css('display') == 'none') {
       menuPopup.show();
-      if (notificationPopup.css('display') == 'block') {
-        notificationPopup.hide();
-      }
     }
     else
       menuPopup.hide();

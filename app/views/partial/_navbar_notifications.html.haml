@@ -30,15 +30,14 @@
 :javascript
   let navbarNotification = $(".navbar-notification");
   let notificationPopup = $(".navbar-notification-popup");
-  let menuPopup = $(".navbar-menu-popup");
 
   navbarNotification.click(function() {
     if (notificationPopup.css('display') == 'none') {
       notificationPopup.show();
-      if (menuPopup.css('display') == 'block') {
-        menuPopup.hide();
-      }
     } else {
       notificationPopup.hide();
     }
   });
+
+
+        
