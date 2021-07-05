@@ -15,11 +15,6 @@ RSpec.describe UsersController, type: :controller do
       get :show, params: { id: user.id }
       expect(response).to render_template("show")
     end
-
-    it "request for users index should return 302" do
-      get :index
-      expect(response.status).to eq(302)
-    end  
   end  
 
   describe "when user is signed in" do
