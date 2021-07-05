@@ -1,0 +1,31 @@
+.container.chat-container
+  - if @chat.starter.id == current_user.id
+    - interlocutor = @chat.interlocutor
+  - else 
+    - interlocutor = @chat.starter
+  .chat-header
+    = link_to chats_path, class: "btn btn-light" do
+      < Back
+    = interlocutor.login
+    = link_to user_path(interlocutor), class: "chat-avatar-container" do
+      - if interlocutor.avatar.attached?
+        = image_tag interlocutor.avatar, class: "chat-avatar"
+      - else
+        = svg "user_icon_glyph"
+  .chat-messages-container
+    - @chat.messages.each do |message|
+      .chat-message-row
+        = link_to user_path(message.sender), class: "chat-avatar-container" do
+          - if message.sender.avatar.attached?
+            = image_tag message.sender.avatar, class: "chat-avatar"
+          - else
+            = svg "user_icon_glyph"
+        .w-75
+          .chat-message-sender-login
+            = message.sender.login
+          .chat-message-text
+            = message.text
+  = form_with url: messages_path, class: "chat-message-form", remote: true do |form|
+    = form.hidden_field :recipient_id, value: @chat.interlocutor.id
+    = form.text_area :text, class: "chat-message-field"
+    = form.submit 'Send', class: "chat-message-submit"

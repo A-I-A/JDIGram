@@ -26,6 +26,13 @@ class User < ApplicationRecord
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
   has_many :notifications
+
+  has_many :outbox_chats, class_name: 'Chat', foreign_key: :starter_id
+  has_many :interlocutors, through: :outbox_chats
+  has_many :inbox_chats, class_name: 'Chat', foreign_key: :interlocutor_id
+  has_many :starters, through: :inbox_messages
+
+  has_many :messages, foreign_key: :sender_id
   
   def follows?(id)
     if self.friends.find_by(id: id)

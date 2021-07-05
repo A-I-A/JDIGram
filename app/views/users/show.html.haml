@@ -24,7 +24,10 @@
       .user-friendship
         - if @user.id != current_user.id
           = render partial: 'partial/user_friendship',locals: { user: @user }
-
+      - if @user.id != current_user.id
+        = link_to new_message_path({ recipient_id: @user.id }), remote: true do
+          .btn.btn-primary
+            Send message
   .user-publications-container
     - @publications.each do |pub|
       = link_to "/publications/#{@user.id}/get_user_publication/#{pub.id}", remote: true do

@@ -1,0 +1,25 @@
+.container
+  .modal.fade{ id: "newMessageModal", tabindex: -1, aria: { hidden: true } }
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5.modal-title
+            New message
+          %button.btn-close{data: {bs: {dismiss: "modal"}}}
+        .modal-body
+          .message-recipient-credentials
+            .message-avatar-container
+              - if @recipient.avatar.attached?
+                = image_tag @recipient.avatar, class: "message-avatar"
+              - else
+                = svg "user_icon_glyph"
+            %div
+              .message-recipient-login
+                = @recipient.login
+              %div
+              = @recipient.name
+          = form_with url: messages_path, class: "message-form", remote: true do |form|
+            = form.hidden_field :recipient_id, value: @recipient.id
+            = form.text_area :text, class: "message-text"
+            = form.submit 'Send', class: "message-submit"
+        

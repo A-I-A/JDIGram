@@ -1,0 +1,22 @@
+.container.chat-container
+  - if !@chats.empty?
+    - @chats.each do |chat|
+      = link_to chat_path(chat), class: "chat-row" do  
+        - if chat.starter.id == current_user.id
+          - interlocutor = chat.interlocutor
+        - else 
+          - interlocutor = chat.starter
+        .chat-avatar-container
+          - if interlocutor.avatar.attached?
+            = image_tag interlocutor.avatar, class: "chat-avatar"
+          - else
+            = svg "user_icon_glyph"
+        %div
+          %div.fw-bold
+            = interlocutor.login
+          %div
+            - if chat.messages.last.sender.id == current_user.id
+              You: 
+              = chat.messages.last.text
+            - else
+              = chat.messages.last.text

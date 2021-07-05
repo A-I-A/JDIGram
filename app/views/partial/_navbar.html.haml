@@ -12,7 +12,8 @@
         = link_to publications_path, class: "navbar-button me-1" do
           = svg 'home_icon'
         .navbar-button.me-1
-          = svg "message_icon"
+          = link_to chats_path do 
+            = svg "message_icon"
         .navbar-button.me-1
           = svg "heart_icon"
         .navbar-button.navbar-notification.me-1

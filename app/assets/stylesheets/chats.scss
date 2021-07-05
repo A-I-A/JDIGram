@@ -1,0 +1,93 @@
+.chat-container{
+  @extend .p-2;
+  @extend .mt-3;
+  @extend .bg-white;
+  @extend .w-50;
+}
+
+.chat-row{
+  @extend .border;
+  @extend .d-flex;
+  @extend .p-2;
+  @extend .text-decoration-none;
+  @extend .mb-1;
+  color :black;
+}
+
+.chat-header{
+  @extend .p-2;
+  @extend .mb-2;
+  @extend .d-flex;
+  @extend .justify-content-between;
+  @extend .align-items-center;
+  @extend .border-bottom;
+}
+
+.chat-avatar-container{
+  position: relative;
+  cursor: pointer;
+  display: block;
+  @extend .me-3;
+  @extend .bg-white;
+  @extend .rounded-circle;
+  @extend .border;
+  @extend .border-2;
+  height: $avatar-container-small;
+  width:  $avatar-container-small;
+}
+
+.chat-avatar{
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  margin: auto;
+  width:  $avatar-small;
+  height: $avatar-small;
+  @extend .rounded-circle;
+}
+
+.chat-messages-container{
+  height: 300px;
+  overflow: auto;
+}
+  
+.chat-message-row{
+  @extend .d-flex;
+  @extend .align-items-start;
+  @extend .mb-2;
+}
+
+.chat-message-sender-login{
+  @extend .fw-bold;
+}
+
+.chat-message-text{
+  @extend .text-wrap;
+  overflow: auto;
+}
+
+.chat-message-form{
+  @extend .p-2;
+  @extend .mt-auto;
+  @extend .bg-light;
+  @extend .d-flex;
+  @extend .align-items-center;
+}
+
+.chat-message-field{
+  @extend .border;
+  @extend .form-control;
+  @extend .w-75;
+  @extend .me-2;
+  overflow: auto;
+  resize: none;
+  box-shadow: none;
+  height: 70px;
+  @extend .mb-2;
+}
+
+.chat-message-submit{
+  @extend .w-50;
+  @extend .btn;
+  @extend .btn-primary;
+}

@@ -1,0 +1,59 @@
+.message-recipient-credentials{
+  @extend .d-flex;
+  @extend .align-items-center;
+  @extend .mb-2;
+  @extend .p-2;
+}
+
+.message-avatar-container{
+  position: relative;
+  cursor: pointer;
+  display: block;
+  @extend .me-3;
+  @extend .bg-white;
+  @extend .rounded-circle;
+  @extend .border;
+  @extend .border-2;
+  height: $avatar-container-small;
+  width:  $avatar-container-small;
+}
+
+.message-avatar{
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  margin: auto;
+  width:  $avatar-small;
+  height: $avatar-small;
+  @extend .rounded-circle;
+}
+
+.message-recipient-login{
+  @extend .fw-bold;
+}
+
+.message-form{
+  @extend .d-flex;
+  @extend .flex-column;
+  @extend .align-items-center;
+}
+
+.message-text{
+  @extend .border;
+  @extend .form-control;
+  @extend .w-75;
+  @extend .me-2;
+  overflow: auto;
+  resize: none;
+  box-shadow: none;
+  height: 200px;
+  @extend .mb-2;
+}
+
+.message-submit{
+  @extend .w-50;
+  @extend .btn;
+  @extend .btn-primary;
+}
+
+
