@@ -14,18 +14,10 @@
         = svg "user_icon_glyph"
   .chat-messages-container
     - @chat.messages.each do |message|
-      .chat-message-row
-        = link_to user_path(message.sender), class: "chat-avatar-container" do
-          - if message.sender.avatar.attached?
-            = image_tag message.sender.avatar, class: "chat-avatar"
-          - else
-            = svg "user_icon_glyph"
-        .w-75
-          .chat-message-sender-login
-            = message.sender.login
-          .chat-message-text
-            = message.text
-  = form_with url: messages_path, class: "chat-message-form", remote: true do |form|
-    = form.hidden_field :recipient_id, value: @chat.interlocutor.id
-    = form.text_area :text, class: "chat-message-field"
-    = form.submit 'Send', class: "chat-message-submit"
+      = render partial: 'partial/chat_message', locals: { message: message }
+  .chat-message-form
+    %textarea.chat-message-field
+    %button.chat-message-submit{ chat_id: @chat.id }
+      Send
+    
+

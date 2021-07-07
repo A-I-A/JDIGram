@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   post '/publications/add_publication', to: 'publications#add_publication'
   get '/publications/:user_id/get_user_publication/:pub_id',  to: 'publications#get_user_publication'
   get '/search_user', to: 'users#search_by_login_or_name'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  mount ActionCable.server => '/cable'
 end
 
