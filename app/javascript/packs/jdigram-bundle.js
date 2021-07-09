@@ -1,7 +1,7 @@
 import ReactOnRails from 'react-on-rails';
 
-import UserShow from '../bundles/JDIgram/components/UserShow';
+import UserEdit from '../bundles/JDIgram/components/UserEdit';
 
 ReactOnRails.register({
-  UserShow,
+  UserEdit,
 });

@@ -14,15 +14,31 @@ class UsersController < ApplicationController
     @publications = @user.publications.order(created_at: :desc)
   end
 
-  def edit; end
+  def edit
+    if @user.avatar.attached?
+      avatar = url_for(@user.avatar)
+    else 
+      avatar = @user.get_blank_avatar_url
+    end
+    @user_props = {
+      id: @user.id,
+      token: form_authenticity_token,
+      login: @user.login,
+      avatar: avatar,
+      name: @user.name,
+      email: @user.email,
+      web_page: @user.web_page,
+      phone: @user.phone,
+      gender: @user.gender,
+      about_me: @user.about_me
+    }
+  end
 
   def update
-   @user.update(user_params)
+    @user.update(user_params)
     if @user.errors.empty?
-      redirect_to user_path
       flash[:success] = "your profile settings have been updated"
-    else
-      redirect_to edit_user_path
+      render json: {}
     end
   end
 

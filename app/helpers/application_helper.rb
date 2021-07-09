@@ -9,4 +9,8 @@ module ApplicationHelper
     params[:controller] == 'users' && params[:action] == 'show'
   end
 
+  def form_authenticity_token
+    session[:_csrf_token] ||= SecureRandom.base64(32)
+  end
+
 end

@@ -3,6 +3,7 @@ require 'elasticsearch/model'
 class User < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  include Rails.application.routes.url_helpers
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -48,6 +49,10 @@ class User < ApplicationRecord
     else
       return false
     end
+  end
+
+  def get_blank_avatar_url
+    return "/user_icon_glyph.svg"
   end
 
 end
