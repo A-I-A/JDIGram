@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 const axios = require('axios');
+import userAvatarBlank from 'user_icon_glyph.svg'
+import spinner from 'spinner.svg'
+
 
 const UserEdit = (props) => {
   const [name, setName] = useState(props.name);
@@ -10,6 +13,16 @@ const UserEdit = (props) => {
   const [phone, setPhone] = useState(props.phone);
   const [gender, setGender] = useState(props.gender);
   const [about_me, setAboutMe] = useState(props.about_me);
+  let [avatar, setAvatar] = useState(props.avatar)
+
+  const removeAvatar = () => {
+    axios.delete(`/users/${props.id}/remove_avatar`,
+      {data: {authenticity_token: props.token}}
+    ).then(response => {
+      if (response.status == 200)
+        setAvatar(false); 
+    })
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,7 +56,11 @@ const UserEdit = (props) => {
       <div className="edit-credentials">
         <div className="edit-title-row">
           <label className="edit-avatar-container" htmlFor="user_avatar">
-            {props.avatar && <img className="edit-avatar avatar" src={props.avatar}/>}
+            {avatar ?
+             <img className="edit-avatar avatar" src={avatar}/>
+             :
+             <img className="edit-avatar avatar" src={userAvatarBlank}/>
+            }
             <input id="user_avatar" 
                    className="avatar-file-field" 
                    type="file" 
@@ -51,6 +68,11 @@ const UserEdit = (props) => {
           </label>
           <div className="col">
             <div className="text-start mb-1">{login}</div>
+            {avatar && 
+              <button className="remove_avatar-button" onClick={removeAvatar}>
+                Remove avatar
+              </button>
+            }
           </div>
         </div>
         <form onSubmit={handleSubmit}>

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if @user.avatar.attached?
       avatar = url_for(@user.avatar)
     else 
-      avatar = @user.get_blank_avatar_url
+      avatar = false
     end
     @user_props = {
       id: @user.id,
@@ -58,6 +58,7 @@ class UsersController < ApplicationController
 
   def remove_avatar
     @user.avatar.purge
+    render json: {}
   end
 
   def search_by_login_or_name

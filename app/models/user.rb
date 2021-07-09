@@ -51,10 +51,6 @@ class User < ApplicationRecord
     end
   end
 
-  def get_blank_avatar_url
-    return "/user_icon_glyph.svg"
-  end
-
 end
 
 User.__elasticsearch__.create_index!

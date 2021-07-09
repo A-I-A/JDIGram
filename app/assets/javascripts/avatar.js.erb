@@ -75,18 +75,6 @@ $(document).on("turbolinks:load", function(){
     avatar.css('opacity','1');
     spinner.css('display','none');
   }
-
-  $(".remove_avatar-button").click(function(event){
-    $.ajax({
-      url: "/users/remove_avatar/" + event.target.getAttribute("user_id"),
-      type: 'DELETE',
-      processData: false,
-      contentType: false,
-      success: function(){
-      Turbolinks.visit(window.location.toString(), { action: 'replace' });
-      }
-    })
-  })
 })
 
 function setAvatar(avatarContainer, avatar){

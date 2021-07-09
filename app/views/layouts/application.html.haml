@@ -9,6 +9,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'jdigram-bundle'
 
+    
   %body.bg-light
     - if user_signed_in? || user_profile_path?
       = render partial: "partial/navbar" 
