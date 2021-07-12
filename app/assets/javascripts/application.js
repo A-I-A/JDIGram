@@ -18,5 +18,3 @@
 //= require cropper
 //= require_tree .
 
-
-

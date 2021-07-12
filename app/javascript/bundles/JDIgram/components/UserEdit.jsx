@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 const axios = require('axios');
-import userAvatarBlank from 'user_icon_glyph.svg'
-import spinner from 'spinner.svg'
+import AvatarInput from './AvatarInput';
 
 
 const UserEdit = (props) => {
@@ -13,10 +12,10 @@ const UserEdit = (props) => {
   const [phone, setPhone] = useState(props.phone);
   const [gender, setGender] = useState(props.gender);
   const [about_me, setAboutMe] = useState(props.about_me);
-  let [avatar, setAvatar] = useState(props.avatar)
+  const [avatar, setAvatar] = useState(props.avatar)
 
   const removeAvatar = () => {
-    axios.delete(`/users/${props.id}/remove_avatar`,
+    axios.delete(`/users/${props.user_id}/remove_avatar`,
       {data: {authenticity_token: props.token}}
     ).then(response => {
       if (response.status == 200)
@@ -26,7 +25,7 @@ const UserEdit = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.put(`/users/${props.id}`, 
+    axios.put(`/users/${props.user_id}`, 
      {authenticity_token: props.token,
       user:{
         name: name,
@@ -39,9 +38,8 @@ const UserEdit = (props) => {
         }
       }
     ).then(response=>{
-      console.log(response);
       if (response.status == 200)
-        window.location.replace(`/users/${props.id}`)
+        window.location.replace(`/users/${props.user_id}`)
     });
   }
 
@@ -55,17 +53,7 @@ const UserEdit = (props) => {
       </div>
       <div className="edit-credentials">
         <div className="edit-title-row">
-          <label className="edit-avatar-container" htmlFor="user_avatar">
-            {avatar ?
-             <img className="edit-avatar avatar" src={avatar}/>
-             :
-             <img className="edit-avatar avatar" src={userAvatarBlank}/>
-            }
-            <input id="user_avatar" 
-                   className="avatar-file-field" 
-                   type="file" 
-                   accept="image/*"/>
-          </label>
+          <AvatarInput avatar={avatar} action={'edit'} user_id={props.user_id} />
           <div className="col">
             <div className="text-start mb-1">{login}</div>
             {avatar && 
@@ -176,7 +164,7 @@ UserEdit.propTypes = {
   phone: PropTypes.string.isRequired,
   gender: PropTypes.string.isRequired,
   about_me: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  user_id: PropTypes.number.isRequired,
 };
 
 export default UserEdit;

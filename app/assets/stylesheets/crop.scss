@@ -1,11 +1,16 @@
 .crop-image-container{
   @extend .col;
-  width: 200px;
+  width: 250px;
   height: 200px;
+  @extend .border;
+  @extend .p-0;
+  @extend .d-flex;
+  @extend .align-items-center;
 }
 
 #crop-img{
   display: block;
+  @extend .w-100;
 }
 
 .crop-preview-container{

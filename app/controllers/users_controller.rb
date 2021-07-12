@@ -12,19 +12,20 @@ class UsersController < ApplicationController
 
   def show
     @publications = @user.publications.order(created_at: :desc)
+    @avatar_props = {
+      user_id: @user.id,
+      token: form_authenticity_token,
+      avatar: get_avatar_url(@user),
+      action: 'show'
+    }
   end
 
   def edit
-    if @user.avatar.attached?
-      avatar = url_for(@user.avatar)
-    else 
-      avatar = false
-    end
     @user_props = {
-      id: @user.id,
+      user_id: @user.id,
       token: form_authenticity_token,
       login: @user.login,
-      avatar: avatar,
+      avatar: get_avatar_url(@user),
       name: @user.name,
       email: @user.email,
       web_page: @user.web_page,
@@ -45,6 +46,10 @@ class UsersController < ApplicationController
   def destroy; end
 
   def set_avatar
+    puts '================='
+    puts 'S U C C E S S'
+    puts '================='
+    puts params.inspect
     @user.avatar.attach(params[:avatar])
 
     render json: {
@@ -96,5 +101,13 @@ class UsersController < ApplicationController
                                  :about_me,
                                  :phone,
                                  :gender)
+  end
+
+  def get_avatar_url(user)
+    if user.avatar.attached?
+      avatar = url_for(@user.avatar)
+    else 
+      avatar = false
+    end
   end
 end

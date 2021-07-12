@@ -1,15 +1,7 @@
 .container
   .user-credentials-container
     .col
-      %label.user-avatar-container{ for: :user_avatar }
-        - if @user.avatar.attached?
-          %img.show-avatar.avatar{ src: url_for(@user.avatar) }
-          .show-avatar-spinner.spinner
-            = svg "spinner"
-        - else
-          = svg "user_icon_glyph"
-      - if user_signed_in? && (@user.id == current_user.id)
-        %input.avatar-file-field{ type: "file", accept: "image/*", id: "user_avatar" }
+      = react_component("AvatarInput", props: @avatar_props, prerender: true)
     .col
       .user-credentials-row
         .user-login
