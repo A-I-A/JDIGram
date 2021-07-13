@@ -18,7 +18,7 @@ const AvatarCrop = props => {
            formData
         ).then(response => {
           if (response.status == 200) {
-            console.log("success")
+            props.updateAvatar(response.data.avatar_url);
           }
         }) 
       }));
@@ -26,14 +26,16 @@ const AvatarCrop = props => {
   };
 
   return (
-    <div className="modal fade" id="myModal">
+    <div className="modal fade" id="avatarCropModal">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">
               Select miniature for your avatar
             </h5>
-            <button className="btn-close" data-bs-dismiss="modal"/>
+            <button className="btn-close" 
+                    data-bs-dismiss="modal"
+                    onClick={props.hideModal}/>
           </div>
           { props.startRender && 
             <div className="modal-body">

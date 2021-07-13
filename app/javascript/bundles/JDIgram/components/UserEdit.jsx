@@ -18,9 +18,14 @@ const UserEdit = (props) => {
     axios.delete(`/users/${props.user_id}/remove_avatar`,
       {data: {authenticity_token: props.token}}
     ).then(response => {
-      if (response.status == 200)
+      if (response.status == 200) {
         setAvatar(false); 
-    })
+      }  
+    });
+  }
+
+  const addAvatar = (avatar) => {
+    setAvatar(avatar);
   }
 
   const handleSubmit = (event) => {
@@ -53,7 +58,11 @@ const UserEdit = (props) => {
       </div>
       <div className="edit-credentials">
         <div className="edit-title-row">
-          <AvatarInput avatar={avatar} action={'edit'} user_id={props.user_id} />
+          <AvatarInput avatar={avatar} 
+                       action={'edit'} 
+                       user_id={props.user_id} 
+                       token={props.token}
+                       addAvatar={addAvatar}/>
           <div className="col">
             <div className="text-start mb-1">{login}</div>
             {avatar && 

@@ -27,8 +27,7 @@
   cursor: pointer;
   display: block;
   @extend .me-3;
-  //@extend .offset-lg-2;
-  //@extend .offset-lg-3;
+  @extend .offset-lg-3;
   @extend .bg-white;
   @extend .rounded-circle;
   @extend .border;
@@ -44,10 +43,6 @@
   width:  $avatar-small;
   height: $avatar-small;
   @extend .rounded-circle;
-}
-
-.avatar-file-field{
-  display: none;
 }
 
 .remove_avatar-button{

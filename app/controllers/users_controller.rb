@@ -12,12 +12,19 @@ class UsersController < ApplicationController
 
   def show
     @publications = @user.publications.order(created_at: :desc)
-    @avatar_props = {
-      user_id: @user.id,
-      token: form_authenticity_token,
-      avatar: get_avatar_url(@user),
-      action: 'show'
-    }
+    if @user.id == current_user.id
+      @avatar_props = {
+        user_id: @user.id,
+        token: form_authenticity_token,
+        avatar: get_avatar_url(@user),
+        action: 'show'
+      }
+    else
+      @avatar_props = {
+        avatar: get_avatar_url(@user),
+        size: 'big'
+      }
+    end
   end
 
   def edit
@@ -46,9 +53,6 @@ class UsersController < ApplicationController
   def destroy; end
 
   def set_avatar
-    puts '================='
-    puts 'S U C C E S S'
-    puts '================='
     puts params.inspect
     @user.avatar.attach(params[:avatar])
 

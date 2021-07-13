@@ -1,7 +1,11 @@
 .container
   .user-credentials-container
     .col
-      = react_component("AvatarInput", props: @avatar_props, prerender: true)
+      - if @user.id == current_user.id 
+        = react_component("AvatarInput", props: @avatar_props, prerender: true)
+      - else
+        .user-avatar-container
+          = react_component("Avatar", props: @avatar_props, prerender: true)
     .col
       .user-credentials-row
         .user-login
