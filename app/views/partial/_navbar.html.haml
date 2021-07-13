@@ -20,7 +20,7 @@
           = render partial: 'partial/navbar_notifications'
         %button.navbar-menu.navbar-button.me-1
           - if current_user.avatar.attached?
-            %img.navbar-avatar.avatar{src: url_for(current_user.avatar)}
+            %img.navbar-avatar{src: url_for(current_user.avatar)}
             .navbar-avatar-spinner.spinner
               = svg "spinner"
           - else

@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-const axios = require('axios');
-import userAvatarBlank from 'user_icon_glyph.svg'
-import spinner from 'spinner.svg'
+import Avatar from './Avatar'
 import AvatarCrop from './AvatarCrop'
 
 const AvatarInput = props => {
 
-  const [avatar, setAvatar] = useState(props.avatar);
   const [image, setImg] = useState(false);
-  const [startRender, setStart] = useState(false);
+  const [startRender, setStartRender] = useState(false);
 
   const handleInput = e => {
     let modal = new bootstrap.Modal(document.querySelector("#myModal"));
@@ -16,25 +13,21 @@ const AvatarInput = props => {
     let reader = new FileReader();  
       reader.onloadend = (event) => {
        setImg(event.target.result);
-       setTimeout(()=>{setStart(true);},500)
+       setTimeout(()=>{setStartRender(true);},500)
       }
     reader.readAsDataURL(e.target.files[0]);
   }
   
   return (
-   <div>
+   <div style={{textAlign: 'center'}} className="offset-lg-3">
     <label className={`${props.action}-avatar-container`} htmlFor="user_avatar">
-      {avatar ?
-        <img className={`${props.action}-avatar avatar`} src={avatar}/>
-        :
-        <img className={`${props.action}-avatar avatar`} src={userAvatarBlank}/>
-       }
+      <Avatar avatar={props.avatar} size={props.action == 'show' ? 'big' : 'small'} />
      </label>
      <input id="user_avatar" 
-         className="avatar-file-field" 
-         type="file" 
-         accept="image/*"
-         onInput={handleInput}/>
+            className="avatar-file-field" 
+            type="file" 
+            accept="image/*"
+            onInput={handleInput}/>
      <AvatarCrop image={image} 
                  startRender={startRender} 
                  token={props.token}

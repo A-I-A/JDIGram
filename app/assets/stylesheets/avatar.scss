@@ -1,0 +1,22 @@
+.avatar {
+  display: block;
+  position: relative;
+  top: 1px;
+  margin: auto; 
+  @extend .rounded-circle;
+}
+
+.avatar-big {
+  width:  $avatar-big; 
+  height: $avatar-big; 
+}
+
+.avatar-small {
+  width:  $avatar-small;
+  height: $avatar-small;
+}
+
+.avatar-micro {
+  width:  $avatar-micro;
+  height: $avatar-micro;
+}
