@@ -8,12 +8,12 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'jdigram-bundle'
-
-    
+   
   %body.bg-light
+    - if user_signed_in?
+      = react_component("InitialContainer", props: {avatar: get_avatar_url(current_user)}, prerender: true)
     - if user_signed_in? || user_profile_path?
-      = render partial: "partial/navbar" 
+      = render partial: "partial/navbar"
     .flash-info
       = flash[:success]
     = yield
-    

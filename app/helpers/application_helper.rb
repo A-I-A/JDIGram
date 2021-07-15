@@ -9,8 +9,12 @@ module ApplicationHelper
     params[:controller] == 'users' && params[:action] == 'show'
   end
 
-  def form_authenticity_token
-    session[:_csrf_token] ||= SecureRandom.base64(32)
+  def get_avatar_url(user)
+    if user.avatar.attached?
+      avatar = url_for(user.avatar)
+    else 
+      avatar = false
+    end
   end
 
 end
