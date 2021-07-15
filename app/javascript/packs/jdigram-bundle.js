@@ -3,6 +3,7 @@ import InitialContainer from '../bundles/JDIgram/components/INIT/InitialContaine
 import InitialComponent from '../bundles/JDIgram/components/INIT/InitialComponent'
 import UserEdit from '../bundles/JDIgram/components/UserEdit/UserEdit';
 import RemoveAvatarButton from '../bundles/JDIgram/components/UserEdit/RemoveAvatarButton';
+import UserEditForm from '../bundles/JDIgram/components/UserEdit/UserEditForm';
 import Avatar from '../bundles/JDIgram/components/Avatar';
 import AvatarInput from '../bundles/JDIgram/components/AvatarInput';
 import AvatarCropModal from '../bundles/JDIgram/components/AvatarCropModal';
@@ -17,6 +18,7 @@ ReactOnRails.register({
   InitialComponent,
   UserEdit,
   RemoveAvatarButton,
+  UserEditForm,
   AvatarInput,
   AvatarCropModal,
   Avatar,
