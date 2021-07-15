@@ -1,8 +1,8 @@
 .container
   .user-credentials-container
     .col
-      - if @user.id == current_user.id 
-        = react_component("AvatarInput", props: @avatar_props, prerender: true)
+      - if user_signed_in? && @user.id == current_user.id 
+        = react_component("UserShowAvatarContainer", props: @avatar_props, prerender: false)
       - else
         .user-avatar-container
           = react_component("Avatar", props: @avatar_props, prerender: true)
@@ -18,9 +18,9 @@
       %p.user-name
         = @user.name
       .user-friendship
-        - if @user.id != current_user.id
+        - if user_signed_in? && @user.id != current_user.id
           = render partial: 'partial/user_friendship',locals: { user: @user }
-      - if @user.id != current_user.id
+      - if user_signed_in? && @user.id != current_user.id
         = link_to new_message_path({ recipient_id: @user.id }), remote: true do
           .btn.btn-primary
             Send message
@@ -32,9 +32,6 @@
 
 - if user_signed_in?
   = render partial: "partial/add_publication"
-  
-  - if @user.id == current_user.id 
-    = render partial: "partial/crop"
 
 
 

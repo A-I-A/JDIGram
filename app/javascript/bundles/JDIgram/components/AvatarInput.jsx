@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Avatar from './Avatar';
 import AvatarCropModal from './AvatarCropModal';
+import { connect } from 'react-redux';
+import { setUserAvatar } from '../store/avatarReducer'
 
 const AvatarInput = props => {
 
@@ -22,8 +24,7 @@ const AvatarInput = props => {
     showModal();
   }
 
-  const updateAvatar = (avatar) => {
-    props.addAvatar(avatar);
+  const updateAvatar = () => {
     hideModal();
   }
 
@@ -54,13 +55,18 @@ const AvatarInput = props => {
             accept="image/*"
             onInput={handleInput}/>
      <AvatarCropModal image={image} 
-                 startRender={startRender} 
-                 token={props.token}
-                 user_id={props.user_id}
-                 updateAvatar={updateAvatar}
-                 hideModal={hideModal}/>
+                      startRender={startRender} 
+                      token={props.token}
+                      user_id={props.user_id}
+                      updateAvatar={updateAvatar}
+                      hideModal={hideModal}
+                      setUserAvatar={props.setUserAvatar}/>
    </div>
   )    
 }
 
-export default AvatarInput;
+const mapStateToProps = state => {
+  return {avatar: state.avatar}
+}
+
+export default connect (mapStateToProps,{setUserAvatar})(AvatarInput);

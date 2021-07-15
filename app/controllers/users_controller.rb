@@ -12,13 +12,12 @@ class UsersController < ApplicationController
 
   def show
     @publications = @user.publications.order(created_at: :desc)
-    if @user.id == current_user.id
+    if user_signed_in? && @user.id == current_user.id
       @avatar_props = {
         user_id: @user.id,
-        token: form_authenticity_token,
-        avatar: get_avatar_url(@user),
+        token: get_authenticity_token,
         action: 'show'
-      }
+        }
     else
       @avatar_props = {
         avatar: get_avatar_url(@user),
@@ -30,9 +29,8 @@ class UsersController < ApplicationController
   def edit
     @user_props = {
       user_id: @user.id,
-      token: form_authenticity_token,
+      token: get_authenticity_token,
       login: @user.login,
-      avatar: get_avatar_url(@user),
       name: @user.name,
       email: @user.email,
       web_page: @user.web_page,
@@ -113,5 +111,9 @@ class UsersController < ApplicationController
     else 
       avatar = false
     end
+  end
+
+  def get_authenticity_token
+    session[:_csrf_token] ||= SecureRandom.base64(32)
   end
 end

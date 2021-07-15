@@ -28,7 +28,8 @@
   @extend .rounded-circle
 }
 
-.cropper-crop-box, .cropper-view-box {
+.cropper-crop-box, 
+.cropper-view-box {
   border-radius: 50%;
 }
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Cropper from "react-cropper";
 const axios = require('axios');
 
+
 const AvatarCrop = props => {
 
   const [cropData, setCropData] = useState("#");
@@ -18,7 +19,8 @@ const AvatarCrop = props => {
            formData
         ).then(response => {
           if (response.status == 200) {
-            props.updateAvatar(response.data.avatar_url);
+            props.setUserAvatar(response.data.avatar_url)
+            props.updateAvatar();
           }
         }) 
       }));
