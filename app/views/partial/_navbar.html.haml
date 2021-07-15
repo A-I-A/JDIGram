@@ -19,12 +19,7 @@
         .navbar-button.navbar-notification.me-1
           = render partial: 'partial/navbar_notifications'
         %button.navbar-menu.navbar-button.me-1
-          - if current_user.avatar.attached?
-            %img.navbar-avatar{src: url_for(current_user.avatar)}
-            .navbar-avatar-spinner.spinner
-              = svg "spinner"
-          - else
-            = svg "user_icon_glyph"
+          = react_component("NavbarAvatarContainer", props: {})
           .navbar-menu-popup
             = link_to user_path(current_user.id), class: "navbar-menu-popup-item" do
               .navbar-menu-popup-image
