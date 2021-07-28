@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import userAvatarBlank from 'user_icon_glyph.svg'
+import {connect} from "react-redux";
 
 const Avatar = props => {
   
@@ -17,12 +18,17 @@ const Avatar = props => {
   });
 
   if (props.avatar){
-    return <img className={`avatar ${size}`} src={props.avatar}/>
+    return <img className={`avatar ${size} avatar-current-user`} src={props.avatar}/>
   } else {
-    return <img className={`avatar ${size}`} src={userAvatarBlank}/>
+    return <img className={`avatar ${size} avatar-current-user`} src={userAvatarBlank}/>
   }
-
 }
 
-export default Avatar;
+const mapStateToProps = state => {
+  return {
+    avatar: state.avatar,
+  }
+}
+
+export default connect(mapStateToProps,{})(Avatar);
 

@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Cropper from "react-cropper";
 const axios = require('axios');
 
 
 const AvatarCrop = props => {
 
-  const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
 
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
-      setCropData(cropper.getCroppedCanvas().toBlob(function(blob){
+      cropper.getCroppedCanvas().toBlob(function(blob){
         let formData = new FormData();
         formData.append('avatar', blob);
         formData.append('authenticity_token', props.token)
@@ -18,12 +17,12 @@ const AvatarCrop = props => {
           `/users/${props.user_id}/set_avatar`,
            formData
         ).then(response => {
-          if (response.status == 200) {
+          if (response.status === 200) {
             props.setUserAvatar(response.data.avatar_url)
             props.updateAvatar();
           }
         }) 
-      }));
+      });
     }
   };
 

@@ -7,6 +7,10 @@
   @extend .rounded-circle;
 }
 
+.avatar-current-user {
+  cursor: pointer;
+}
+
 .avatar-big {
   width:  $avatar-big; 
   height: $avatar-big; 

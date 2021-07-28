@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AvatarInput from '../AvatarInput';
 import { Provider } from 'react-redux';
 import store from '../../store/store'

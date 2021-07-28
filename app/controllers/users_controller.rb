@@ -18,11 +18,6 @@ class UsersController < ApplicationController
         token: get_authenticity_token,
         action: 'show'
         }
-    else
-      @avatar_props = {
-        avatar: get_avatar_url(@user),
-        size: 'big'
-      }
     end
   end
 

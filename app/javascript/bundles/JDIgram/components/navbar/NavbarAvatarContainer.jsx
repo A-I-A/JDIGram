@@ -1,13 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from '../../store/store';
-import NavbarAvatar from './NavbarAvatar';
+import Avatar from '../Avatar';
 
 const NavbarAvatarContainer = (props) => {
 
   return (
     <Provider store={store}>
-      <NavbarAvatar/>
+        <Avatar size={'micro'} />
     </Provider>
   )
 }

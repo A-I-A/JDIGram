@@ -41,13 +41,13 @@ const AvatarInput = props => {
   
   return (
    <div className={
-       props.action == 'show' ? 
+       props.action === 'show' ?
        'user-avatar-container' 
        : 
        'edit-avatar-container'
        }>
     <label htmlFor="user_avatar">
-      <Avatar avatar={props.avatar} size={props.action == 'show' ? 'big' : 'small'} />
+      <Avatar size={props.action === 'show' ? 'big' : 'small'} />
      </label>
      <input id="user_avatar" 
             className="avatar-file-field" 

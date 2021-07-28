@@ -8,10 +8,6 @@ import store from '../../store/store'
 
 
 const UserEdit = (props) => {
-  
-  const addAvatar = (avatar) => {
-    setAvatar(avatar);
-  }
 
   return (
     <Provider store={store}>
@@ -23,7 +19,7 @@ const UserEdit = (props) => {
             <AvatarInput action={'edit'} 
                          user_id={props.user_id} 
                          token={props.token}
-                         addAvatar={addAvatar}/>
+            />
             <div className="col">
               <div className="text-start mb-1">{props.login}</div>
               <RemoveAvatarButton user_id={props.user_id} token={props.token}/>
@@ -54,9 +50,5 @@ UserEdit.propTypes = {
   about_me: PropTypes.string.isRequired,
   user_id: PropTypes.number.isRequired,
 };
-
-const mapStateToProps = state => {
-  return {avatar: state.avatar,}
-}
 
 export default UserEdit;

@@ -5,7 +5,7 @@
         = react_component("UserShowAvatarContainer", props: @avatar_props, prerender: false)
       - else
         .user-avatar-container
-          = react_component("Avatar", props: @avatar_props, prerender: true)
+          = image_tag @user.avatar, class: "avatar avatar-big"
     .col
       .user-credentials-row
         .user-login
