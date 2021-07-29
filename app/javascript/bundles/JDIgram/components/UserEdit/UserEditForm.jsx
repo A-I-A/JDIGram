@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 const axios = require('axios');
+import ReactOnRails from "react-on-rails";
 
 
 const UserEditForm = props => {
@@ -15,7 +16,7 @@ const UserEditForm = props => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios.put(`/users/${props.user_id}`, 
-     {authenticity_token: props.token,
+     {authenticity_token: ReactOnRails.authenticityToken(),
       user:{
         name: name,
         login: login,

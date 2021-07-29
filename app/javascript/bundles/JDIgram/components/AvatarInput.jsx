@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Avatar from './Avatar';
 import AvatarCropModal from './AvatarCropModal';
 import { connect } from 'react-redux';
-import { setUserAvatar } from '../store/avatarReducer'
+import { changeUserAvatar } from '../store/avatarReducer'
+
 
 const AvatarInput = props => {
 
@@ -22,10 +23,6 @@ const AvatarInput = props => {
       }
     reader.readAsDataURL(e.target.files[0]);
     showModal();
-  }
-
-  const updateAvatar = () => {
-    hideModal();
   }
 
   const showModal = () => {
@@ -55,12 +52,10 @@ const AvatarInput = props => {
             accept="image/*"
             onInput={handleInput}/>
      <AvatarCropModal image={image} 
-                      startRender={startRender} 
-                      token={props.token}
+                      startRender={startRender}
                       user_id={props.user_id}
-                      updateAvatar={updateAvatar}
                       hideModal={hideModal}
-                      setUserAvatar={props.setUserAvatar}/>
+                      changeUserAvatar={props.changeUserAvatar} />
    </div>
   )    
 }
@@ -69,4 +64,4 @@ const mapStateToProps = state => {
   return {avatar: state.avatar}
 }
 
-export default connect (mapStateToProps,{setUserAvatar})(AvatarInput);
+export default connect (mapStateToProps,{changeUserAvatar})(AvatarInput);

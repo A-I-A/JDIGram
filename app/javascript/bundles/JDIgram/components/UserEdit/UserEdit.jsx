@@ -17,12 +17,11 @@ const UserEdit = (props) => {
         <div className="edit-credentials">
           <div className="edit-title-row">
             <AvatarInput action={'edit'} 
-                         user_id={props.user_id} 
-                         token={props.token}
+                         user_id={props.user_id}
             />
             <div className="col">
               <div className="text-start mb-1">{props.login}</div>
-              <RemoveAvatarButton user_id={props.user_id} token={props.token}/>
+              <RemoveAvatarButton user_id={props.user_id} />
             </div>
           </div>
           <UserEditForm name={props.name}

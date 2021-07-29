@@ -6,19 +6,12 @@ import { removeUserAvatar } from '../../store/avatarReducer'
 
 const RemoveAvatarButton = props => {
 
-  const removeAvatar = () => {
-    axios.delete(`/users/${props.user_id}/remove_avatar`,
-      {data: {authenticity_token: props.token}}
-    ).then(response => {
-      if (response.status == 200) {
-        props.removeUserAvatar();
-      }  
-    });
-  }
-
   if (props.avatar) {
     return (
-    <button className="remove_avatar-button" onClick={removeAvatar}>
+    <button
+        className="remove_avatar-button"
+        onClick={() => {props.removeUserAvatar(props.user_id)}}
+    >
       Remove avatar
     </button>
     )

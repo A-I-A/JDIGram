@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     if user_signed_in? && @user.id == current_user.id
       @avatar_props = {
         user_id: @user.id,
-        token: get_authenticity_token,
         action: 'show'
         }
     end
@@ -24,7 +23,6 @@ class UsersController < ApplicationController
   def edit
     @user_props = {
       user_id: @user.id,
-      token: get_authenticity_token,
       login: @user.login,
       name: @user.name,
       email: @user.email,

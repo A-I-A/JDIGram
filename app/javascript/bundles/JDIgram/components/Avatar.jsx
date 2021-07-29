@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import userAvatarBlank from 'user_icon_glyph.svg'
+import userAvatarBlank from 'user_icon_glyph.svg';
+import spinner from 'spinner.svg';
 import {connect} from "react-redux";
 
 const Avatar = props => {
@@ -17,16 +18,21 @@ const Avatar = props => {
     }
   });
 
-  if (props.avatar){
-    return <img className={`avatar ${size} avatar-current-user`} src={props.avatar}/>
+  if (props.isAvatarLoading) {
+    return <img className={`avatar ${size} `} src={spinner}/>
   } else {
-    return <img className={`avatar ${size} avatar-current-user`} src={userAvatarBlank}/>
+    if (props.avatar){
+      return <img className={`avatar ${size} avatar-current-user`} src={props.avatar}/>
+    } else {
+      return <img className={`avatar ${size} avatar-current-user`} src={userAvatarBlank}/>
+   }
   }
 }
 
 const mapStateToProps = state => {
   return {
     avatar: state.avatar,
+    isAvatarLoading: state.isAvatarLoading,
   }
 }
 

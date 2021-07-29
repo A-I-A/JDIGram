@@ -6,8 +6,7 @@ import store from '../../store/store'
 const UserShowAvatarContainer = (props) => {
   return (
     <Provider store={store}>
-      <AvatarInput user_id={props.user_id} 
-                   token={props.token} 
+      <AvatarInput user_id={props.user_id}
                    action={props.action} />
     </Provider>
   )
