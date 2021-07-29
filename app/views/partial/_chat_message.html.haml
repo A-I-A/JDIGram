@@ -1,7 +1,7 @@
 .chat-message-row
   = link_to user_path(message.sender), class: "chat-avatar-container" do
     - if message.sender.avatar.attached?
-      = image_tag message.sender.avatar, class: "chat-avatar"
+      = image_tag url_for(message.sender.avatar), class: "chat-avatar"
     - else
       = svg "user_icon_glyph"
   .w-75

@@ -7,7 +7,7 @@ class ChatsController < ApplicationController
   end
 
   def show
-    @chat = Chat.find_by(id: params[:id])
+    render_404 unless @chat = Chat.find_by(id: params[:id])
   end
 
 end
