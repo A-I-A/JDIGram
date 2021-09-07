@@ -8,8 +8,8 @@ class LikesController < ApplicationController
       @like = @publication.likes.create(user_id: current_user.id)
     end
     respond_to do |format|
-      format.js 
-      format.html{ render_404 }
+      format.js
+      format.html { render_404 }
     end
   end
 
@@ -20,8 +20,8 @@ class LikesController < ApplicationController
       @publication.likes.destroy(@like)
     end
     respond_to do |format|
-      format.js 
-      format.html{ render_404 }
+      format.js
+      format.html { render_404 }
     end
   end
 
@@ -30,5 +30,4 @@ class LikesController < ApplicationController
   def like_params
     params.permit(:likeable_id, :likeable_type)
   end
-
 end

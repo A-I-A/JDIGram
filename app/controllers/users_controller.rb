@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   include Rails.application.routes.url_helpers
 
   before_action :authenticate_user!, only: [:index, :edit, :update, :destroy, :set_avatar, :remove_avatar]
@@ -16,7 +15,7 @@ class UsersController < ApplicationController
       @avatar_props = {
         user_id: @user.id,
         action: 'show'
-        }
+      }
     end
   end
 
@@ -36,7 +35,7 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     if @user.errors.empty?
-      flash[:success] = "your profile settings have been updated"
+      flash[:success] = 'your profile settings have been updated'
       render json: {}
     end
   end
@@ -50,7 +49,7 @@ class UsersController < ApplicationController
     render json: {
       avatar_url: rails_blob_path(
         @user.avatar,
-        disposition: "attachment",
+        disposition: 'attachment',
         only_path: true
       )
     }
@@ -63,12 +62,12 @@ class UsersController < ApplicationController
 
   def search_by_login_or_name
     @users = User.__elasticsearch__.search(
-      query: { 
+      query: {
         multi_match: {
-         query: params[:login],
-         fields: ['name', 'login']
-       }
-     }
+          query: params[:login],
+          fields: ['name', 'login']
+        }
+      }
     ).records.to_a
     respond_to do |format|
       format.js
@@ -86,8 +85,6 @@ class UsersController < ApplicationController
     render_403 unless @user.id == current_user.id
   end
 
-
-
   def user_params
     params.require(:user).permit(:name,
                                  :login,
@@ -98,15 +95,15 @@ class UsersController < ApplicationController
                                  :gender)
   end
 
-  def get_avatar_url(user)
+  def avatar_url(user)
     if user.avatar.attached?
-      avatar = url_for(@user.avatar)
-    else 
-      avatar = false
+      url_for(@user.avatar)
+    else
+      false
     end
   end
 
-  def get_authenticity_token
+  def authenticity_token
     session[:_csrf_token] ||= SecureRandom.base64(32)
   end
 end
