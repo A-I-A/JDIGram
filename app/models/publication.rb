@@ -7,4 +7,6 @@ class Publication < ApplicationRecord
   has_many :likes, as: :likeable 
 
   has_many :comments
+
+  validates :description, presence: true
 end
