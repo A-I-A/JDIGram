@@ -29,8 +29,4 @@
               .publication-description
                 %b 
                   = @user.login + ": "
-                = pub.description 
-
-- if user_signed_in?
-  = render partial: "partial/add_publication"
-#place-for-modal
+                = pub.description

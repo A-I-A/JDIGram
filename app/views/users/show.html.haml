@@ -5,13 +5,16 @@
         = react_component("UserShowAvatarContainer", props: @avatar_props, prerender: false)
       - else
         .user-avatar-container
-          = image_tag @user.avatar, class: "avatar avatar-big"
+          - if @user.avatar.attached?
+            = image_tag @user.avatar, class: "avatar avatar-big"
+          - else
+            = svg 'user_icon_glyph'
     .col
       .user-credentials-row
         .user-login
           = @user.login
         - if user_signed_in? && @user.id == current_user.id
-          =link_to  edit_user_path, class: "user-edit-button" do
+          = link_to  edit_user_path, class: "user-edit-button" do
             Edit profile
       .user-credentials-row{ id: 'userMetrics' }
         = render partial: 'partial/user_metrics', locals: { user: @user }
@@ -28,10 +31,8 @@
     - @publications.each do |pub|
       = link_to "/publications/#{@user.id}/get_user_publication/#{pub.id}", remote: true do
         .user-publication-preview{style: "background: url('#{url_for(pub.photos[0]) }') center no-repeat; background-size: cover;"}
-#place-for-modal
 
-- if user_signed_in?
-  = render partial: "partial/add_publication"
+
 
 
 
