@@ -15,13 +15,20 @@ class PublicationsController < ApplicationController
     end
   end
 
-  def add_publication
+  def new
+    respond_to do |format|
+      format.js
+      format.html { render_404 }
+    end
+  end
+
+  def create
     @publication = current_user.publications.new(description: params[:description])
-
-    params[:photo].each do |photo|
-      @publication.photos.attach(photo)
-    end if params[:photo]
-
+    if params[:photo]
+      params[:photo].each do |photo|
+        @publication.photos.attach(photo)
+      end
+    end
     @publication.save
   end
 
@@ -51,5 +58,4 @@ class PublicationsController < ApplicationController
   def next_publication(user, publication)
     user.publications.where("id < ?", publication.id).last
   end
-
 end
