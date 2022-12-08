@@ -57,7 +57,7 @@ gem 'execjs', '2.7'
 # This adds support of jQuery
 gem 'jquery-rails'
 
-# This adds cropper (jquery version) 
+# This adds cropper (jquery version)
 gem 'cropper-rails'
 
 # This adds support for elasticsearch
@@ -71,10 +71,12 @@ gem 'react_on_rails'
 gem 'mini_racer'
 
 # This adds Webpacker
-gem 'webpacker' 
+gem 'webpacker'
 
 # This is required to start the webpack-dev-server
 gem 'foreman'
+
+gem 'rubocop-rails', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -102,7 +104,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-  
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
