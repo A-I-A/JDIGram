@@ -7,6 +7,7 @@ Rails.application.routes.default_url_options[:host] = :test
 RSpec.describe PublicationsController, type: :controller do
   describe 'when user signed in' do
     let(:user) { create(:user) }
+
     before { sign_in user }
 
     describe "when publication doesn't exist" do
@@ -23,9 +24,10 @@ RSpec.describe PublicationsController, type: :controller do
 
     describe 'when publication exists' do
       let(:user1) { create(:user) }
-      before { sign_in user1 }
       let(:file) { fixture_file_upload('cockroach.jpg', 'img/jpeg') }
       let(:publication) { create(:publication, user_id: user1.id, photos: file) }
+
+      before { sign_in user1 }
 
       it 'gives status 200' do
         get :show, params: { id: publication.id }, xhr: true

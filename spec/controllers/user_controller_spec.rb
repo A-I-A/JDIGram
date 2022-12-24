@@ -18,6 +18,7 @@ RSpec.describe UsersController, type: :controller do
   describe 'when user is signed in' do
     let(:user1) { create(:user) }
     let(:user2) { create(:user) }
+
     before { sign_in user1 }
 
     it_gives_404_when_user_not_exits :show, :edit, :update, :destroy
