@@ -23,5 +23,3 @@ class MessageChannel < ApplicationCable::Channel
     Chat.find(params[:chat_id])
   end
 end
-
-

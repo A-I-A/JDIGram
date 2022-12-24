@@ -1,7 +1,8 @@
-class PublicationsController < ApplicationController
+# frozen_string_literal: true
 
+class PublicationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_publication, only: [:show, :like, :add_comment]
+  before_action :find_publication, only: %i[show like add_comment]
 
   def index
     @publications = Publication.all.order(created_at: :desc).with_attached_photos
@@ -24,10 +25,8 @@ class PublicationsController < ApplicationController
 
   def create
     @publication = current_user.publications.new(description: params[:description])
-    if params[:photo]
-      params[:photo].each do |photo|
-        @publication.photos.attach(photo)
-      end
+    params[:photo]&.each do |photo|
+      @publication.photos.attach(photo)
     end
     @publication.save
   end
@@ -52,10 +51,10 @@ class PublicationsController < ApplicationController
   end
 
   def previous_publication(user, publication)
-    user.publications.where("id > ?", publication.id).first
+    user.publications.where('id > ?', publication.id).first
   end
 
   def next_publication(user, publication)
-    user.publications.where("id < ?", publication.id).last
+    user.publications.where('id < ?', publication.id).last
   end
 end

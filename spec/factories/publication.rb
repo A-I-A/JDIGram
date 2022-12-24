@@ -1,9 +1,7 @@
 include ActionDispatch::TestProcess
 
-FactoryBot.define do 
+FactoryBot.define do
   factory :publication do
-     description { "test description" }
+    description { 'test description' }
   end
 end
-
-

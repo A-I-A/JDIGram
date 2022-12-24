@@ -1,5 +1,6 @@
-class LikesController < ApplicationController
+# frozen_string_literal: true
 
+class LikesController < ApplicationController
   before_action :authenticate_user!
 
   def create
@@ -7,6 +8,7 @@ class LikesController < ApplicationController
       @publication = Publication.find_by(id: like_params[:likeable_id])
       @like = @publication.likes.create(user_id: current_user.id)
     end
+
     respond_to do |format|
       format.js
       format.html { render_404 }
@@ -19,6 +21,7 @@ class LikesController < ApplicationController
       @publication = Publication.find_by(id: @like.likeable_id)
       @publication.likes.destroy(@like)
     end
+
     respond_to do |format|
       format.js
       format.html { render_404 }

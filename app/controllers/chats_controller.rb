@@ -1,5 +1,6 @@
-class ChatsController < ApplicationController
+# frozen_string_literal: true
 
+class ChatsController < ApplicationController
   def index
     @chats = []
     @chats.concat(current_user.inbox_chats).to_a
@@ -7,7 +8,6 @@ class ChatsController < ApplicationController
   end
 
   def show
-    render_404 unless @chat = Chat.find_by(id: params[:id])
+    render_404 unless (@chat = Chat.find_by(id: params[:id]))
   end
-
 end
