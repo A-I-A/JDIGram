@@ -1,7 +1,8 @@
 module ApplicationHelper
   def svg(name)
     file_path = "#{Rails.root}/app/assets/images/#{name}.svg"
-    return File.read(file_path).html_safe if File.exists?(file_path)
+    return File.read(file_path).html_safe if File.exist?(file_path)
+
     '(not found)'
   end
 
@@ -10,11 +11,10 @@ module ApplicationHelper
   end
 
   def get_avatar_url(user)
-    if user.avatar.attached?
-      avatar = url_for(user.avatar)
-    else 
-      avatar = false
-    end
+    avatar = if user.avatar.attached?
+               url_for(user.avatar)
+             else
+               false
+             end
   end
-
 end

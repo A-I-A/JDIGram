@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   include Rails.application.routes.url_helpers
 
-  before_action :authenticate_user!, only: [:index, :edit, :update, :destroy, :set_avatar, :remove_avatar]
-  before_action :find_user, only: [:show, :edit, :update, :destroy, :set_avatar, :remove_avatar]
-  before_action :permit_only_current_user, only: [:edit, :destroy, :set_avatar, :remove_avatar]
+  before_action :authenticate_user!, only: %i[index edit update destroy set_avatar remove_avatar]
+  before_action :find_user, only: %i[show edit update destroy set_avatar remove_avatar]
+  before_action :permit_only_current_user, only: %i[edit destroy set_avatar remove_avatar]
 
   def index
     @users = User.all
@@ -11,12 +13,12 @@ class UsersController < ApplicationController
 
   def show
     @publications = @user.publications.order(created_at: :desc)
-    if user_signed_in? && @user.id == current_user.id
-      @avatar_props = {
-        user_id: @user.id,
-        action: 'show'
-      }
-    end
+    return unless user_signed_in? && @user.id == current_user.id
+
+    @avatar_props = {
+      user_id: @user.id,
+      action: 'show'
+    }
   end
 
   def edit
@@ -34,16 +36,16 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    if @user.errors.empty?
-      flash[:success] = 'your profile settings have been updated'
-      render json: {}
-    end
+    return unless @user.errors.empty?
+
+    flash[:success] = 'your profile settings have been updated'
+    render json: {}
   end
 
   def destroy; end
 
   def set_avatar
-    puts params.inspect
+    Rails.logger.debug params.inspect
     @user.avatar.attach(params[:avatar])
 
     render json: {
@@ -65,7 +67,7 @@ class UsersController < ApplicationController
       query: {
         multi_match: {
           query: params[:login],
-          fields: ['name', 'login']
+          fields: %w[name login]
         }
       }
     ).records.to_a

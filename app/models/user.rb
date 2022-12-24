@@ -1,19 +1,19 @@
 require 'elasticsearch/model'
 
 class User < ApplicationRecord
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  # include Elasticsearch::Model
+  # include Elasticsearch::Model::Callbacks
   include Rails.application.routes.url_helpers
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   has_many :publications
-  
+
   has_one_attached :avatar
-  
+
   validates :email, uniqueness: true
   validates :login, uniqueness: true
 
@@ -34,24 +34,19 @@ class User < ApplicationRecord
   has_many :starters, through: :inbox_messages
 
   has_many :messages, foreign_key: :sender_id
-  
+
   def follows?(id)
-    if self.friends.find_by(id: id)
-      return true
-    else 
-      return false 
-    end
+    return true if friends.find_by(id: id)
+
+    false
   end
 
   def followed_by?(id)
-    if self.inverse_friends.find_by(id: id)
-      return true
-    else
-      return false
-    end
-  end
+    return true if inverse_friends.find_by(id: id)
 
+    false
+  end
 end
 
-User.__elasticsearch__.create_index!
-User.import
+# User.__elasticsearch__.create_index!
+# User.import
